@@ -15,7 +15,7 @@ extension SwiftyCore.UI {
             return true
         }
         
-        var loadingViewController: LoadingViewController?
+        var loadingViewController: SwiftyCore.UI.LoadingViewController?
         public var keyboardPresenter: KeyboardPresenter!
         
         
@@ -50,10 +50,10 @@ extension SwiftyCore.UI {
 //        }
         
         public func showLoading() {
-            let loadingViewController = UIViewController()
-            loadingViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            //loadingViewController?.modalPresentationStyle = .overCurrentContext
-            //guard let loadingViewController = loadingViewController else { return }
+            loadingViewController = SwiftyCore.UI.LoadingViewController()
+            //loadingViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            loadingViewController?.modalPresentationStyle = .overCurrentContext
+            guard let loadingViewController = loadingViewController else { return }
             self.present(loadingViewController, animated: false, completion: nil)
         }
 
