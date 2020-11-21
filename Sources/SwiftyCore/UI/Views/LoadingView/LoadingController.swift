@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public protocol LoadingController where Self: UIViewController {
+protocol LoadingController where Self: UIViewController {
     var loadingViewController: SwiftyCore.UI.LoadingViewController? { get }
     
     func showLoading()

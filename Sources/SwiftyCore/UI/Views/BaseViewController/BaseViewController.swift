@@ -49,18 +49,18 @@ extension SwiftyCore.UI {
 //            }
 //        }
         
-        func showLoading() {
+        public func showLoading() {
             loadingViewController = LoadingViewController()
             loadingViewController?.modalPresentationStyle = .overCurrentContext
             guard let loadingViewController = loadingViewController else { return }
             self.present(loadingViewController, animated: false, completion: nil)
         }
 
-        func hideLoading(showSuccess: Bool = false, completion: (() -> Void)? = nil) {
-             loadingViewController?.dismissLoading(with: showSuccess) {
-                self.loadingViewController = nil
-                completion?()
-            }
+        public func hideLoading(showSuccess: Bool = false, completion: (() -> Void)? = nil) {
+//             loadingViewController?.dismissLoading(with: showSuccess) {
+//                self.loadingViewController = nil
+//                completion?()
+//            }
         }
         
         open func keyboardAboutToShow(keyboardSize: CGRect) {
