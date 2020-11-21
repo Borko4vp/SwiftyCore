@@ -12,7 +12,7 @@ public protocol Toastaable where Self: UIViewController {
     func showToast(text: String, image: UIImage, durationInSeconds: Int)
 }
 
-extension Toastaable {
+public extension Toastaable {
     func showToast(text: String, image: UIImage, durationInSeconds: Int = 4) {
         let toastView = createToastView(image: image, backgroundColor: UIColor.black.withAlphaComponent(0.75), text: text, textColor: .white)
         view.addSubview(toastView)
