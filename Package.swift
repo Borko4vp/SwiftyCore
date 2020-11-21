@@ -11,7 +11,7 @@ let package = Package(
         .library(
             name: "SwiftyCore",
             //type: .dynamic,
-            targets: ["SwiftyCore"]),
+            targets: ["SwiftyCore"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
