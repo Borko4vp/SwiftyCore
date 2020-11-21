@@ -14,7 +14,6 @@ extension SwiftyCore.UI {
         static public var animationFileName: String?
         static public var finishAnimationFileName: String?
         
-        @IBOutlet weak private var animationViewPlaceholder: UIView!
         private var animationView: AnimationView?
         
         override func viewDidLoad() {
@@ -42,18 +41,18 @@ extension SwiftyCore.UI {
 
         private func addAnimationView() {
             if let animationView = animationView {
-                animationViewPlaceholder?.addSubview(animationView)
+                view?.addSubview(animationView)
                 setAnimationViewConstraints()
             }
         }
 
         private func setAnimationViewConstraints() {
             animationView?.translatesAutoresizingMaskIntoConstraints = false
-            animationView?.topAnchor.constraint(equalTo: animationViewPlaceholder.layoutMarginsGuide.topAnchor).isActive = true
-            animationView?.leadingAnchor.constraint(equalTo: animationViewPlaceholder.leadingAnchor).isActive = true
+            animationView?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+            animationView?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 
-            animationView?.bottomAnchor.constraint(equalTo: animationViewPlaceholder.layoutMarginsGuide.bottomAnchor).isActive = true
-            animationView?.trailingAnchor.constraint(equalTo: animationViewPlaceholder.trailingAnchor).isActive = true
+            animationView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
+            animationView?.widthAnchor.constraint(equalToConstant: 200).isActive = true
             animationView?.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
         }
 

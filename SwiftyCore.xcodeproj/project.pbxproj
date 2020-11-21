@@ -73,7 +73,6 @@
 		EEC92A172568B8B700348866 /* Toastable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toastable.swift; sourceTree = "<group>"; };
 		EEC92A182568B8B700348866 /* KeyboardPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardPresentable.swift; sourceTree = "<group>"; };
 		EEC92A1B2568B8B700348866 /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
-		EEC92A1C2568B8B700348866 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		EEC92A1D2568B8B700348866 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		EEC92A1F2568B8B700348866 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EEC92A202568B8B700348866 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
@@ -155,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				EEC92A1B2568B8B700348866 /* LoadingController.swift */,
-				EEC92A1C2568B8B700348866 /* LoadingViewController.xib */,
 				EEC92A1D2568B8B700348866 /* LoadingViewController.swift */,
 			);
 			path = LoadingView;
