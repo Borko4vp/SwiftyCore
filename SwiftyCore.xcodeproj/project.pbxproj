@@ -22,6 +22,19 @@
 
 /* Begin PBXBuildFile section */
 		EEC929DD2568B54000348866 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC929DC2568B54000348866 /* UI.swift */; };
+		EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */; };
+		EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A102568B8B700348866 /* UIViewController+Extension.swift */; };
+		EEC92A232568B8B700348866 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A122568B8B700348866 /* Alertable.swift */; };
+		EEC92A242568B8B700348866 /* DocumentPickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A132568B8B700348866 /* DocumentPickable.swift */; };
+		EEC92A252568B8B700348866 /* PickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A142568B8B700348866 /* PickerItem.swift */; };
+		EEC92A262568B8B700348866 /* Animatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A152568B8B700348866 /* Animatable.swift */; };
+		EEC92A272568B8B700348866 /* ImagePickable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A162568B8B700348866 /* ImagePickable.swift */; };
+		EEC92A282568B8B700348866 /* Toastable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A172568B8B700348866 /* Toastable.swift */; };
+		EEC92A292568B8B700348866 /* KeyboardPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A182568B8B700348866 /* KeyboardPresentable.swift */; };
+		EEC92A2A2568B8B700348866 /* LoadingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1B2568B8B700348866 /* LoadingController.swift */; };
+		EEC92A2B2568B8B700348866 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1D2568B8B700348866 /* LoadingViewController.swift */; };
+		EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1F2568B8B700348866 /* BaseViewController.swift */; };
+		EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A202568B8B700348866 /* BaseController.swift */; };
 		OBJ_23 /* SwiftyCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* SwiftyCore.swift */; };
 		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_41 /* SwiftyCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SwiftyCoreTests.swift */; };
@@ -48,6 +61,20 @@
 
 /* Begin PBXFileReference section */
 		EEC929DC2568B54000348866 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
+		EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
+		EEC92A102568B8B700348866 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		EEC92A122568B8B700348866 /* Alertable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
+		EEC92A132568B8B700348866 /* DocumentPickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentPickable.swift; sourceTree = "<group>"; };
+		EEC92A142568B8B700348866 /* PickerItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerItem.swift; sourceTree = "<group>"; };
+		EEC92A152568B8B700348866 /* Animatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animatable.swift; sourceTree = "<group>"; };
+		EEC92A162568B8B700348866 /* ImagePickable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickable.swift; sourceTree = "<group>"; };
+		EEC92A172568B8B700348866 /* Toastable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toastable.swift; sourceTree = "<group>"; };
+		EEC92A182568B8B700348866 /* KeyboardPresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardPresentable.swift; sourceTree = "<group>"; };
+		EEC92A1B2568B8B700348866 /* LoadingController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingController.swift; sourceTree = "<group>"; };
+		EEC92A1C2568B8B700348866 /* LoadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
+		EEC92A1D2568B8B700348866 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		EEC92A1F2568B8B700348866 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		EEC92A202568B8B700348866 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
 		OBJ_12 /* SwiftyCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCoreTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -76,6 +103,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EEC92A0D2568B89A00348866 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				EEC92A0E2568B8B700348866 /* Extensions */,
+				EEC92A112568B8B700348866 /* Protocols */,
+				EEC92A192568B8B700348866 /* Views */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		EEC92A0E2568B8B700348866 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */,
+				EEC92A102568B8B700348866 /* UIViewController+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EEC92A112568B8B700348866 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				EEC92A122568B8B700348866 /* Alertable.swift */,
+				EEC92A132568B8B700348866 /* DocumentPickable.swift */,
+				EEC92A142568B8B700348866 /* PickerItem.swift */,
+				EEC92A152568B8B700348866 /* Animatable.swift */,
+				EEC92A162568B8B700348866 /* ImagePickable.swift */,
+				EEC92A172568B8B700348866 /* Toastable.swift */,
+				EEC92A182568B8B700348866 /* KeyboardPresentable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EEC92A192568B8B700348866 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				EEC92A1A2568B8B700348866 /* LoadingView */,
+				EEC92A1E2568B8B700348866 /* BaseViewController */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		EEC92A1A2568B8B700348866 /* LoadingView */ = {
+			isa = PBXGroup;
+			children = (
+				EEC92A1B2568B8B700348866 /* LoadingController.swift */,
+				EEC92A1C2568B8B700348866 /* LoadingViewController.xib */,
+				EEC92A1D2568B8B700348866 /* LoadingViewController.swift */,
+			);
+			path = LoadingView;
+			sourceTree = "<group>";
+		};
+		EEC92A1E2568B8B700348866 /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EEC92A1F2568B8B700348866 /* BaseViewController.swift */,
+				EEC92A202568B8B700348866 /* BaseController.swift */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,7 +191,7 @@
 			name = Products;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_6 /* Package.swift */,
@@ -112,7 +200,6 @@
 				OBJ_14 /* Products */,
 				OBJ_17 /* README.md */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_7 /* Sources */ = {
@@ -126,6 +213,7 @@
 		OBJ_8 /* SwiftyCore */ = {
 			isa = PBXGroup;
 			children = (
+				EEC92A0D2568B89A00348866 /* UI */,
 				OBJ_9 /* SwiftyCore.swift */,
 				EEC929DC2568B54000348866 /* UI.swift */,
 			);
@@ -199,7 +287,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -217,8 +305,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
+				EEC92A2A2568B8B700348866 /* LoadingController.swift in Sources */,
+				EEC92A252568B8B700348866 /* PickerItem.swift in Sources */,
+				EEC92A262568B8B700348866 /* Animatable.swift in Sources */,
+				EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */,
+				EEC92A282568B8B700348866 /* Toastable.swift in Sources */,
+				EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */,
+				EEC92A272568B8B700348866 /* ImagePickable.swift in Sources */,
+				EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */,
+				EEC92A242568B8B700348866 /* DocumentPickable.swift in Sources */,
+				EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */,
+				EEC92A292568B8B700348866 /* KeyboardPresentable.swift in Sources */,
 				OBJ_23 /* SwiftyCore.swift in Sources */,
 				EEC929DD2568B54000348866 /* UI.swift in Sources */,
+				EEC92A2B2568B8B700348866 /* LoadingViewController.swift in Sources */,
+				EEC92A232568B8B700348866 /* Alertable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
