@@ -10,11 +10,9 @@ import Lottie
 import UIKit
 
 extension SwiftyCore.UI {
-    class LoadingViewController: UIViewController {
-        static public var animationFileName: String?
-        static public var finishAnimationFileName: String?
-        
+    class LoadingViewController: UIViewController {        
         private var animationView: AnimationView?
+        private var animationViewSize: CGFloat = 180
         
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -29,7 +27,7 @@ extension SwiftyCore.UI {
         }
         
         private func setupUI() {
-            guard let animationFileName = LoadingViewController.animationFileName else {
+            guard let animationFileName = SwiftyCore.UI.loadingAnimationFileName else {
                 fatalError("Should configure loading lotie animation file name")
             }
             animationView = LoadingViewController.createAnimatioView(with: animationFileName)
@@ -51,13 +49,13 @@ extension SwiftyCore.UI {
             animationView?.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
             animationView?.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
 
-            animationView?.heightAnchor.constraint(equalToConstant: 200).isActive = true
-            animationView?.widthAnchor.constraint(equalToConstant: 200).isActive = true
+            animationView?.heightAnchor.constraint(equalToConstant: animationViewSize).isActive = true
+            animationView?.widthAnchor.constraint(equalToConstant: animationViewSize).isActive = true
             animationView?.setContentCompressionResistancePriority(.fittingSizeLevel, for: .horizontal)
         }
 
         private func showFinishAnimation(completion: @escaping () -> ()) {
-            guard let animationFileName = SwiftyCore.UI.LoadingViewController.finishAnimationFileName else {
+            guard let animationFileName = SwiftyCore.UI.finishLoadingAnimationFileName else {
                 fatalError("Should configure finish lotie animation file name")
             }
             animationView?.removeFromSuperview()

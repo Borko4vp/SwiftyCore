@@ -20,16 +20,13 @@ public extension Toastaable {
             toastView.frame = self.getEndingFrame()
         
         }
-        if #available(iOS 10.0, *) {
-            let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
-                self.animate(block: {
-                    toastView.frame = self.getStartingFrame()
-                }) {
-                    toastView.removeFromSuperview()
-                }
+        guard durationInSeconds > 0 else { return }
+        let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
+            self.animate(block: {
+                toastView.frame = self.getStartingFrame()
+            }) {
+                toastView.removeFromSuperview()
             }
-        } else {
-            // Fallback on earlier versions
         }
     }
     
@@ -40,7 +37,8 @@ public extension Toastaable {
     }
     
     private func getEndingFrame() -> CGRect {
-        let origin = CGPoint(x: offset, y: view.bounds.height-offset-toastHeight)
+        let bottomOffset = UIDevice.hasNotch ? 3*offset : offset
+        let origin = CGPoint(x: offset, y: view.bounds.height-bottomOffset-toastHeight)
         let frame = CGRect(origin: origin, size: size)
         return frame
     }
