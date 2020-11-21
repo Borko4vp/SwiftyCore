@@ -8,5 +8,5 @@
 import Foundation
 
 extension SwiftyCore.UI {
-    static var text: String { return "Borko" }
+    public static var text: String { return "Borko" }
 }
