@@ -20,7 +20,7 @@ extension SwiftyCore.UI {
         override func viewDidLoad() {
             super.viewDidLoad()
 
-            //setupUI()
+            setupUI()
         }
         
         override func viewDidAppear(_ animated: Bool) {
