@@ -25,7 +25,7 @@ let package = Package(
         .target(
             name: "SwiftyCore",
             dependencies: [
-                .product(name: "Lottie", package: "lottie-ios")
+                .product(name: "lottie-ios", package: "lottie-ios")
             ]),
         .testTarget(
             name: "SwiftyCoreTests",
