@@ -7,12 +7,12 @@
 import Foundation
 import UIKit
 
-protocol KeyboardPresenterProtocol: class {
+public protocol KeyboardPresenterProtocol: class {
     func keyboardAboutToShow(keyboardSize: CGRect)
     func keyboardAboutToHide(keyboardSize: CGRect)
 }
 
-class KeyboardPresenter {
+public class KeyboardPresenter {
     private weak var presenter: KeyboardPresenterProtocol!
 
     init(presenter: KeyboardPresenterProtocol) {
@@ -50,18 +50,18 @@ class KeyboardPresenter {
     }
 }
 
-protocol KeyboardPresentable where Self: KeyboardPresenterProtocol {
+public protocol KeyboardPresentable where Self: KeyboardPresenterProtocol {
     var keyboardPresenter: KeyboardPresenter! { get set }
     func configureKeyboardPresenter()
     func unregisterKeyboardNotifications()
 }
 
 extension KeyboardPresentable {
-   func configureKeyboardPresenter() {
+   public func configureKeyboardPresenter() {
         keyboardPresenter = KeyboardPresenter(presenter: self)
    }
     
-    func unregisterKeyboardNotifications() {
+    public func unregisterKeyboardNotifications() {
         keyboardPresenter.unregisterKeyboardNotifications()
     }
 }

@@ -11,12 +11,12 @@ import UIKit
 extension SwiftyCore.UI {
     open class BaseViewController: UIViewController, /*LoadingController,*/ KeyboardPresentable, BaseController {
         
-        var interactivePopGestureRecognizerEnabled: Bool {
+        open var interactivePopGestureRecognizerEnabled: Bool {
             return true
         }
         
         //var loadingViewController: LoadingViewController?
-        var keyboardPresenter: KeyboardPresenter!
+        public var keyboardPresenter: KeyboardPresenter!
         
         
         open override func viewDidLoad() {
@@ -63,13 +63,18 @@ extension SwiftyCore.UI {
 //            }
 //        }
         
-        func keyboardAboutToShow(keyboardSize: CGRect) {
+        open func keyboardAboutToShow(keyboardSize: CGRect) {
             // override in each view controller
         }
         
-        func keyboardAboutToHide(keyboardSize: CGRect) {
+        open func keyboardAboutToHide(keyboardSize: CGRect) {
             // override in each view controller
         }
     }
 }
 
+extension SwiftyCore.UI {
+    open class BorkoViewController: UIViewController {
+        
+    }
+}
