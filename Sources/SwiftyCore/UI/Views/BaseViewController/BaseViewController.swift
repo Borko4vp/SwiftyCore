@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 extension SwiftyCore.UI {
-    open class BaseViewController: UIViewController, /*LoadingController,*/ KeyboardPresentable, BaseController {
+    open class BaseViewController: UIViewController, LoadingController, KeyboardPresentable, BaseController {
         
         open var interactivePopGestureRecognizerEnabled: Bool {
             return true
         }
         
-        //var loadingViewController: LoadingViewController?
+        var loadingViewController: LoadingViewController?
         public var keyboardPresenter: KeyboardPresenter!
         
         
@@ -49,19 +49,19 @@ extension SwiftyCore.UI {
 //            }
 //        }
         
-//        func showLoading() {
-//            loadingViewController = LoadingViewController()
-//            loadingViewController?.modalPresentationStyle = .overCurrentContext
-//            guard let loadingViewController = loadingViewController else { return }
-//            self.present(loadingViewController, animated: false, completion: nil)
-//        }
-//
-//        func hideLoading(showSuccess: Bool = false, completion: (() -> Void)? = nil) {
-//             loadingViewController?.dismissLoading(with: showSuccess) {
-//                self.loadingViewController = nil
-//                completion?()
-//            }
-//        }
+        func showLoading() {
+            loadingViewController = LoadingViewController()
+            loadingViewController?.modalPresentationStyle = .overCurrentContext
+            guard let loadingViewController = loadingViewController else { return }
+            self.present(loadingViewController, animated: false, completion: nil)
+        }
+
+        func hideLoading(showSuccess: Bool = false, completion: (() -> Void)? = nil) {
+             loadingViewController?.dismissLoading(with: showSuccess) {
+                self.loadingViewController = nil
+                completion?()
+            }
+        }
         
         open func keyboardAboutToShow(keyboardSize: CGRect) {
             // override in each view controller

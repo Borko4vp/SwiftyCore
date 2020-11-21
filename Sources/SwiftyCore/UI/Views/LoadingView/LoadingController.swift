@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-//protocol LoadingController where Self: UIViewController {
-//    var loadingViewController: Core.UI.LoadingViewController? { get }
-//    
-//    func showLoading()
-//    func hideLoading(showSuccess: Bool, completion: (() -> Void)?)
-//}
+public protocol LoadingController where Self: UIViewController {
+    var loadingViewController: SwiftyCore.UI.LoadingViewController? { get }
+    
+    func showLoading()
+    func hideLoading(showSuccess: Bool, completion: (() -> Void)?)
+}
