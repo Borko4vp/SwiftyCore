@@ -6,6 +6,8 @@
 //
 
 import Foundation
-extension SwiftyCore.UI {
-    public var text: String? { return "Borko"}
+extension SwiftyCore {
+    public struct UI {
+        public var text: String? { return "Borko"}
+    }
 }
