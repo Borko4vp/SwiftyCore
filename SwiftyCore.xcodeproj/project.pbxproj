@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -36,7 +36,6 @@
 		EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1F2568B8B700348866 /* BaseViewController.swift */; };
 		EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A202568B8B700348866 /* BaseController.swift */; };
 		EEC92A332568B94400348866 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A322568B94400348866 /* Text.swift */; };
-		EEC92A5C2569266800348866 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EEC92A5B2569266800348866 /* Lottie */; };
 		OBJ_23 /* SwiftyCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* SwiftyCore.swift */; };
 		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_41 /* SwiftyCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SwiftyCoreTests.swift */; };
@@ -92,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 0;
 			files = (
-				EEC92A5C2569266800348866 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,7 +254,6 @@
 			);
 			name = SwiftyCore;
 			packageProductDependencies = (
-				EEC92A5B2569266800348866 /* Lottie */,
 			);
 			productName = SwiftyCore;
 			productReference = "SwiftyCore::SwiftyCore::Product" /* SwiftyCore.framework */;
@@ -297,7 +294,6 @@
 			);
 			mainGroup = OBJ_5;
 			packageReferences = (
-				EEC92A5A2569266800348866 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = OBJ_14 /* Products */;
 			projectDirPath = "";
@@ -379,10 +375,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwiftyCore.xcodeproj/SwiftyCore_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -410,10 +403,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwiftyCore.xcodeproj/SwiftyCore_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) $(TOOLCHAIN_DIR)/usr/lib/swift/macosx";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -499,11 +489,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwiftyCore.xcodeproj/SwiftyCoreTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -528,11 +514,7 @@
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwiftyCore.xcodeproj/SwiftyCoreTests_Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@loader_path/../Frameworks",
-					"@loader_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @loader_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_LDFLAGS = "$(inherited)";
@@ -564,8 +546,7 @@
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = "macosx iphoneos iphonesimulator appletvos appletvsimulator watchos watchsimulator";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) SWIFT_PACKAGE";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				USE_HEADERMAP = NO;
 			};
 			name = Release;
@@ -619,25 +600,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		EEC92A5A2569266800348866 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/airbnb/lottie-ios";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.9;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		EEC92A5B2569266800348866 /* Lottie */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = EEC92A5A2569266800348866 /* XCRemoteSwiftPackageReference "lottie-ios" */;
-			productName = Lottie;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = OBJ_1 /* Project object */;
 }
