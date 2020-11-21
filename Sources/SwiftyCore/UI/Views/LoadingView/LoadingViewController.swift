@@ -30,7 +30,7 @@ extension SwiftyCore.UI {
         }
         
         private func setupUI() {
-            guard let animationFileName = SwiftyCore.UI.LoadingViewController.animationFileName else {
+            guard let animationFileName = LoadingViewController.animationFileName else {
                 fatalError("Should configure loading lotie animation file name")
             }
             animationView = LoadingViewController.createAnimatioView(with: animationFileName)
