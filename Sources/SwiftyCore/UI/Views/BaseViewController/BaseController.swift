@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol BaseController where Self: UIViewController  {
+public protocol BaseController where Self: UIViewController  {
     //func pushViaMain(controller: BaseController)
     var interactivePopGestureRecognizerEnabled: Bool { get }
 }
