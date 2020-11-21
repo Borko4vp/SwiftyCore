@@ -73,8 +73,12 @@ extension SwiftyCore.UI {
     }
 }
 
-extension SwiftyCore.UI {
-    open class BorkoViewController: UIViewController {
-        
+extension SwiftyCore.UI.BaseViewController: Toastaable {
+
+}
+
+extension SwiftyCore.UI.BaseViewController: Alertable {
+    open func didPressOk(on tag: String) {
+        // should be overriden
     }
 }

@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-protocol Alertable where Self: UIViewController {
-    func showOKAlert(with title: String, and text: String, tag: String)
+public protocol Alertable where Self: UIViewController {
+    func showOKAlert(with title: String, and text: String, confirmButtonText: String, tag: String)
     func didPressOk(on tag: String)
 }
 
-extension Alertable {
+public extension Alertable {
     func showOKAlert(with title: String, and text: String, confirmButtonText: String = "OK", tag: String) {
         let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
         let okHandler = { (action: UIAlertAction) in self.didPressOk(on: tag) }
