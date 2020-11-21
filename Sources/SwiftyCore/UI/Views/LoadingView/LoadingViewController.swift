@@ -58,7 +58,7 @@ extension SwiftyCore.UI {
         }
 
         private func showFinishAnimation(completion: @escaping () -> ()) {
-            guard let animationFileName = Core.UI.LoadingViewController.finishAnimationFileName else {
+            guard let animationFileName = SwiftyCore.UI.LoadingViewController.finishAnimationFileName else {
                 fatalError("Should configure finish lotie animation file name")
             }
             animationView?.removeFromSuperview()
