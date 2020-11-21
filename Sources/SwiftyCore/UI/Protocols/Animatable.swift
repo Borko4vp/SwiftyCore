@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Animatable {
+public protocol Animatable {
     var animationDuration: Double { get }
     func animate(duration: Double?, block: @escaping () -> Void, completion: (() -> Void)?)
 }

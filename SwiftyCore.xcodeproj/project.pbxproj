@@ -35,6 +35,7 @@
 		EEC92A2B2568B8B700348866 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1D2568B8B700348866 /* LoadingViewController.swift */; };
 		EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1F2568B8B700348866 /* BaseViewController.swift */; };
 		EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A202568B8B700348866 /* BaseController.swift */; };
+		EEC92A332568B94400348866 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A322568B94400348866 /* Text.swift */; };
 		OBJ_23 /* SwiftyCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* SwiftyCore.swift */; };
 		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_41 /* SwiftyCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SwiftyCoreTests.swift */; };
@@ -75,6 +76,7 @@
 		EEC92A1D2568B8B700348866 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		EEC92A1F2568B8B700348866 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EEC92A202568B8B700348866 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		EEC92A322568B94400348866 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		OBJ_12 /* SwiftyCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCoreTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -106,9 +108,11 @@
 		EEC92A0D2568B89A00348866 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				EEC929DC2568B54000348866 /* UI.swift */,
 				EEC92A0E2568B8B700348866 /* Extensions */,
 				EEC92A112568B8B700348866 /* Protocols */,
 				EEC92A192568B8B700348866 /* Views */,
+				EEC92A322568B94400348866 /* Text.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -215,7 +219,6 @@
 			children = (
 				EEC92A0D2568B89A00348866 /* UI */,
 				OBJ_9 /* SwiftyCore.swift */,
-				EEC929DC2568B54000348866 /* UI.swift */,
 			);
 			name = SwiftyCore;
 			path = Sources/SwiftyCore;
@@ -315,6 +318,7 @@
 				EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */,
 				EEC92A242568B8B700348866 /* DocumentPickable.swift in Sources */,
 				EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */,
+				EEC92A332568B94400348866 /* Text.swift in Sources */,
 				EEC92A292568B8B700348866 /* KeyboardPresentable.swift in Sources */,
 				OBJ_23 /* SwiftyCore.swift in Sources */,
 				EEC929DD2568B54000348866 /* UI.swift in Sources */,

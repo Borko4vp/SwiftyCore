@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol Toastaable where Self: UIViewController {
+public protocol Toastaable where Self: UIViewController {
     func showToast(text: String, image: UIImage, durationInSeconds: Int)
 }
 
@@ -20,12 +20,16 @@ extension Toastaable {
             toastView.frame = self.getEndingFrame()
         
         }
-        let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
-            self.animate(block: {
-                toastView.frame = self.getStartingFrame()
-            }) {
-                toastView.removeFromSuperview()
+        if #available(iOS 10.0, *) {
+            let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
+                self.animate(block: {
+                    toastView.frame = self.getStartingFrame()
+                }) {
+                    toastView.removeFromSuperview()
+                }
             }
+        } else {
+            // Fallback on earlier versions
         }
     }
     

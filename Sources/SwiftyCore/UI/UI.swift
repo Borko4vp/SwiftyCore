@@ -8,6 +8,6 @@
 import Foundation
 extension SwiftyCore {
     public struct UI {
-        public var text: String? { return "Borko"}
+        
     }
 }
