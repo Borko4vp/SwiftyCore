@@ -8,17 +8,17 @@
 import Foundation
 import UIKit
 
-extension UIDevice {
-    public static var isBiggerScreenDevice: Bool {
+public extension UIDevice {
+    static var isBiggerScreenDevice: Bool {
         return UIScreen.main.bounds.size.height > 800
     }
     
-    public static var isWiderScreenDevice: Bool {
+    static var isWiderScreenDevice: Bool {
         return UIScreen.main.bounds.size.width > 400
     }
     
     static var hasNotch: Bool {
-        let bottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        let bottom = UIApplication.shared.windows[0].safeAreaInsets.bottom
         return bottom > 0
     }
 }
