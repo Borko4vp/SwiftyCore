@@ -58,9 +58,11 @@ extension SwiftyCore.UI {
         }
 
         public func hideLoading(showSuccess: Bool = false, completion: (() -> Void)? = nil) {
-             loadingViewController?.dismissLoading(with: showSuccess) {
-                self.loadingViewController = nil
-                completion?()
+            DispatchQueue.main.async {
+                self.loadingViewController?.dismissLoading(with: showSuccess) {
+                   self.loadingViewController = nil
+                   completion?()
+               }
             }
         }
         

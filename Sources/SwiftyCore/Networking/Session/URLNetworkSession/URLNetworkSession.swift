@@ -15,7 +15,7 @@ struct URLSessionError: NetworkSessionError {
 
 extension URLSession: NetworkSession {
     
-    func get(from url: URL, completion: @escaping (Data?, NetworkSessionError?) -> Void) {
+    func get(from url: URL, headers: [String: String], completion: @escaping (Data?, NetworkSessionError?) -> Void) {
         let task = dataTask(with: url) { data, response, error in
             if let error = error {
                 let urlSessionError = URLSessionError(httpStatusCode: (response as? HTTPURLResponse)?.statusCode, message: error.localizedDescription)
@@ -27,10 +27,11 @@ extension URLSession: NetworkSession {
         task.resume()
     }
     
-    func post(to url: URL, with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void) {
+    func post(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void) {
         var request = URLRequest(url: url)
         request.httpBody = parameters
         request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
         let task = dataTask(with: request) { data, response, error in
            if let error = error {
                 let urlSessionError = URLSessionError(httpStatusCode: (response as? HTTPURLResponse)?.statusCode, message: error.localizedDescription)
