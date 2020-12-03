@@ -21,6 +21,16 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		EE0594782578FCB5004E6EC1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05946C2578FCB5004E6EC1 /* Networking.swift */; };
+		EE05947A2578FCB5004E6EC1 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05946F2578FCB5004E6EC1 /* Encodable+Extension.swift */; };
+		EE05947B2578FCB5004E6EC1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594702578FCB5004E6EC1 /* Router.swift */; };
+		EE05947C2578FCB5004E6EC1 /* CoreNetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594712578FCB5004E6EC1 /* CoreNetworkingError.swift */; };
+		EE05947D2578FCB5004E6EC1 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594722578FCB5004E6EC1 /* NetworkRequest.swift */; };
+		EE05947E2578FCB5004E6EC1 /* NetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594742578FCB5004E6EC1 /* NetworkSession.swift */; };
+		EE05947F2578FCB5004E6EC1 /* URLNetworkSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594762578FCB5004E6EC1 /* URLNetworkSession.swift */; };
+		EE05948F2578FE5D004E6EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05948C2578FE5D004E6EC1 /* UIView+Extension.swift */; };
+		EE0594902578FE5D004E6EC1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05948D2578FE5D004E6EC1 /* UIColor+Extension.swift */; };
+		EE0594912578FE5D004E6EC1 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05948E2578FE5D004E6EC1 /* UIDevice+Extension.swift */; };
 		EEC929DD2568B54000348866 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC929DC2568B54000348866 /* UI.swift */; };
 		EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */; };
 		EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A102568B8B700348866 /* UIViewController+Extension.swift */; };
@@ -35,7 +45,6 @@
 		EEC92A2B2568B8B700348866 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1D2568B8B700348866 /* LoadingViewController.swift */; };
 		EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1F2568B8B700348866 /* BaseViewController.swift */; };
 		EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A202568B8B700348866 /* BaseController.swift */; };
-		EEC92A332568B94400348866 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A322568B94400348866 /* Text.swift */; };
 		EEC92A8C2569473000348866 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EEC92A8B2569473000348866 /* Lottie */; };
 		OBJ_23 /* SwiftyCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* SwiftyCore.swift */; };
 		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
@@ -62,6 +71,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EE05946C2578FCB5004E6EC1 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		EE05946F2578FCB5004E6EC1 /* Encodable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
+		EE0594702578FCB5004E6EC1 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		EE0594712578FCB5004E6EC1 /* CoreNetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreNetworkingError.swift; sourceTree = "<group>"; };
+		EE0594722578FCB5004E6EC1 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		EE0594742578FCB5004E6EC1 /* NetworkSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkSession.swift; sourceTree = "<group>"; };
+		EE0594762578FCB5004E6EC1 /* URLNetworkSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLNetworkSession.swift; sourceTree = "<group>"; };
+		EE05948C2578FE5D004E6EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		EE05948D2578FE5D004E6EC1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		EE05948E2578FE5D004E6EC1 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
 		EEC929DC2568B54000348866 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		EEC92A102568B8B700348866 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -76,13 +95,12 @@
 		EEC92A1D2568B8B700348866 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		EEC92A1F2568B8B700348866 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EEC92A202568B8B700348866 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
-		EEC92A322568B94400348866 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		OBJ_12 /* SwiftyCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCoreTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		OBJ_9 /* SwiftyCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCore.swift; sourceTree = "<group>"; };
-		"SwiftyCore::SwiftyCore::Product" /* SwiftyCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		"SwiftyCore::SwiftyCore::Product" /* SwiftyCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SwiftyCore::SwiftyCoreTests::Product" /* SwiftyCoreTests.xctest */ = {isa = PBXFileReference; lastKnownFileType = file; path = SwiftyCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -106,6 +124,52 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EE05946B2578FCB5004E6EC1 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				EE05946C2578FCB5004E6EC1 /* Networking.swift */,
+				EE05946E2578FCB5004E6EC1 /* Extensions */,
+				EE0594702578FCB5004E6EC1 /* Router.swift */,
+				EE0594712578FCB5004E6EC1 /* CoreNetworkingError.swift */,
+				EE0594722578FCB5004E6EC1 /* NetworkRequest.swift */,
+				EE0594732578FCB5004E6EC1 /* Session */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		EE05946E2578FCB5004E6EC1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				EE05946F2578FCB5004E6EC1 /* Encodable+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		EE0594732578FCB5004E6EC1 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				EE0594742578FCB5004E6EC1 /* NetworkSession.swift */,
+				EE0594752578FCB5004E6EC1 /* URLNetworkSession */,
+				EE0594772578FCB5004E6EC1 /* AlamofireNetworkSession */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		EE0594752578FCB5004E6EC1 /* URLNetworkSession */ = {
+			isa = PBXGroup;
+			children = (
+				EE0594762578FCB5004E6EC1 /* URLNetworkSession.swift */,
+			);
+			path = URLNetworkSession;
+			sourceTree = "<group>";
+		};
+		EE0594772578FCB5004E6EC1 /* AlamofireNetworkSession */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AlamofireNetworkSession;
+			sourceTree = "<group>";
+		};
 		EEC92A0D2568B89A00348866 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,7 +177,6 @@
 				EEC92A0E2568B8B700348866 /* Extensions */,
 				EEC92A112568B8B700348866 /* Protocols */,
 				EEC92A192568B8B700348866 /* Views */,
-				EEC92A322568B94400348866 /* Text.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -121,6 +184,9 @@
 		EEC92A0E2568B8B700348866 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				EE05948D2578FE5D004E6EC1 /* UIColor+Extension.swift */,
+				EE05948E2578FE5D004E6EC1 /* UIDevice+Extension.swift */,
+				EE05948C2578FE5D004E6EC1 /* UIView+Extension.swift */,
 				EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */,
 				EEC92A102568B8B700348866 /* UIViewController+Extension.swift */,
 			);
@@ -217,6 +283,7 @@
 		OBJ_8 /* SwiftyCore */ = {
 			isa = PBXGroup;
 			children = (
+				EE05946B2578FCB5004E6EC1 /* Networking */,
 				EEC92A0D2568B89A00348866 /* UI */,
 				OBJ_9 /* SwiftyCore.swift */,
 			);
@@ -316,15 +383,24 @@
 			files = (
 				EEC92A2A2568B8B700348866 /* LoadingController.swift in Sources */,
 				EEC92A252568B8B700348866 /* PickerItem.swift in Sources */,
+				EE05947E2578FCB5004E6EC1 /* NetworkSession.swift in Sources */,
+				EE05947F2578FCB5004E6EC1 /* URLNetworkSession.swift in Sources */,
+				EE0594782578FCB5004E6EC1 /* Networking.swift in Sources */,
 				EEC92A262568B8B700348866 /* Animatable.swift in Sources */,
+				EE05947A2578FCB5004E6EC1 /* Encodable+Extension.swift in Sources */,
 				EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */,
 				EEC92A282568B8B700348866 /* Toastable.swift in Sources */,
 				EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */,
+				EE05948F2578FE5D004E6EC1 /* UIView+Extension.swift in Sources */,
+				EE05947D2578FCB5004E6EC1 /* NetworkRequest.swift in Sources */,
 				EEC92A272568B8B700348866 /* ImagePickable.swift in Sources */,
 				EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */,
 				EEC92A242568B8B700348866 /* DocumentPickable.swift in Sources */,
+				EE0594902578FE5D004E6EC1 /* UIColor+Extension.swift in Sources */,
+				EE05947B2578FCB5004E6EC1 /* Router.swift in Sources */,
 				EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */,
-				EEC92A332568B94400348866 /* Text.swift in Sources */,
+				EE0594912578FE5D004E6EC1 /* UIDevice+Extension.swift in Sources */,
+				EE05947C2578FCB5004E6EC1 /* CoreNetworkingError.swift in Sources */,
 				EEC92A292568B8B700348866 /* KeyboardPresentable.swift in Sources */,
 				OBJ_23 /* SwiftyCore.swift in Sources */,
 				EEC929DD2568B54000348866 /* UI.swift in Sources */,
@@ -376,7 +452,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwiftyCore.xcodeproj/SwiftyCore_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
@@ -388,6 +464,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftyCore;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
@@ -407,7 +484,7 @@
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = SwiftyCore.xcodeproj/SwiftyCore_Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(TOOLCHAIN_DIR)/usr/lib/swift/macosx",
@@ -419,6 +496,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SwiftyCore;
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
@@ -431,8 +509,10 @@
 		OBJ_27 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD = /usr/bin/true;
 				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk -package-description-version 5.3.0";
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -440,8 +520,10 @@
 		OBJ_28 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD = /usr/bin/true;
 				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk -package-description-version 5.3.0";
+				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

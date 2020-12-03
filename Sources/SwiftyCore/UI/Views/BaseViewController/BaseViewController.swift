@@ -28,7 +28,7 @@ extension SwiftyCore.UI {
         open override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
-            keyboardPresenter.registerForKeyboardNotifications()
+            keyboardPresenter?.registerForKeyboardNotifications()
         }
         
         open override func viewDidAppear(_ animated: Bool) {
@@ -40,7 +40,7 @@ extension SwiftyCore.UI {
         open override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
             
-            keyboardPresenter.unregisterKeyboardNotifications()
+            keyboardPresenter?.unregisterKeyboardNotifications()
         }
         
 //        func pushViaMain(controller: BaseController) {

@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIDevice {
     static var isBiggerScreenDevice: Bool {
-        return UIScreen.main.bounds.size.height > 800
+        return UIScreen.main.bounds.size.height > 700
     }
     
     static var isWiderScreenDevice: Bool {
