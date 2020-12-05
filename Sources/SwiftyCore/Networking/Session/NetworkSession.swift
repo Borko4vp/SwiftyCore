@@ -15,4 +15,5 @@ protocol NetworkSessionError: Error {
 protocol NetworkSession {
     func get(from url: URL, headers: [String: String], completion: @escaping (Data?, NetworkSessionError?) -> Void)
     func post(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
+    func patch(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
 }

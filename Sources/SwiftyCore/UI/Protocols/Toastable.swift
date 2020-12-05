@@ -14,20 +14,23 @@ public protocol Toastaable where Self: UIViewController {
 
 public extension Toastaable {
     func showToast(text: String, image: UIImage, durationInSeconds: Int = 4) {
-        let toastView = createToastView(image: image, backgroundColor: UIColor.black.withAlphaComponent(0.75), text: text, textColor: .white)
-        view.addSubview(toastView)
-        animate {
-            toastView.frame = self.getEndingFrame()
-        
-        }
-        guard durationInSeconds > 0 else { return }
-        let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
-            self.animate(block: {
-                toastView.frame = self.getStartingFrame()
-            }) {
-                toastView.removeFromSuperview()
+        DispatchQueue.main.async {
+            let toastView = self.createToastView(image: image, backgroundColor: UIColor.black.withAlphaComponent(0.75), text: text, textColor: .white)
+            self.view.addSubview(toastView)
+            self.animate {
+                toastView.frame = self.getEndingFrame()
+            
+            }
+            guard durationInSeconds > 0 else { return }
+            let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
+                self.animate(block: {
+                    toastView.frame = self.getStartingFrame()
+                }) {
+                    toastView.removeFromSuperview()
+                }
             }
         }
+
     }
     
     private func getStartingFrame() -> CGRect {

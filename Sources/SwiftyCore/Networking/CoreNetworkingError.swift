@@ -10,20 +10,29 @@ import Foundation
 import Foundation
 
 /// CoreError enum used to define errors within the application
-public enum CoreNetworkingError<ServerErrroDTO: Codable>: Error, Equatable {
+public enum CoreNetworkingError<ServerErrroDTO: ServerErrorMessageable>: Error, Equatable {
     case localError(LocalError)
     case apiError(ServerError<ServerErrroDTO>)
 
-    var message: String {
+    public var message: String {
         switch self {
         case .localError(let localError):
             return localError.errorMessage
         case .apiError(let serverError):
-            return serverError.errorMessage ?? ""
+            return serverError.message
         }
     }
     
-    var errorCode: Int {
+    public var payloadErrorMessage: String {
+        switch self {
+        case .localError(let localError):
+            return localError.errorMessage
+        case .apiError(let serverError):
+            return serverError.payload?.errorMessage ?? ""
+        }
+    }
+    
+    public var errorCode: Int {
         switch self {
         case .localError(let localError):
             return localError.rawValue
@@ -66,7 +75,11 @@ public enum LocalError: Int {
     }
 }
 
-public struct ServerError<ServerErrroDTO: Codable>: Error {
+public protocol ServerErrorMessageable where Self: Codable {
+    var errorMessage: String { get }
+}
+
+public struct ServerError<ServerErrroDTO: ServerErrorMessageable>: Error {
     let httpStatus: Int?
     let errorMessage: String?
     let payload: ServerErrroDTO?
@@ -75,6 +88,14 @@ public struct ServerError<ServerErrroDTO: Codable>: Error {
         self.httpStatus = httpStatus
         errorMessage = message
         self.payload = payload
+    }
+    
+    var message: String {
+        var message = errorMessage ?? ""
+        if message.isEmpty {
+            message = payload?.errorMessage ?? ""
+        }
+        return message
     }
 }
 
