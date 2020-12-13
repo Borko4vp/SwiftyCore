@@ -59,10 +59,10 @@ public extension Toastaable {
         theImageView.clipsToBounds = true
         theImageView.contentMode = .scaleAspectFit
         returnView.addSubview(theImageView)
-        theImageView.widthAnchor.constraint(equalToConstant: toastHeight-offset).isActive = true
-        theImageView.heightAnchor.constraint(equalToConstant: toastHeight-offset).isActive = true
+        theImageView.widthAnchor.constraint(equalToConstant: toastHeight-2*offset).isActive = true
+        theImageView.heightAnchor.constraint(equalToConstant: toastHeight-2*offset).isActive = true
         theImageView.leadingAnchor.constraint(equalTo: returnView.leadingAnchor, constant: offset).isActive = true
-        theImageView.topAnchor.constraint(equalTo: returnView.topAnchor, constant: offset/2).isActive = true
+        theImageView.topAnchor.constraint(equalTo: returnView.topAnchor, constant: offset).isActive = true
         
         let theLabel = UILabel()
         theLabel.textColor = textColor

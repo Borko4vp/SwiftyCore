@@ -16,19 +16,17 @@ extension SwiftyCore.UI {
         }
         
         var loadingViewController: LoadingViewController?
-        public var keyboardPresenter: KeyboardPresenter!
         
         
         open override func viewDidLoad() {
             super.viewDidLoad()
             
-            configureKeyboardPresenter()
         }
         
         open override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
             
-            keyboardPresenter?.registerForKeyboardNotifications()
+            toggleKeyboardEvents(true)
         }
         
         open override func viewDidAppear(_ animated: Bool) {
@@ -40,7 +38,7 @@ extension SwiftyCore.UI {
         open override func viewWillDisappear(_ animated: Bool) {
             super.viewWillDisappear(animated)
             
-            keyboardPresenter?.unregisterKeyboardNotifications()
+            toggleKeyboardEvents(false)
         }
         
 //        func pushViaMain(controller: BaseController) {
@@ -48,6 +46,10 @@ extension SwiftyCore.UI {
 //                mainParent.push(controller: controller)
 //            }
 //        }
+        
+        public func toggleKeyboardEvents(_ on: Bool) {
+            on ? KeyboardPresenter.shared.add(presenter: self) : KeyboardPresenter.shared.remove(presenter: self)
+        }
         
         public func showLoading() {
             loadingViewController = LoadingViewController()
@@ -77,7 +79,9 @@ extension SwiftyCore.UI {
 }
 
 extension SwiftyCore.UI.BaseViewController: Toastaable {
-
+    public func showToast(text: String) {
+        showToast(text: text, image: UIImage(named: "alert")!)
+    }
 }
 
 extension SwiftyCore.UI.BaseViewController: Alertable {

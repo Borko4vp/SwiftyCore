@@ -8,26 +8,33 @@
 import Foundation
 import UIKit
 
-protocol ImagePickerDelegate where Self: UIViewController {
+public protocol ImagePickerDelegate where Self: UIViewController {
     func imagePickerDidSelect(image: UIImage?)
     func imagePickerDidSelect(video url: URL?)
 }
 
-enum ImagePickingType: String {
+public enum ImagePickingType: String {
     case image = "public.image"
     case video = "public.movie"
 }
 
-struct ImagePickerStrings {
-    var title: String
-    var message: String
-    var cameraButtonTitle: String
-    var photoLibraryTitle: String
-    var cancelTitle: String
+public struct ImagePickerStrings {
+    public let title: String
+    public let message: String
+    public let cameraButtonTitle: String
+    public let photoLibraryTitle: String
+    public let cancelTitle: String
     
+    public init(title: String, message: String, cameraTitle: String, libraryTitle: String, cancel: String) {
+        self.title = title
+        self.message = message
+        cameraButtonTitle = cameraTitle
+        photoLibraryTitle = libraryTitle
+        cancelTitle = cancel
+    }
 }
 
-class ImagePicker: NSObject {
+public class ImagePicker: NSObject {
     
     weak var imagePickerDelegate: ImagePickerDelegate?
     private var types: [ImagePickingType]
@@ -88,16 +95,16 @@ extension ImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDe
     }
 }
 
-protocol ImagePickerPresentable where Self: ImagePickerDelegate {
+public protocol ImagePickerPresentable where Self: ImagePickerDelegate {
     var imagePickerStrings: ImagePickerStrings { get }
     var mediaTypes: [ImagePickingType] { get }
     var imagePicker: ImagePicker! { get set }
-    var imagePickerEditing: Bool { get set }
+    var imagePickerEditing: Bool { get }
     func configureImagePicker()
     func showImagePicker()
 }
 
-extension ImagePickerPresentable {
+public extension ImagePickerPresentable {
     func configureImagePicker() {
         imagePicker = ImagePicker(delegate: self, types: mediaTypes, strings: imagePickerStrings)
     }

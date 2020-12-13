@@ -7,29 +7,35 @@
 import Foundation
 import UIKit
 
-public protocol KeyboardPresenterProtocol: class {
+public protocol KeyboardPresentable: class {
     func keyboardAboutToShow(keyboardSize: CGRect)
     func keyboardAboutToHide(keyboardSize: CGRect)
 }
 
 public class KeyboardPresenter {
-    private weak var presenter: KeyboardPresenterProtocol!
+    public static var shared = KeyboardPresenter()
+    private var presenters = [KeyboardPresentable]()
 
-    init(presenter: KeyboardPresenterProtocol) {
-      self.presenter = presenter
-      registerForKeyboardNotifications()
+    init() {
+        registerForKeyboardNotifications()
     }
     
-    func getPresenter() -> KeyboardPresenterProtocol {
-        return presenter
+    public func add(presenter: KeyboardPresentable) {
+        if !presenters.contains(where: { $0 === presenter }) {
+            presenters.append(presenter)
+        }
     }
     
-    func registerForKeyboardNotifications() {
+    public func remove(presenter: KeyboardPresentable) {
+        presenters.removeAll(where: { $0 === presenter })
+    }
+    
+    private func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    func unregisterKeyboardNotifications() {
+    private func unregisterKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name:UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name:UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -38,30 +44,18 @@ public class KeyboardPresenter {
     @objc
     private func keyboardWillShow(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            presenter?.keyboardAboutToShow(keyboardSize: keyboardSize)
-          }
+            for presenter in presenters {
+                presenter.keyboardAboutToShow(keyboardSize: keyboardSize)
+            }
+        }
     }
 
     @objc
     private func keyboardWillHide(notification: NSNotification) {
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            presenter?.keyboardAboutToHide(keyboardSize: keyboardSize)
-          }
-    }
-}
-
-public protocol KeyboardPresentable where Self: KeyboardPresenterProtocol {
-    var keyboardPresenter: KeyboardPresenter! { get set }
-    func configureKeyboardPresenter()
-    func unregisterKeyboardNotifications()
-}
-
-extension KeyboardPresentable {
-   public func configureKeyboardPresenter() {
-        keyboardPresenter = KeyboardPresenter(presenter: self)
-   }
-    
-    public func unregisterKeyboardNotifications() {
-        keyboardPresenter.unregisterKeyboardNotifications()
+            for presenter in presenters {
+                presenter.keyboardAboutToHide(keyboardSize: keyboardSize)
+            }
+        }
     }
 }

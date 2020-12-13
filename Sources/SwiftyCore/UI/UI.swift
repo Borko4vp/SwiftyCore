@@ -10,5 +10,6 @@ extension SwiftyCore {
     public struct UI {
         static public var loadingAnimationFileName: String?
         static public var finishLoadingAnimationFileName: String?
+        public static var imageCacheSize: Int = 100
     }
 }

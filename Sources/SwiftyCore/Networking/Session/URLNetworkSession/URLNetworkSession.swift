@@ -43,7 +43,7 @@ extension URLSession {
     @discardableResult
     private func createDataTask(with request: URLRequest, completion: @escaping (Data?, NetworkSessionError?) -> Void) -> URLSessionDataTask {
         let task = dataTask(with: request) { data, response, error in
-           if let code = (response as? HTTPURLResponse)?.statusCode, code > 400 {
+           if let code = (response as? HTTPURLResponse)?.statusCode, code >= 400 {
                 let urlSessionError = URLSessionError(httpStatusCode: code, message: error?.localizedDescription ?? "")
                 completion(data, urlSessionError)
             } else {

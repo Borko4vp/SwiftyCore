@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UIColor+Extension.swift
 //  
 //
 //  Created by Borko Tomic on 22.11.20..
