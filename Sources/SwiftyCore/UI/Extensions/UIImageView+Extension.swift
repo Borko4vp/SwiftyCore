@@ -10,7 +10,9 @@ import UIKit
 
 public extension UIImageView {
     func setRemoteImage(from url: String, placeholderImage: UIImage? = nil) {
-        image = placeholderImage
+        DispatchQueue.main.async() {[weak self] in
+            self?.image = placeholderImage
+        }
         guard let imageUrl = URL(string: url) else { return }
         getImage(from: imageUrl) { remoteImage in
             guard let remoteImage = remoteImage else { return }
@@ -22,7 +24,9 @@ public extension UIImageView {
     
     private func getImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
         if let cachedImage = SwiftyCore.UI.ImageCache.shared.get(url: url.absoluteString) {
-            completion(cachedImage)
+            DispatchQueue.main.async() {
+                completion(cachedImage)
+            }
             return
         } else {
             URLSession.shared.dataTask(with: url) { data, response, error in
@@ -32,11 +36,15 @@ public extension UIImageView {
                     let data = data, error == nil,
                     let image = UIImage(data: data)
                     else {
-                    completion(nil)
+                    DispatchQueue.main.async() {
+                        completion(nil)
+                    }
                     return
                 }
                 SwiftyCore.UI.ImageCache.shared.add(url: url.absoluteString, image: image)
-                completion(image)
+                DispatchQueue.main.async() {
+                    completion(image)
+                }
             }.resume()
         }
     }
