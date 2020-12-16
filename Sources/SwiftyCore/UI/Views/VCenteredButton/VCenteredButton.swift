@@ -7,32 +7,36 @@
 
 import UIKit
 
-class VCenteredButton: UIButton {
+public class VCenteredButton: UIButton {
+    public var imageAboveTitle: Bool = true
+    
     var spacing: CGFloat {
         return self.bounds.height/6
     }
     
     var padding: CGFloat = 4
     
-    override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
+    public override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
         let rect = super.titleRect(forContentRect: contentRect)
         
-        return CGRect(x: padding, y: contentRect.height - rect.height - spacing,
+        let yOrigin = imageAboveTitle ? contentRect.height - rect.height - spacing : spacing
+        return CGRect(x: padding, y: yOrigin,
                       width: contentRect.width - 2*padding, height: rect.height)
     }
     
-    override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
+    public override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
         let rect = super.imageRect(forContentRect: contentRect)
         let imageAspect = rect.height/rect.width
         let titleRect = self.titleRect(forContentRect: contentRect)
         let imageHeight = (contentRect.height - titleRect.height) - 3*spacing
         let imageWidth = imageHeight/imageAspect
+        let yOrigin = imageAboveTitle ? spacing : titleRect.height + 2*spacing
         return CGRect(x: contentRect.width/2.0 - imageWidth/2.0,
-                      y: spacing,
+                      y: yOrigin,
                       width: imageWidth, height: imageHeight)
     }
     
-    override var intrinsicContentSize: CGSize {
+    public override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
         
         if let image = imageView?.image {

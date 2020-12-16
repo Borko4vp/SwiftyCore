@@ -38,27 +38,37 @@ public class ImagePicker: NSObject {
     
     weak var imagePickerDelegate: ImagePickerDelegate?
     private var types: [ImagePickingType]
+    private var sourceTypes: [UIImagePickerController.SourceType]
     
-    init(delegate: ImagePickerDelegate, types: [ImagePickingType], strings: ImagePickerStrings) {
+    init(delegate: ImagePickerDelegate, types: [ImagePickingType], sources: [UIImagePickerController.SourceType], strings: ImagePickerStrings) {
         self.imagePickerDelegate = delegate
         self.types = types
+        self.sourceTypes = sources
         super.init()
     }
     
-    func showImagePicker(strings: ImagePickerStrings, types: [ImagePickingType], editing: Bool) {
-        showImageSourcePicker(strings: strings, types: types, editing: editing)
+    func showImagePicker(strings: ImagePickerStrings, types: [ImagePickingType], sources: [UIImagePickerController.SourceType], editing: Bool) {
+        showImageSourcePicker(strings: strings, types: types, sources: sources, editing: editing)
     }
     
-    private func showImageSourcePicker(strings: ImagePickerStrings, types: [ImagePickingType], editing: Bool) {
-        let title = strings.title
-        let message = strings.message
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        let cameraHandler = { (action: UIAlertAction) in self.showImagePicker(with: .camera, and: types, editing: editing) }
-        let photosHandler = { (action: UIAlertAction) in self.showImagePicker(with: .photoLibrary, and: types, editing: editing)}
-        alert.addAction(UIAlertAction(title: strings.cameraButtonTitle, style: .default, handler: cameraHandler))
-        alert.addAction(UIAlertAction(title: strings.photoLibraryTitle, style: .default, handler: photosHandler))
-        alert.addAction(UIAlertAction(title: strings.cancelTitle, style: .cancel, handler: nil))
-        imagePickerDelegate?.present(alert, animated: true)
+    private func showImageSourcePicker(strings: ImagePickerStrings, types: [ImagePickingType], sources: [UIImagePickerController.SourceType], editing: Bool) {
+        if sources.count == 1 {
+            showImagePicker(with: sources[0], and: types, editing: editing)
+        } else if sources.count > 1 {
+            let title = strings.title
+            let message = strings.message
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+            
+            for source in sources {
+                let title = source == .camera ? strings.cameraButtonTitle : strings.photoLibraryTitle
+                let handler = { (action: UIAlertAction) in self.showImagePicker(with: source, and: types, editing: editing) }
+                alert.addAction(UIAlertAction(title: title, style: .default, handler: handler))
+            }
+            alert.addAction(UIAlertAction(title: strings.cancelTitle, style: .cancel, handler: nil))
+            imagePickerDelegate?.present(alert, animated: true)
+        } else {
+            fatalError("Source types array empty, cannot proceed")
+        }
     }
     
     private func showImagePicker(with source: UIImagePickerController.SourceType, and types: [ImagePickingType], editing: Bool) {
@@ -98,6 +108,7 @@ extension ImagePicker: UIImagePickerControllerDelegate, UINavigationControllerDe
 public protocol ImagePickerPresentable where Self: ImagePickerDelegate {
     var imagePickerStrings: ImagePickerStrings { get }
     var mediaTypes: [ImagePickingType] { get }
+    var sourceTypes: [UIImagePickerController.SourceType] { get }
     var imagePicker: ImagePicker! { get set }
     var imagePickerEditing: Bool { get }
     func configureImagePicker()
@@ -106,10 +117,10 @@ public protocol ImagePickerPresentable where Self: ImagePickerDelegate {
 
 public extension ImagePickerPresentable {
     func configureImagePicker() {
-        imagePicker = ImagePicker(delegate: self, types: mediaTypes, strings: imagePickerStrings)
+        imagePicker = ImagePicker(delegate: self, types: mediaTypes, sources: sourceTypes, strings: imagePickerStrings)
     }
     
     func showImagePicker() {
-        imagePicker.showImagePicker(strings: imagePickerStrings, types: mediaTypes, editing: imagePickerEditing)
+        imagePicker.showImagePicker(strings: imagePickerStrings, types: mediaTypes, sources: sourceTypes, editing: imagePickerEditing)
     }
 }
