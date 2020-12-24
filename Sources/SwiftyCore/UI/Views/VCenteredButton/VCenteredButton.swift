@@ -39,17 +39,14 @@ public class VCenteredButton: UIButton {
     public override var intrinsicContentSize: CGSize {
         let size = super.intrinsicContentSize
         
-        if let image = imageView?.image {
-            var labelHeight: CGFloat = 0.0
-            
-            if let size = titleLabel?.sizeThatFits(CGSize(width: self.contentRect(forBounds: self.bounds).width, height: CGFloat.greatestFiniteMagnitude)) {
-                labelHeight = size.height
-            }
-            
-            return CGSize(width: size.width, height: image.size.height + labelHeight + 8)
+        guard let image = imageView?.image else { return size }
+        var labelHeight: CGFloat = 0.0
+        
+        if let size = titleLabel?.sizeThatFits(CGSize(width: self.contentRect(forBounds: self.bounds).width, height: CGFloat.greatestFiniteMagnitude)) {
+            labelHeight = size.height
         }
         
-        return size
+        return CGSize(width: size.width, height: image.size.height + labelHeight + 8)
     }
     
     override init(frame: CGRect) {

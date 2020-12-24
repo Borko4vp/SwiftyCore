@@ -31,6 +31,12 @@
 		EE05948F2578FE5D004E6EC1 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05948C2578FE5D004E6EC1 /* UIView+Extension.swift */; };
 		EE0594902578FE5D004E6EC1 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05948D2578FE5D004E6EC1 /* UIColor+Extension.swift */; };
 		EE0594912578FE5D004E6EC1 /* UIDevice+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05948E2578FE5D004E6EC1 /* UIDevice+Extension.swift */; };
+		EE8DB14D258BE40A00FAA972 /* IncomingMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB145258BE40900FAA972 /* IncomingMessageCell.swift */; };
+		EE8DB14E258BE40A00FAA972 /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB147258BE40900FAA972 /* MessageCell.swift */; };
+		EE8DB14F258BE40A00FAA972 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB148258BE40900FAA972 /* Chat.swift */; };
+		EE8DB150258BE40A00FAA972 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB14A258BE40900FAA972 /* Message.swift */; };
+		EE8DB151258BE40A00FAA972 /* MessageUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB14B258BE40900FAA972 /* MessageUser.swift */; };
+		EE8DB152258BE40A00FAA972 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB14C258BE40900FAA972 /* MessageType.swift */; };
 		EEC929DD2568B54000348866 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC929DC2568B54000348866 /* UI.swift */; };
 		EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */; };
 		EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A102568B8B700348866 /* UIViewController+Extension.swift */; };
@@ -81,6 +87,13 @@
 		EE05948C2578FE5D004E6EC1 /* UIView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		EE05948D2578FE5D004E6EC1 /* UIColor+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		EE05948E2578FE5D004E6EC1 /* UIDevice+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Extension.swift"; sourceTree = "<group>"; };
+		EE8DB145258BE40900FAA972 /* IncomingMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IncomingMessageCell.swift; sourceTree = "<group>"; };
+		EE8DB146258BE40900FAA972 /* IncomingMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IncomingMessageCell.xib; sourceTree = "<group>"; };
+		EE8DB147258BE40900FAA972 /* MessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		EE8DB148258BE40900FAA972 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		EE8DB14A258BE40900FAA972 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		EE8DB14B258BE40900FAA972 /* MessageUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageUser.swift; sourceTree = "<group>"; };
+		EE8DB14C258BE40900FAA972 /* MessageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
 		EEC929DC2568B54000348866 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		EEC92A102568B8B700348866 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -170,12 +183,43 @@
 			path = AlamofireNetworkSession;
 			sourceTree = "<group>";
 		};
+		EE8DB143258BE40900FAA972 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				EE8DB144258BE40900FAA972 /* Cells */,
+				EE8DB148258BE40900FAA972 /* Chat.swift */,
+				EE8DB149258BE40900FAA972 /* Message */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		EE8DB144258BE40900FAA972 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				EE8DB145258BE40900FAA972 /* IncomingMessageCell.swift */,
+				EE8DB146258BE40900FAA972 /* IncomingMessageCell.xib */,
+				EE8DB147258BE40900FAA972 /* MessageCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		EE8DB149258BE40900FAA972 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				EE8DB14A258BE40900FAA972 /* Message.swift */,
+				EE8DB14B258BE40900FAA972 /* MessageUser.swift */,
+				EE8DB14C258BE40900FAA972 /* MessageType.swift */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
 		EEC92A0D2568B89A00348866 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				EEC929DC2568B54000348866 /* UI.swift */,
 				EEC92A0E2568B8B700348866 /* Extensions */,
 				EEC92A112568B8B700348866 /* Protocols */,
+				EE8DB143258BE40900FAA972 /* Chat */,
 				EEC92A192568B8B700348866 /* Views */,
 			);
 			path = UI;
@@ -385,11 +429,15 @@
 				EEC92A252568B8B700348866 /* PickerItem.swift in Sources */,
 				EE05947E2578FCB5004E6EC1 /* NetworkSession.swift in Sources */,
 				EE05947F2578FCB5004E6EC1 /* URLNetworkSession.swift in Sources */,
+				EE8DB150258BE40A00FAA972 /* Message.swift in Sources */,
 				EE0594782578FCB5004E6EC1 /* Networking.swift in Sources */,
+				EE8DB151258BE40A00FAA972 /* MessageUser.swift in Sources */,
 				EEC92A262568B8B700348866 /* Animatable.swift in Sources */,
 				EE05947A2578FCB5004E6EC1 /* Encodable+Extension.swift in Sources */,
 				EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */,
 				EEC92A282568B8B700348866 /* Toastable.swift in Sources */,
+				EE8DB14F258BE40A00FAA972 /* Chat.swift in Sources */,
+				EE8DB14D258BE40A00FAA972 /* IncomingMessageCell.swift in Sources */,
 				EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */,
 				EE05948F2578FE5D004E6EC1 /* UIView+Extension.swift in Sources */,
 				EE05947D2578FCB5004E6EC1 /* NetworkRequest.swift in Sources */,
@@ -401,11 +449,13 @@
 				EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */,
 				EE0594912578FE5D004E6EC1 /* UIDevice+Extension.swift in Sources */,
 				EE05947C2578FCB5004E6EC1 /* CoreNetworkingError.swift in Sources */,
+				EE8DB152258BE40A00FAA972 /* MessageType.swift in Sources */,
 				EEC92A292568B8B700348866 /* KeyboardPresentable.swift in Sources */,
 				OBJ_23 /* SwiftyCore.swift in Sources */,
 				EEC929DD2568B54000348866 /* UI.swift in Sources */,
 				EEC92A2B2568B8B700348866 /* LoadingViewController.swift in Sources */,
 				EEC92A232568B8B700348866 /* Alertable.swift in Sources */,
+				EE8DB14E258BE40A00FAA972 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

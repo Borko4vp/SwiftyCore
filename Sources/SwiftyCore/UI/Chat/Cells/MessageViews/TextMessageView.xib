@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TextMessageView" customModule="SwiftyCore">
+            <rect key="frame" x="0.0" y="0.0" width="481" height="152"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nla-Qn-V1p">
+                    <rect key="frame" x="0.0" y="0.0" width="481" height="152"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1A-CZ-q6O">
+                            <rect key="frame" x="0.0" y="0.0" width="481" height="152"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="F1A-CZ-q6O" firstAttribute="leading" secondItem="Nla-Qn-V1p" secondAttribute="leading" id="F1C-69-HcZ"/>
+                        <constraint firstAttribute="trailing" secondItem="F1A-CZ-q6O" secondAttribute="trailing" id="cQF-cH-vwr"/>
+                        <constraint firstAttribute="bottom" secondItem="F1A-CZ-q6O" secondAttribute="bottom" id="spT-rZ-wDZ"/>
+                        <constraint firstItem="F1A-CZ-q6O" firstAttribute="top" secondItem="Nla-Qn-V1p" secondAttribute="top" id="vGh-nF-V3p"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="Nla-Qn-V1p" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="4Gy-zo-szw"/>
+                <constraint firstAttribute="bottom" secondItem="Nla-Qn-V1p" secondAttribute="bottom" id="7ef-2e-vml"/>
+                <constraint firstItem="Nla-Qn-V1p" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="AOT-ew-4yK"/>
+                <constraint firstItem="Nla-Qn-V1p" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="GbE-Lf-8Jh"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="textLabel" destination="F1A-CZ-q6O" id="9bQ-Kk-awz"/>
+            </connections>
+            <point key="canvasLocation" x="-452.89855072463774" y="-190.17857142857142"/>
+        </view>
+    </objects>
+</document>

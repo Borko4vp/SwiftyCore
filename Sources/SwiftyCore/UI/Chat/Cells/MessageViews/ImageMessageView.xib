@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ImageMessageView" customModule="SwiftyCore">
+            <rect key="frame" x="0.0" y="0.0" width="199" height="199"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1iT-9G-Gxn">
+                    <rect key="frame" x="0.0" y="0.0" width="199" height="199"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qt3-gy-iTT">
+                            <rect key="frame" x="0.0" y="0.0" width="199" height="199"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="qt3-gy-iTT" secondAttribute="height" multiplier="1:1" priority="999" id="f8Z-Hv-B5p"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" priority="999" constant="250" id="3r4-cn-FeG"/>
+                        <constraint firstItem="qt3-gy-iTT" firstAttribute="width" secondItem="1iT-9G-Gxn" secondAttribute="width" id="ANc-t5-7lc"/>
+                        <constraint firstItem="qt3-gy-iTT" firstAttribute="height" secondItem="1iT-9G-Gxn" secondAttribute="height" id="D0B-wz-xpM"/>
+                        <constraint firstItem="qt3-gy-iTT" firstAttribute="top" secondItem="1iT-9G-Gxn" secondAttribute="top" id="HaC-1I-z0j"/>
+                        <constraint firstItem="qt3-gy-iTT" firstAttribute="leading" secondItem="1iT-9G-Gxn" secondAttribute="leading" id="O0a-kA-US1"/>
+                        <constraint firstAttribute="trailing" secondItem="qt3-gy-iTT" secondAttribute="trailing" id="tiJ-ro-ruU"/>
+                        <constraint firstAttribute="bottom" secondItem="qt3-gy-iTT" secondAttribute="bottom" id="xQV-Nx-Tmf"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="1iT-9G-Gxn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="AYZ-hI-9mp"/>
+                <constraint firstAttribute="bottom" secondItem="1iT-9G-Gxn" secondAttribute="bottom" id="BrJ-Pf-Vrv"/>
+                <constraint firstItem="1iT-9G-Gxn" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="U2Z-Ly-cib"/>
+                <constraint firstItem="1iT-9G-Gxn" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bEo-09-ovk"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="backView" destination="1iT-9G-Gxn" id="h06-By-IHt"/>
+                <outlet property="imageView" destination="qt3-gy-iTT" id="kUT-aL-GHF"/>
+            </connections>
+            <point key="canvasLocation" x="154.34782608695653" y="-135.60267857142856"/>
+        </view>
+    </objects>
+</document>
