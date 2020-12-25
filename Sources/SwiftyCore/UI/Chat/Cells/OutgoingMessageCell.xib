@@ -39,7 +39,7 @@
                         <rect key="frame" x="8" y="27" width="133" height="59"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TC4-Gg-zW9">
-                                <rect key="frame" x="8" y="8" width="125" height="43"/>
+                                <rect key="frame" x="8" y="8" width="117" height="43"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>

@@ -18,5 +18,7 @@ extension SwiftyCore.UI {
         public static var incomingTextColor: UIColor = .black
         public static var outgoingTextColor: UIColor = .black
         public static var timestampTextColor: UIColor = .lightGray
+        
+        
     }
 }

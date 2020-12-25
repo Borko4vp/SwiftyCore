@@ -39,7 +39,7 @@
                         <rect key="frame" x="46" y="27" width="117" height="67"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NIE-cO-NRz">
-                                <rect key="frame" x="8" y="8" width="74" height="51"/>
+                                <rect key="frame" x="8" y="8" width="101" height="51"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -74,7 +74,7 @@
                 <outlet property="messageView" destination="NIE-cO-NRz" id="9zg-Ee-Gtu"/>
                 <outlet property="timestampLabel" destination="vNj-jY-i2O" id="Rwe-o9-0Gl"/>
             </connections>
-            <point key="canvasLocation" x="-693.47826086956525" y="70.982142857142847"/>
+            <point key="canvasLocation" x="-693.47826086956525" y="70.3125"/>
         </tableViewCell>
     </objects>
     <resources>

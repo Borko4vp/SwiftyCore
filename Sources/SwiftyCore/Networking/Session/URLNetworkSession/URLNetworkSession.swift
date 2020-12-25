@@ -29,6 +29,18 @@ extension URLSession: NetworkSession {
         let request = createRequest(url: url, headers: headers, method: "PATCH", parameters: parameters)
         createDataTask(with: request, completion: completion)
     }
+    
+    func download(from remoteUrl: URL, to localUrl: URL, completion: @escaping (Bool) -> Void) {
+        let task = URLSession.shared.downloadTask(with: remoteUrl) { tmpURL, urlResponse, error in
+            if let tmpURL = tmpURL, FileHelper.move(from: tmpURL, to: localUrl) {
+                completion(true)
+            } else {
+                // print/handle error
+                completion(false)
+            }
+        }
+        task.resume()
+    }
 }
 
 extension URLSession {
@@ -53,4 +65,8 @@ extension URLSession {
         task.resume()
         return task
     }
+}
+
+extension URLSession {
+
 }

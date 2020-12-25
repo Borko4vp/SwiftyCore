@@ -39,6 +39,10 @@ extension SwiftyCore {
                     patch(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
                 }
             }
+            
+            public func download(from remoteUrl: URL, to localUrl: URL, completion: @escaping (Bool) -> Void) {
+                session?.download(from: remoteUrl, to: localUrl, completion: completion)
+            }
             /// Calls the live internet to retrieve Data from specific localtion
             /// - Parameters:
             ///   - url: the location you wish to fetch data from
@@ -104,6 +108,8 @@ extension SwiftyCore.Networking.Manager {
                 completion(.success(nil))
                 return
             }
+            let stringData = String(data: responseData, encoding: .utf8)
+            print(stringData ?? "")
             guard let responseJSON = try? JSONDecoder().decode(ResponseType.self, from: responseData) else {
                 completion(.failure(.localError(.decodeDataFailed)))
                 return

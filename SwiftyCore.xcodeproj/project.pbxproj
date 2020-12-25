@@ -108,6 +108,12 @@
 		EEC92A1D2568B8B700348866 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		EEC92A1F2568B8B700348866 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EEC92A202568B8B700348866 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		EED7846F2595E699006B78E9 /* VoiceMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageView.swift; sourceTree = "<group>"; };
+		EED784702595E699006B78E9 /* ImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageView.swift; sourceTree = "<group>"; };
+		EED784712595E699006B78E9 /* VoiceMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMessageView.xib; sourceTree = "<group>"; };
+		EED784722595E699006B78E9 /* TextMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageView.swift; sourceTree = "<group>"; };
+		EED784732595E699006B78E9 /* TextMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextMessageView.xib; sourceTree = "<group>"; };
+		EED784742595E699006B78E9 /* ImageMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageMessageView.xib; sourceTree = "<group>"; };
 		OBJ_12 /* SwiftyCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyCoreTests.swift; sourceTree = "<group>"; };
 		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 		EE8DB143258BE40900FAA972 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				EED7846E2595E699006B78E9 /* MessageViews */,
 				EE8DB144258BE40900FAA972 /* Cells */,
 				EE8DB148258BE40900FAA972 /* Chat.swift */,
 				EE8DB149258BE40900FAA972 /* Message */,
@@ -276,6 +283,20 @@
 				EEC92A202568B8B700348866 /* BaseController.swift */,
 			);
 			path = BaseViewController;
+			sourceTree = "<group>";
+		};
+		EED7846E2595E699006B78E9 /* MessageViews */ = {
+			isa = PBXGroup;
+			children = (
+				EED784702595E699006B78E9 /* ImageMessageView.swift */,
+				EED784742595E699006B78E9 /* ImageMessageView.xib */,
+				EED7846F2595E699006B78E9 /* VoiceMessageView.swift */,
+				EED784712595E699006B78E9 /* VoiceMessageView.xib */,
+				EED784722595E699006B78E9 /* TextMessageView.swift */,
+				EED784732595E699006B78E9 /* TextMessageView.xib */,
+			);
+			name = MessageViews;
+			path = Cells/MessageViews;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* Tests */ = {

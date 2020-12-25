@@ -20,9 +20,10 @@ class ImageMessageView: UIView {
     @IBOutlet private weak var imageView: UIImageView!
     
     
-    func set(image url: URL) {
-        imageView.setRemoteImage(from: url.absoluteString)
+    func set(image url: URL, tintColor: UIColor = .lightGray) {
+        imageView.setRemoteImage(from: url.absoluteString, placeholderImage: Image.galleryPlaceholder.uiImage)
         imageView.layer.cornerRadius = SwiftyCore.UI.Chat.cornerRadius
+        imageView.tintColor = tintColor
         layoutIfNeeded()
     }
 

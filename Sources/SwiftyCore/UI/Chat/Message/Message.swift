@@ -9,6 +9,7 @@ import Foundation
 
 extension SwiftyCore.UI.Chat {
     public struct Message {
+        let id: String = "message_ID"
         let type: SwiftyCore.UI.Chat.MessageType
         let timestampString: String?
         let timestamp: Date?

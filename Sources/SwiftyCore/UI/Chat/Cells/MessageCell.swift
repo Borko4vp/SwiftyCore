@@ -36,6 +36,7 @@ public extension MessageCell {
     }
     
     func messagePrepareForReuse() {
+        //messagePlaceholderView.frame = .zero
         for subview in messagePlaceholderView.subviews {
             subview.removeFromSuperview()
         }

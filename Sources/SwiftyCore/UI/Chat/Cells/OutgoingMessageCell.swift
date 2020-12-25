@@ -51,7 +51,13 @@ extension OutgoingMessageCell: MessageCell {
             messagePlaceholderView.addSubview(imageMessageView)
             guard let url = message.assetUrl else { return }
             imageMessageView.set(image: url)
+        } else if message.type == .voice {
+            let voiceMessageView = VoiceMessageView.instanceFromNib(with: messagePlaceholderView.bounds)
+            messagePlaceholderView.addSubview(voiceMessageView)
+            guard let url = message.assetUrl else { return }
+            voiceMessageView.set(with: url, and: message.id)
         }
+        setNeedsLayout()
     }
     
     func getBubblePath() -> UIBezierPath {

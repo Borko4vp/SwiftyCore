@@ -10,7 +10,7 @@ import UIKit
 
 class TextMessageView: UIView {
     class func instanceFromNib(with frame: CGRect) -> TextMessageView {
-        let xibView = UINib(nibName: "TextMessageView", bundle: Bundle.module).instantiate(withOwner: self, options: nil)[0] as! TextMessageView
+        let xibView = SwiftyCore.UI.InternalViews.Nibs.textMessageView.instantiate(withOwner: self, options: nil)[0] as! TextMessageView
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         xibView.frame = frame
         xibView.layoutIfNeeded()
