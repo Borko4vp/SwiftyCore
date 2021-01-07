@@ -9,6 +9,7 @@ import Foundation
 
 extension SwiftyCore {
     public struct Networking {
+        public static var multipartDataKey = "multipartData"
         /// Responsible for handling all networking calls
         /// - Warning:   Must create before using any public API
         public class Manager<ServerErrorDTO: ServerErrorMessageable> {
@@ -34,7 +35,11 @@ extension SwiftyCore {
                 case .get:
                     get(from: urlPath, headers: request.headers ?? [:], completion: completion)
                 case .post:
-                    post(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
+                    if request.headers?["Content-Type"]?.contains("multipart/form-data") ?? false {
+                        post(to: urlPath, headers: request.headers ?? [:], with: request.parameters?[SwiftyCore.Networking.multipartDataKey] as? Data, completion: completion)
+                    } else {
+                        post(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
+                    }
                 case .patch:
                     patch(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
                 }
@@ -66,6 +71,25 @@ extension SwiftyCore {
                                                  with body: [String: Any]?,
                                                  completion: @escaping (NetworkResult<Response>) -> Void) {
                 guard let dataParams = try? JSONSerialization.data(withJSONObject: body ?? [:]) else {
+                    completion(.failure(.localError(.encodeDataFailed)))
+                    return
+                }
+                session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
+                    self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+                }
+            }
+            
+            /// Calls the live internet to send Data to specific localtion
+            /// - Warning: Make sure the url in question can accept POST route
+            /// - Parameters:
+            ///   - url: the localtion you wish to send data to
+            ///   - data: the data object you wish to send over the network
+            ///   - completion: completion to execute after API response is received
+            private func post<Response: Codable>(to url: URL,
+                                                 headers: [String: String],
+                                                 with data: Data?,
+                                                 completion: @escaping (NetworkResult<Response>) -> Void) {
+                guard let dataParams = data else {
                     completion(.failure(.localError(.encodeDataFailed)))
                     return
                 }

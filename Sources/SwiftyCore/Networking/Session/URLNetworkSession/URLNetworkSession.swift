@@ -30,6 +30,11 @@ extension URLSession: NetworkSession {
         createDataTask(with: request, completion: completion)
     }
     
+    func put(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void) {
+        let request = createRequest(url: url, headers: headers, method: "PUT", parameters: parameters)
+        createDataTask(with: request, completion: completion)
+    }
+    
     func download(from remoteUrl: URL, to localUrl: URL, completion: @escaping (Bool) -> Void) {
         let task = URLSession.shared.downloadTask(with: remoteUrl) { tmpURL, urlResponse, error in
             if let tmpURL = tmpURL, FileHelper.move(from: tmpURL, to: localUrl) {
