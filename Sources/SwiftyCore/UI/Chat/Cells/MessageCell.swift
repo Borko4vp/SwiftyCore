@@ -8,12 +8,17 @@
 import Foundation
 import UIKit
 
+public enum BubbleStyle {
+    case normal
+    case iMessage
+}
+
 public protocol MessageCell where Self: UITableViewCell {
     
     var cornerRadius: CGFloat { get }
     var borderColor: UIColor { get }
     var bubbleColor: UIColor { get }
-    
+    var bubbleStyle: BubbleStyle { get }
     var messagePlaceholderView: UIView { get }
     
     func set(with message: SwiftyCore.UI.Chat.Message)

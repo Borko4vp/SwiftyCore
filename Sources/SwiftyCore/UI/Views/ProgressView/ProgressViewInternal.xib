@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProgressView" customModule="SwiftyCore">
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="ProgressViewInternal" customModule="SwiftyCore">
             <rect key="frame" x="0.0" y="0.0" width="388" height="232"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -49,9 +49,9 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="currentProgressView" destination="IeJ-3r-uZA" id="qTv-3q-7bY"/>
-                <outlet property="currentProgressViewWidthCst" destination="KNC-cb-qaT" id="Os6-MO-mga"/>
-                <outlet property="totalProgressView" destination="1cL-XE-6GX" id="HV9-4y-XO4"/>
+                <outlet property="currentProgressView" destination="IeJ-3r-uZA" id="yN6-d1-4bM"/>
+                <outlet property="currentProgressViewWidthCst" destination="KNC-cb-qaT" id="gZj-ZY-9bs"/>
+                <outlet property="totalProgressView" destination="1cL-XE-6GX" id="pEK-uf-C4V"/>
             </connections>
             <point key="canvasLocation" x="-34.782608695652179" y="-154.01785714285714"/>
         </view>

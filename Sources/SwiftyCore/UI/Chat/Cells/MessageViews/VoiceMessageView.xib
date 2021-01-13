@@ -65,6 +65,10 @@
                                 <constraint firstAttribute="bottom" secondItem="CRc-tj-ncc" secondAttribute="bottom" id="z6K-P9-vyD"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15n-wc-cZV">
+                            <rect key="frame" x="40" y="4" width="152" height="32"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -72,10 +76,14 @@
                         <constraint firstAttribute="trailing" secondItem="WxE-4I-uTe" secondAttribute="trailing" constant="8" id="8Au-7x-Kuq"/>
                         <constraint firstItem="R3n-TQ-Ock" firstAttribute="trailing" secondItem="PnS-Xj-cGF" secondAttribute="trailing" id="97S-h3-Q1t"/>
                         <constraint firstAttribute="height" priority="999" constant="40" id="9cK-Va-IMT"/>
+                        <constraint firstItem="15n-wc-cZV" firstAttribute="leading" secondItem="WxE-4I-uTe" secondAttribute="leading" id="Anq-oU-8in"/>
+                        <constraint firstItem="15n-wc-cZV" firstAttribute="trailing" secondItem="WxE-4I-uTe" secondAttribute="trailing" id="E2c-AQ-tuK"/>
                         <constraint firstItem="WxE-4I-uTe" firstAttribute="top" secondItem="PnS-Xj-cGF" secondAttribute="top" id="Tst-1a-ALM"/>
                         <constraint firstAttribute="width" priority="999" constant="200" id="VSR-n7-4gs"/>
                         <constraint firstItem="WxE-4I-uTe" firstAttribute="leading" secondItem="PnS-Xj-cGF" secondAttribute="trailing" priority="999" constant="4" id="Wdh-p2-Ylk"/>
+                        <constraint firstItem="15n-wc-cZV" firstAttribute="bottom" secondItem="WxE-4I-uTe" secondAttribute="bottom" id="Y65-Zf-Dlc"/>
                         <constraint firstItem="PnS-Xj-cGF" firstAttribute="leading" secondItem="Ze6-dZ-XdZ" secondAttribute="leading" constant="4" id="ZW1-gv-1GT"/>
+                        <constraint firstItem="15n-wc-cZV" firstAttribute="top" secondItem="WxE-4I-uTe" secondAttribute="top" id="d7J-y5-Y9c"/>
                         <constraint firstItem="R3n-TQ-Ock" firstAttribute="top" secondItem="PnS-Xj-cGF" secondAttribute="top" id="eDt-gX-eFt"/>
                         <constraint firstItem="PnS-Xj-cGF" firstAttribute="top" secondItem="Ze6-dZ-XdZ" secondAttribute="top" priority="999" constant="4" id="i2J-O6-jtO"/>
                         <constraint firstItem="R3n-TQ-Ock" firstAttribute="bottom" secondItem="PnS-Xj-cGF" secondAttribute="bottom" id="jku-ul-FcO"/>
@@ -97,8 +105,10 @@
                 <outlet property="activityIndicator" destination="R3n-TQ-Ock" id="OEE-Aq-ejb"/>
                 <outlet property="endTimeLabel" destination="hg3-17-3lG" id="ZFr-9r-KcW"/>
                 <outlet property="playButton" destination="PnS-Xj-cGF" id="U4o-DG-TKi"/>
-                <outlet property="progressViewPlaceholder" destination="CRc-tj-ncc" id="lC7-Tf-8ih"/>
+                <outlet property="progressBarViewPlaceholder" destination="CRc-tj-ncc" id="lC7-Tf-8ih"/>
+                <outlet property="progressViewPlaceholder" destination="WxE-4I-uTe" id="54F-jB-Mjw"/>
                 <outlet property="startTimeLabel" destination="iLM-3n-I9S" id="Y4K-Zs-oZa"/>
+                <outlet property="waveformViewPlaceholder" destination="15n-wc-cZV" id="hy5-V8-1Qa"/>
             </connections>
             <point key="canvasLocation" x="-68.115942028985515" y="-199.55357142857142"/>
         </view>

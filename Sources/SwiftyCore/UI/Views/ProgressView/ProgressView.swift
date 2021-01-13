@@ -1,36 +1,27 @@
 //
-//  ProgressView.swift
-//  iVault
+//  File.swift
+//  
 //
-//  Created by Borko Tomic on 25.12.20..
+//  Created by Borko Tomic on 11.1.21..
 //
 
 import Foundation
 import UIKit
 
-public class ProgressView: UIView {
-    class func instanceFromNib(with frame: CGRect) -> ProgressView {
-        let xibView = SwiftyCore.UI.Views.Nibs.progressView.instantiate(withOwner: self, options: nil)[0] as! ProgressView
-        xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        xibView.frame = frame
-        xibView.layoutIfNeeded()
-        return xibView
+extension SwiftyCore.UI {
+    public class ProgressView {
+        private var progressBar: ProgressViewInternal
+        
+        public init(rect: CGRect, color: UIColor, backColor: UIColor) {
+            progressBar = ProgressViewInternal.instanceFromNib(with: rect)
+            progressBar.setTheme(with: color, backColor: backColor)
+        }
+        
+        public func setProgress(percent: Double) {
+            progressBar.setProgress(percent: percent)
+        }
+        
+        public var view: UIView { return progressBar }
     }
-    @IBOutlet private weak var totalProgressView: UIView!
-    
-    @IBOutlet private weak var currentProgressView: UIView!
-    @IBOutlet private weak var currentProgressViewWidthCst: NSLayoutConstraint!
-    private func setup() {
-        totalProgressView.layer.cornerRadius = totalProgressView.bounds.height/2
-        currentProgressView.layer.cornerRadius = currentProgressView.bounds.height/2
-
-    }
-    
-    public func setProgress(percent: Double) {
-        setup()
-        let multiply: CGFloat = CGFloat(100 - percent)/CGFloat(100)
-        currentProgressViewWidthCst.constant = -CGFloat(multiply*totalProgressView.bounds.width)
-        setNeedsLayout()
-    }
-    
 }
+

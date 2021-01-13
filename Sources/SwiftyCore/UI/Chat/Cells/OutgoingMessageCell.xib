@@ -56,6 +56,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="S2N-uA-CWa" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.65" id="4uW-t4-rQc"/>
+                    <constraint firstItem="kiZ-P4-7Fc" firstAttribute="bottom" secondItem="S2N-uA-CWa" secondAttribute="bottom" priority="999" id="6LI-sF-sJ8"/>
                     <constraint firstAttribute="bottom" secondItem="S2N-uA-CWa" secondAttribute="bottom" constant="8" id="B2d-hh-S2p"/>
                     <constraint firstAttribute="trailing" secondItem="kiZ-P4-7Fc" secondAttribute="trailing" constant="8" id="FeS-O9-hnA"/>
                     <constraint firstAttribute="trailing" secondItem="S2N-uA-CWa" secondAttribute="trailing" constant="46" id="Wbo-Ta-mjb"/>
@@ -69,7 +70,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="avatarBackView" destination="kiZ-P4-7Fc" id="w65-No-BNd"/>
+                <outlet property="avatarBottomBubbleBottomAllignCst" destination="6LI-sF-sJ8" id="5LE-od-7jJ"/>
+                <outlet property="avatarTopBubbleTopAllignCst" destination="wGt-Su-h5I" id="hFu-pL-7WD"/>
                 <outlet property="bubbleView" destination="S2N-uA-CWa" id="H6e-ka-NaG"/>
+                <outlet property="bubbleViewFromMessageViewTrailingCst" destination="xad-5d-x4r" id="WhS-8U-05A"/>
                 <outlet property="messageView" destination="TC4-Gg-zW9" id="mUN-9U-xKT"/>
                 <outlet property="timestampLabel" destination="uhK-sn-GCu" id="vOd-UX-DuX"/>
             </connections>

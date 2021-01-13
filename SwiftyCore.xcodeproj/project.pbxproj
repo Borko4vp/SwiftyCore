@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		EE0594782578FCB5004E6EC1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05946C2578FCB5004E6EC1 /* Networking.swift */; };
-		EE05947A2578FCB5004E6EC1 /* Encodable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE05946F2578FCB5004E6EC1 /* Encodable+Extension.swift */; };
 		EE05947B2578FCB5004E6EC1 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594702578FCB5004E6EC1 /* Router.swift */; };
 		EE05947C2578FCB5004E6EC1 /* CoreNetworkingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594712578FCB5004E6EC1 /* CoreNetworkingError.swift */; };
 		EE05947D2578FCB5004E6EC1 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE0594722578FCB5004E6EC1 /* NetworkRequest.swift */; };
@@ -37,6 +36,7 @@
 		EE8DB150258BE40A00FAA972 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB14A258BE40900FAA972 /* Message.swift */; };
 		EE8DB151258BE40A00FAA972 /* MessageUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB14B258BE40900FAA972 /* MessageUser.swift */; };
 		EE8DB152258BE40A00FAA972 /* MessageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE8DB14C258BE40900FAA972 /* MessageType.swift */; };
+		EE946D4725AC9BCE00566221 /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE946D4525AC9BCE00566221 /* ProgressView.swift */; };
 		EEC929DD2568B54000348866 /* UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC929DC2568B54000348866 /* UI.swift */; };
 		EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */; };
 		EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A102568B8B700348866 /* UIViewController+Extension.swift */; };
@@ -52,6 +52,10 @@
 		EEC92A2C2568B8B700348866 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A1F2568B8B700348866 /* BaseViewController.swift */; };
 		EEC92A2D2568B8B700348866 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEC92A202568B8B700348866 /* BaseController.swift */; };
 		EEC92A8C2569473000348866 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = EEC92A8B2569473000348866 /* Lottie */; };
+		EED76C0925ACA9A100E57D1D /* TextMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED784722595E699006B78E9 /* TextMessageView.swift */; };
+		EED76C0E25ACA9B000E57D1D /* VoiceMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED7846F2595E699006B78E9 /* VoiceMessageView.swift */; };
+		EED76C1325ACA9B300E57D1D /* ImageMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED784702595E699006B78E9 /* ImageMessageView.swift */; };
+		EED76C1925ACAA6E00E57D1D /* Idents.swift in Sources */ = {isa = PBXBuildFile; fileRef = EED76C1825ACAA6E00E57D1D /* Idents.swift */; };
 		OBJ_23 /* SwiftyCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* SwiftyCore.swift */; };
 		OBJ_30 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
 		OBJ_41 /* SwiftyCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* SwiftyCoreTests.swift */; };
@@ -78,7 +82,6 @@
 
 /* Begin PBXFileReference section */
 		EE05946C2578FCB5004E6EC1 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		EE05946F2578FCB5004E6EC1 /* Encodable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Encodable+Extension.swift"; sourceTree = "<group>"; };
 		EE0594702578FCB5004E6EC1 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		EE0594712578FCB5004E6EC1 /* CoreNetworkingError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreNetworkingError.swift; sourceTree = "<group>"; };
 		EE0594722578FCB5004E6EC1 /* NetworkRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
@@ -94,6 +97,7 @@
 		EE8DB14A258BE40900FAA972 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		EE8DB14B258BE40900FAA972 /* MessageUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageUser.swift; sourceTree = "<group>"; };
 		EE8DB14C258BE40900FAA972 /* MessageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageType.swift; sourceTree = "<group>"; };
+		EE946D4525AC9BCE00566221 /* ProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		EEC929DC2568B54000348866 /* UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UI.swift; sourceTree = "<group>"; };
 		EEC92A0F2568B8B700348866 /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		EEC92A102568B8B700348866 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 		EEC92A1D2568B8B700348866 /* LoadingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		EEC92A1F2568B8B700348866 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		EEC92A202568B8B700348866 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		EED76C0025ACA81000E57D1D /* ProgressView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProgressView.xib; sourceTree = "<group>"; };
+		EED76C1825ACAA6E00E57D1D /* Idents.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Idents.swift; sourceTree = "<group>"; };
 		EED7846F2595E699006B78E9 /* VoiceMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessageView.swift; sourceTree = "<group>"; };
 		EED784702595E699006B78E9 /* ImageMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageMessageView.swift; sourceTree = "<group>"; };
 		EED784712595E699006B78E9 /* VoiceMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VoiceMessageView.xib; sourceTree = "<group>"; };
@@ -159,7 +165,6 @@
 		EE05946E2578FCB5004E6EC1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				EE05946F2578FCB5004E6EC1 /* Encodable+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -220,9 +225,19 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
+		EE946D4425AC9BCE00566221 /* ProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				EE946D4525AC9BCE00566221 /* ProgressView.swift */,
+				EED76C0025ACA81000E57D1D /* ProgressView.xib */,
+			);
+			path = ProgressView;
+			sourceTree = "<group>";
+		};
 		EEC92A0D2568B89A00348866 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				EED76C1825ACAA6E00E57D1D /* Idents.swift */,
 				EEC929DC2568B54000348866 /* UI.swift */,
 				EEC92A0E2568B8B700348866 /* Extensions */,
 				EEC92A112568B8B700348866 /* Protocols */,
@@ -261,6 +276,7 @@
 		EEC92A192568B8B700348866 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				EE946D4425AC9BCE00566221 /* ProgressView */,
 				EEC92A1A2568B8B700348866 /* LoadingView */,
 				EEC92A1E2568B8B700348866 /* BaseViewController */,
 			);
@@ -449,12 +465,12 @@
 				EEC92A2A2568B8B700348866 /* LoadingController.swift in Sources */,
 				EEC92A252568B8B700348866 /* PickerItem.swift in Sources */,
 				EE05947E2578FCB5004E6EC1 /* NetworkSession.swift in Sources */,
+				EED76C1925ACAA6E00E57D1D /* Idents.swift in Sources */,
 				EE05947F2578FCB5004E6EC1 /* URLNetworkSession.swift in Sources */,
 				EE8DB150258BE40A00FAA972 /* Message.swift in Sources */,
 				EE0594782578FCB5004E6EC1 /* Networking.swift in Sources */,
 				EE8DB151258BE40A00FAA972 /* MessageUser.swift in Sources */,
 				EEC92A262568B8B700348866 /* Animatable.swift in Sources */,
-				EE05947A2578FCB5004E6EC1 /* Encodable+Extension.swift in Sources */,
 				EEC92A222568B8B700348866 /* UIViewController+Extension.swift in Sources */,
 				EEC92A282568B8B700348866 /* Toastable.swift in Sources */,
 				EE8DB14F258BE40A00FAA972 /* Chat.swift in Sources */,
@@ -468,6 +484,7 @@
 				EE0594902578FE5D004E6EC1 /* UIColor+Extension.swift in Sources */,
 				EE05947B2578FCB5004E6EC1 /* Router.swift in Sources */,
 				EEC92A212568B8B700348866 /* UIAlertController+Extension.swift in Sources */,
+				EED76C0925ACA9A100E57D1D /* TextMessageView.swift in Sources */,
 				EE0594912578FE5D004E6EC1 /* UIDevice+Extension.swift in Sources */,
 				EE05947C2578FCB5004E6EC1 /* CoreNetworkingError.swift in Sources */,
 				EE8DB152258BE40A00FAA972 /* MessageType.swift in Sources */,
@@ -475,7 +492,10 @@
 				OBJ_23 /* SwiftyCore.swift in Sources */,
 				EEC929DD2568B54000348866 /* UI.swift in Sources */,
 				EEC92A2B2568B8B700348866 /* LoadingViewController.swift in Sources */,
+				EED76C0E25ACA9B000E57D1D /* VoiceMessageView.swift in Sources */,
+				EE946D4725AC9BCE00566221 /* ProgressView.swift in Sources */,
 				EEC92A232568B8B700348866 /* Alertable.swift in Sources */,
+				EED76C1325ACA9B300E57D1D /* ImageMessageView.swift in Sources */,
 				EE8DB14E258BE40A00FAA972 /* MessageCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

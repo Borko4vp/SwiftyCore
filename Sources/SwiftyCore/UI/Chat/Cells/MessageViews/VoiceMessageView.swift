@@ -8,6 +8,22 @@
 import AVFoundation
 import UIKit
 
+public enum VoiceMessageProgressType {
+    case bar
+    case waveformBars
+    case waveformBarsCentered
+    case waveform
+    
+    var waveformStyle: WaveformStyle? {
+        switch self {
+        case .bar: return nil
+        case .waveformBars: return .bars
+        case .waveformBarsCentered: return .barsCentered
+        case .waveform: return .wave
+        }
+    }
+}
+
 class VoiceMessageView: UIView {
     class func instanceFromNib(with frame: CGRect) -> VoiceMessageView {
         let xibView = SwiftyCore.UI.InternalViews.Nibs.voiceMessageView.instantiate(withOwner: self, options: nil)[0] as! VoiceMessageView
@@ -17,19 +33,25 @@ class VoiceMessageView: UIView {
         xibView.layoutIfNeeded()
         return xibView
     }
+    @IBOutlet private weak var playButton: UIButton!
     
-    @IBOutlet weak var playButton: UIButton!
+    @IBOutlet private weak var startTimeLabel: UILabel!
+    @IBOutlet private weak var endTimeLabel: UILabel!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var progressBarViewPlaceholder: UIView!
     
-    @IBOutlet weak var startTimeLabel: UILabel!
-    @IBOutlet weak var endTimeLabel: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var progressViewPlaceholder: UIView!
+    @IBOutlet private weak var progressViewPlaceholder: UIView!
+    @IBOutlet private weak var waveformViewPlaceholder: UIView!
     
-    private var progressView: ProgressView?
+    private var initializationGroup: DispatchGroup = DispatchGroup()
+    private var style: VoiceMessageProgressType?
+    private var progressView: SwiftyCore.UI.ProgressView?
+    private var waveform: WaveformView?
     private var recording: URL?
     private var localRecording: URL? {
-        guard let id = id else { return nil }
-        return FileHelper.getLocalUrl(for: id)
+//        guard let id = id else { return nil }
+//        return FileHelper.getLocalUrl(for: id)
+        return Bundle.main.url(forResource: "Intro", withExtension: "mp4")
     }
     private var id: String?
     private var audioPlayer: AVAudioPlayer?
@@ -41,19 +63,42 @@ class VoiceMessageView: UIView {
     }
     
     
-    public func set(with url: URL, and id: String) {
+    public func set(with url: URL, and id: String, type: VoiceMessageProgressType) {
+        self.style = type
+        progressViewPlaceholder.isHidden = type != .bar
+        waveformViewPlaceholder.isHidden = type == .bar
         recording = url
         self.id = id
         isPlaying = false
-        progressView = ProgressView.instanceFromNib(with: progressViewPlaceholder.bounds)
-        guard let progressView = progressView else { return }
-        progressViewPlaceholder.addSubview(progressView)
-        DispatchQueue.main.async {
-            progressView.setProgress(percent: 0)
+        progressView = SwiftyCore.UI.ProgressView(rect: progressBarViewPlaceholder.bounds, color:  .darkGray, backColor: .lightGray)
+        if let view = progressView?.view, progressBarViewPlaceholder.subviews.isEmpty {
+            progressBarViewPlaceholder.addSubview(view)
         }
-        download {
+        //download {
+        guard let local = localRecording else { fatalError() }
+        if let style = style, style != .bar, let waveStyle = style.waveformStyle {
+            DispatchQueue.main.async {
+                for subview in self.waveformViewPlaceholder.subviews {
+                    subview.removeFromSuperview()
+                }
+                let view = WaveformView(style: waveStyle, baseColor: .blue, pastColor: .green)
+                view.frame = self.waveformViewPlaceholder.bounds
+                view.backgroundColor = .white
+                self.waveformViewPlaceholder.addSubview(view)
+                self.waveform = view
+                self.waveform?.openFile(local)
+                DispatchQueue.global(qos: .background).async {
+                    self.waveform?.makePoints() {
+                        self.preparePlayer()
+                    }
+                }
+            }
+        } else {
             self.preparePlayer()
         }
+
+            
+        //}
         setNeedsLayout()
     }
     
@@ -87,10 +132,12 @@ class VoiceMessageView: UIView {
                     self.activityIndicator.stopAnimating()
                 }
                 completion()
+                self.waveform?.openFile(recoringUrl)
                 guard success else { return }
                 print("downloaded remote audio url")
             }
         } else {
+            waveform?.openFile(recoringUrl)
             completion()
         }
     }
@@ -106,7 +153,9 @@ class VoiceMessageView: UIView {
         audioPlayer?.delegate = self
         audioPlayer?.volume = 1.0
         
-        updateTimeLabels()
+        DispatchQueue.main.async {
+            self.updateTimeLabels()
+        }
     }
     
     private func updateTimeLabels() {
@@ -138,6 +187,7 @@ class VoiceMessageView: UIView {
         playbackTimer?.invalidate()
         playbackTimer = nil
         progressView?.setProgress(percent: 0)
+        waveform?.setProgress(percent: 0)
     }
     
     @objc
@@ -145,7 +195,11 @@ class VoiceMessageView: UIView {
         let total: Double = audioPlayer?.duration ?? 0.0
         let current: Double = audioPlayer?.currentTime ?? 0.0
         
-        progressView?.setProgress(percent: current/total*100)
+        if style == .bar {
+            progressView?.setProgress(percent: current/total*100)
+        } else {
+            waveform?.setProgress(percent: current/total*100)
+        }
     }
 }
 
