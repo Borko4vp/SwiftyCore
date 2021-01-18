@@ -12,6 +12,7 @@ extension SwiftyCore.UI {
     public struct Views {
         public struct Nibs {
             public static var progressViewInternal = UINib(nibName: "ProgressViewInternal", bundle: Bundle.module)
+            public static var avatarViewInternal = UINib(nibName: "AvatarViewInternal", bundle: Bundle.module)
         }
     }
     public struct Cells {

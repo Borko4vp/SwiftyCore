@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="AvatarViewInternal" customModule="SwiftyCore">
+            <rect key="frame" x="0.0" y="0.0" width="187" height="168"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TI6-UL-4ru">
+                    <rect key="frame" x="0.0" y="0.0" width="187" height="168"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IPN-U5-MxC">
+                            <rect key="frame" x="4" y="4" width="179" height="160"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="IPN-U5-MxC" firstAttribute="top" secondItem="TI6-UL-4ru" secondAttribute="top" constant="4" id="N4d-wq-hiw"/>
+                        <constraint firstItem="IPN-U5-MxC" firstAttribute="centerY" secondItem="TI6-UL-4ru" secondAttribute="centerY" id="Owp-Bn-R4v"/>
+                        <constraint firstItem="IPN-U5-MxC" firstAttribute="leading" secondItem="TI6-UL-4ru" secondAttribute="leading" constant="4" id="iYa-MZ-BjA"/>
+                        <constraint firstItem="IPN-U5-MxC" firstAttribute="centerX" secondItem="TI6-UL-4ru" secondAttribute="centerX" id="iuF-v7-jGZ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="TI6-UL-4ru" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="E7e-cj-Gca"/>
+                <constraint firstItem="TI6-UL-4ru" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="EkA-dY-b1Z"/>
+                <constraint firstItem="TI6-UL-4ru" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="W2a-O7-tUX"/>
+                <constraint firstItem="TI6-UL-4ru" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="a9k-10-EWM"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="avatarImageLeadingCst" destination="iYa-MZ-BjA" id="xWB-fx-GhD"/>
+                <outlet property="avatarImageTopCst" destination="N4d-wq-hiw" id="C17-kd-iBo"/>
+                <outlet property="avatarImageView" destination="IPN-U5-MxC" id="bKO-EF-ecO"/>
+                <outlet property="imageBackView" destination="TI6-UL-4ru" id="GdM-Xm-9Xe"/>
+            </connections>
+            <point key="canvasLocation" x="-45.652173913043484" y="-429.91071428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
