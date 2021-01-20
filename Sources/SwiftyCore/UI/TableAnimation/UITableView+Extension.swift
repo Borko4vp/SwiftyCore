@@ -20,7 +20,7 @@ public extension UITableView {
     ///   - tableView: UITableView
     ///   - cell: UITableViewCell which is being animated
     ///   - indexPath: IndexPath of the animated cell
-    public func animateCells(_ animationFactory: @escaping Animator.Animation, tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath ) {
+    func animateCells(_ animationFactory: @escaping Animator.Animation, tableView: UITableView, cell: UITableViewCell, indexPath: IndexPath ) {
         let animation = animationFactory
         let animator = Animator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)

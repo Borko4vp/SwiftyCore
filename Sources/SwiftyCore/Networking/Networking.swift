@@ -10,6 +10,7 @@ import Foundation
 extension SwiftyCore {
     public struct Networking {
         public static var multipartDataKey = "multipartData"
+        public static var multipartBoundary = UUID().uuidString
         /// Responsible for handling all networking calls
         /// - Warning:   Must create before using any public API
         public class Manager<ServerErrorDTO: ServerErrorMessageable> {
@@ -166,5 +167,19 @@ extension SwiftyCore.Networking {
     
     public enum Encoding {
         case none
+    }
+    
+    public static func dataArrayToFormData(paramName: String, dataArray: [Data], filenames: [String], boundary: String = SwiftyCore.Networking.multipartBoundary) -> Data {
+        var fullData = Data()
+        for (index, data) in dataArray.enumerated() {
+            let currentFilename = filenames[index]
+            fullData.append("--\(boundary)\r\n".data(using: .utf8)!)
+            fullData.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(currentFilename)\"\r\n".data(using: .utf8)!)
+            fullData.append("Content-Type: image/jpg\r\n\r\n".data(using: .utf8)!)
+            fullData.append(data)
+            fullData.append("\r\n".data(using: .utf8)!)
+        }
+        fullData.append("--\(boundary)--".data(using: .utf8)!)
+        return fullData
     }
 }

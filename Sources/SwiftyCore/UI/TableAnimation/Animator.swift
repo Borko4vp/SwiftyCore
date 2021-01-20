@@ -23,7 +23,7 @@ public class Animator: NSObject {
         }
         
         animation(cell, indexPath, tableView)
-        if let last = tableView.visibleCells.last {
+        if let _ = tableView.visibleCells.last {
             self.hasAnimatedAllCells = true
         }
     }
