@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension SwiftyCore.UI {
-    open class BaseViewController: UIViewController, LoadingController, KeyboardPresentable, BaseController {
+    open class BaseViewController: UIViewController, LoadingController, KeyboardPresentable, BaseController, Toastaable {
         
         open var interactivePopGestureRecognizerEnabled: Bool {
             return true
@@ -77,12 +77,6 @@ extension SwiftyCore.UI {
         open func keyboardAboutToHide(keyboardSize: CGRect) {
             // override in each view controller
         }
-    }
-}
-
-extension SwiftyCore.UI.BaseViewController: Toastaable {
-    public func showToast(text: String) {
-        showToast(text: text, image: UIImage(named: "alert")!)
     }
 }
 

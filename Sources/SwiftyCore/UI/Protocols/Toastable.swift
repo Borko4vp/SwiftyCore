@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 public protocol Toastaable where Self: UIViewController {
-    func showToast(text: String, image: UIImage, durationInSeconds: Int)
+    func showToast(text: String, image: UIImage, durationInSeconds: Int, color: UIColor)
 }
 
 public extension Toastaable {
-    func showToast(text: String, image: UIImage, durationInSeconds: Int = 4) {
+    func showToast(text: String, image: UIImage, durationInSeconds: Int = 4, color: UIColor = UIColor.black.withAlphaComponent(0.75)) {
         DispatchQueue.main.async {
-            let toastView = self.createToastView(image: image, backgroundColor: UIColor.black.withAlphaComponent(0.75), text: text, textColor: .white)
+            let toastView = self.createToastView(image: image, backgroundColor: color, text: text, textColor: .white)
             self.view.addSubview(toastView)
             self.animate {
                 toastView.frame = self.getEndingFrame()
