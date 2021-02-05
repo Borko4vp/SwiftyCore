@@ -14,7 +14,9 @@ extension SwiftyCore {
         /// Responsible for handling all networking calls
         /// - Warning:   Must create before using any public API
         public class Manager<ServerErrorDTO: ServerErrorMessageable> {
-            public init(type: NetworkSessionType) {
+            private var loggingEnabled: Bool = false
+            public init(type: NetworkSessionType, logging: Bool) {
+                loggingEnabled = logging
                 switch type {
                 case .urlSession:
                     session = URLSession.shared
@@ -32,6 +34,7 @@ extension SwiftyCore {
             
             public func getResponse<Response: Codable, Request: NetworkRequest>(for request: Request, completion: @escaping (NetworkResult<Response>) -> Void) {
                 guard let urlPath = request.path else { fatalError() }
+                if loggingEnabled { print("\(request.method.rawValue) \(urlPath.absoluteString)") }
                 switch request.method {
                 case .get:
                     get(from: urlPath, headers: request.headers ?? [:], completion: completion)
@@ -133,8 +136,10 @@ extension SwiftyCore.Networking.Manager {
                 completion(.success(nil))
                 return
             }
-            let stringData = String(data: responseData, encoding: .utf8)
-            print(stringData ?? "")
+            if loggingEnabled {
+                let stringData = String(data: responseData, encoding: .utf8)
+                print(stringData ?? "")
+            }
             guard let responseJSON = try? JSONDecoder().decode(ResponseType.self, from: responseData) else {
                 completion(.failure(.localError(.decodeDataFailed)))
                 return
