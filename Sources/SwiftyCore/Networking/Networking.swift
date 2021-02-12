@@ -9,8 +9,6 @@ import Foundation
 
 extension SwiftyCore {
     public struct Networking {
-        public static var multipartDataKey = "multipartData"
-        public static var multipartBoundary = UUID().uuidString
         /// Responsible for handling all networking calls
         /// - Warning:   Must create before using any public API
         public class Manager<ServerErrorDTO: ServerErrorMessageable> {
@@ -52,80 +50,81 @@ extension SwiftyCore {
             public func download(from remoteUrl: URL, to localUrl: URL, completion: @escaping (Bool) -> Void) {
                 session?.download(from: remoteUrl, to: localUrl, completion: completion)
             }
-            /// Calls the live internet to retrieve Data from specific localtion
-            /// - Parameters:
-            ///   - url: the location you wish to fetch data from
-            ///   - completion: completion to execute after API response is received
-            private func get<Response: Codable>(from url: URL,
-                                                headers: [String: String],
-                                                completion: @escaping (NetworkResult<Response>) -> Void) {
-                session?.get(from: url, headers: headers) { (responseData, error) in
-                    self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
-                }
-            }
-            
-            /// Calls the live internet to send Data to specific localtion
-            /// - Warning: Make sure the url in question can accept POST route
-            /// - Parameters:
-            ///   - url: the localtion you wish to send data to
-            ///   - body: the object you wish to send over the network
-            ///   - completion: completion to execute after API response is received
-            private func post<Response: Codable>(to url: URL,
-                                                 headers: [String: String],
-                                                 with body: [String: Any]?,
-                                                 completion: @escaping (NetworkResult<Response>) -> Void) {
-                guard let dataParams = try? JSONSerialization.data(withJSONObject: body ?? [:]) else {
-                    completion(.failure(.localError(.encodeDataFailed)))
-                    return
-                }
-                session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
-                    self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
-                }
-            }
-            
-            /// Calls the live internet to send Data to specific localtion
-            /// - Warning: Make sure the url in question can accept POST route
-            /// - Parameters:
-            ///   - url: the localtion you wish to send data to
-            ///   - data: the data object you wish to send over the network
-            ///   - completion: completion to execute after API response is received
-            private func post<Response: Codable>(to url: URL,
-                                                 headers: [String: String],
-                                                 with data: Data?,
-                                                 completion: @escaping (NetworkResult<Response>) -> Void) {
-                guard let dataParams = data else {
-                    completion(.failure(.localError(.encodeDataFailed)))
-                    return
-                }
-                session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
-                    self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
-                }
-            }
-            
-            /// Calls the live internet to send Data to specific localtion
-            /// - Warning: Make sure the url in question can accept PATCH route
-            /// - Parameters:
-            ///   - url: the localtion you wish to send data to
-            ///   - body: the object you wish to send over the network
-            ///   - completion: completion to execute after API response is received
-            private func patch<ResponseType: Codable>(to url: URL,
-                                                      headers: [String: String],
-                                                      with body: [String: Any]?,
-                                                      completion: @escaping (NetworkResult<ResponseType>) -> Void) {
-                guard let dataParams = try? JSONSerialization.data(withJSONObject: body ?? [:]) else {
-                    completion(.failure(.localError(.encodeDataFailed)))
-                    return
-                }
-                session?.patch(to: url, headers: headers, with: dataParams) { responseData, error in
-                    self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
-                }
-            }
-            
         }
     }
 }
 
 extension SwiftyCore.Networking.Manager {
+    
+    /// Calls the live internet to retrieve Data from specific localtion
+    /// - Parameters:
+    ///   - url: the location you wish to fetch data from
+    ///   - completion: completion to execute after API response is received
+    private func get<Response: Codable>(from url: URL,
+                                        headers: [String: String],
+                                        completion: @escaping (NetworkResult<Response>) -> Void) {
+        session?.get(from: url, headers: headers) { (responseData, error) in
+            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+        }
+    }
+    
+    /// Calls the live internet to send Data to specific localtion
+    /// - Warning: Make sure the url in question can accept POST route
+    /// - Parameters:
+    ///   - url: the localtion you wish to send data to
+    ///   - body: the object you wish to send over the network
+    ///   - completion: completion to execute after API response is received
+    private func post<Response: Codable>(to url: URL,
+                                         headers: [String: String],
+                                         with body: [String: Any]?,
+                                         completion: @escaping (NetworkResult<Response>) -> Void) {
+        guard let dataParams = try? JSONSerialization.data(withJSONObject: body ?? [:]) else {
+            completion(.failure(.localError(.encodeDataFailed)))
+            return
+        }
+        session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
+            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+        }
+    }
+    
+    /// Calls the live internet to send Data to specific localtion
+    /// - Warning: Make sure the url in question can accept POST route
+    /// - Parameters:
+    ///   - url: the localtion you wish to send data to
+    ///   - data: the data object you wish to send over the network
+    ///   - completion: completion to execute after API response is received
+    private func post<Response: Codable>(to url: URL,
+                                         headers: [String: String],
+                                         with data: Data?,
+                                         completion: @escaping (NetworkResult<Response>) -> Void) {
+        guard let dataParams = data else {
+            completion(.failure(.localError(.encodeDataFailed)))
+            return
+        }
+        session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
+            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+        }
+    }
+    
+    /// Calls the live internet to send Data to specific localtion
+    /// - Warning: Make sure the url in question can accept PATCH route
+    /// - Parameters:
+    ///   - url: the localtion you wish to send data to
+    ///   - body: the object you wish to send over the network
+    ///   - completion: completion to execute after API response is received
+    private func patch<ResponseType: Codable>(to url: URL,
+                                              headers: [String: String],
+                                              with body: [String: Any]?,
+                                              completion: @escaping (NetworkResult<ResponseType>) -> Void) {
+        guard let dataParams = try? JSONSerialization.data(withJSONObject: body ?? [:]) else {
+            completion(.failure(.localError(.encodeDataFailed)))
+            return
+        }
+        session?.patch(to: url, headers: headers, with: dataParams) { responseData, error in
+            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+        }
+    }
+    
     private func handle<ResponseType: Codable>(responseData: Data?,
                                                networkSeesionError: NetworkSessionError?,
                                                completion: @escaping (NetworkResult<ResponseType>) -> Void){
@@ -159,6 +158,26 @@ extension SwiftyCore.Networking.Manager {
 }
 
 extension SwiftyCore.Networking {
+    
+    public static var multipartDataKey = "multipartData"
+    public static var multipartBoundary = UUID().uuidString
+    
+    public static func addQuery(params: Codable, to route: String) -> String {
+        guard let paramsDict = params.createDictionary(), !paramsDict.isEmpty else { return route }
+        var newRoute = route+"?"
+        var index = 0
+        for (key, value) in paramsDict {
+            let valueTrimmed = "\(value)".trimmingCharacters(in: .whitespacesAndNewlines)
+            newRoute.append("\(key)=\(valueTrimmed)")
+            if index < paramsDict.count-1 {
+                newRoute.append("&")
+            }
+            index+=1
+        }
+        newRoute = newRoute.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        return newRoute
+    }
+    
     public enum NetworkSessionType {
         case urlSession
         case alamofire
