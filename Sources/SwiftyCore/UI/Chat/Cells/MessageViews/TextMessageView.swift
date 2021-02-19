@@ -1,6 +1,6 @@
 //
-//  HomeHeaderView.swift
-//  iVault
+//  TextMessageView.swift
+//  SwiftyCore
 //
 //  Created by Borko Tomic on 9.12.20..
 //
@@ -25,8 +25,9 @@ class TextMessageView: UIView {
         }
     }
     
-    func set(with text: String, color: UIColor) {
+    func set(with text: String, color: UIColor, font: UIFont) {
         textLabel.text = text
+        textLabel.font = font
         textColor = color
         textLabel.sizeToFit()
         layoutIfNeeded()

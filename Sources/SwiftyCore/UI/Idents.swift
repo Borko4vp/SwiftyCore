@@ -32,6 +32,8 @@ extension SwiftyCore.UI {
             static var imageMessageView = UINib(nibName: "ImageMessageView", bundle: Bundle.module)
             static var voiceMessageView = UINib(nibName: "VoiceMessageView", bundle: Bundle.module)
             static var textMessageView = UINib(nibName: "TextMessageView", bundle: Bundle.module)
+            
+            static var inputMessageView = UINib(nibName: "InputMessageView", bundle: Bundle.module)
         }
         
         struct Idents {

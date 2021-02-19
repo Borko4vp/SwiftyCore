@@ -168,6 +168,7 @@ extension SwiftyCore.Networking {
         var index = 0
         for (key, value) in paramsDict {
             let valueTrimmed = "\(value)".trimmingCharacters(in: .whitespacesAndNewlines)
+            //guard !valueTrimmed.isEmpty else { continue }
             newRoute.append("\(key)=\(valueTrimmed)")
             if index < paramsDict.count-1 {
                 newRoute.append("&")

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,17 +18,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="183" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 Dec 2020 11:04" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhK-sn-GCu">
-                        <rect key="frame" x="47" y="8" width="90" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" priority="999" constant="15" id="6TT-Kz-WUs"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiZ-P4-7Fc">
-                        <rect key="frame" x="145" y="27" width="30" height="30"/>
+                        <rect key="frame" x="145" y="22" width="30" height="30"/>
                         <color key="backgroundColor" systemColor="linkColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="Ey1-7l-2eX"/>
@@ -36,32 +27,53 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S2N-uA-CWa">
-                        <rect key="frame" x="8" y="27" width="133" height="59"/>
+                        <rect key="frame" x="39" y="22" width="98" height="64"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TC4-Gg-zW9">
-                                <rect key="frame" x="8" y="8" width="117" height="43"/>
+                                <rect key="frame" x="8" y="8" width="82" height="38"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="18 Dec 2020 11:04" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a9X-wI-HlE">
+                                <rect key="frame" x="4" y="50" width="90" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="cev-83-Ddd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TC4-Gg-zW9" firstAttribute="top" secondItem="S2N-uA-CWa" secondAttribute="top" constant="8" id="C6N-dS-mBZ"/>
-                            <constraint firstAttribute="bottom" secondItem="TC4-Gg-zW9" secondAttribute="bottom" constant="8" id="Mna-r8-dy4"/>
-                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="WSf-1l-pMp"/>
+                            <constraint firstAttribute="trailing" secondItem="a9X-wI-HlE" secondAttribute="trailing" constant="12" id="KIa-JA-nh8"/>
+                            <constraint firstAttribute="bottom" secondItem="TC4-Gg-zW9" secondAttribute="bottom" constant="18" id="Mna-r8-dy4"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="WSf-1l-pMp"/>
+                            <constraint firstAttribute="bottom" secondItem="a9X-wI-HlE" secondAttribute="bottom" constant="4" id="sPG-rv-k0d"/>
                             <constraint firstItem="TC4-Gg-zW9" firstAttribute="leading" secondItem="S2N-uA-CWa" secondAttribute="leading" constant="8" id="uDs-9R-Vz9"/>
                             <constraint firstAttribute="trailing" secondItem="TC4-Gg-zW9" secondAttribute="trailing" constant="8" id="xad-5d-x4r"/>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="999" constant="30" id="zAy-MT-HUX"/>
+                            <constraint firstItem="a9X-wI-HlE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="S2N-uA-CWa" secondAttribute="leading" constant="4" id="zIY-qv-iKY"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="18 Dec 2020 11:04" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhK-sn-GCu">
+                        <rect key="frame" x="47" y="8" width="90" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="6TT-Kz-WUs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="S2N-uA-CWa" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.65" id="4uW-t4-rQc"/>
                     <constraint firstItem="kiZ-P4-7Fc" firstAttribute="bottom" secondItem="S2N-uA-CWa" secondAttribute="bottom" priority="999" id="6LI-sF-sJ8"/>
                     <constraint firstAttribute="bottom" secondItem="S2N-uA-CWa" secondAttribute="bottom" constant="8" id="B2d-hh-S2p"/>
                     <constraint firstAttribute="trailing" secondItem="kiZ-P4-7Fc" secondAttribute="trailing" constant="8" id="FeS-O9-hnA"/>
-                    <constraint firstAttribute="trailing" secondItem="S2N-uA-CWa" secondAttribute="trailing" constant="46" id="Wbo-Ta-mjb"/>
+                    <constraint firstAttribute="trailing" secondItem="S2N-uA-CWa" secondAttribute="trailing" constant="66" id="Wbo-Ta-mjb"/>
                     <constraint firstItem="uhK-sn-GCu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="chv-KR-tju"/>
-                    <constraint firstItem="S2N-uA-CWa" firstAttribute="top" secondItem="uhK-sn-GCu" secondAttribute="bottom" constant="4" id="hFo-xI-ine"/>
+                    <constraint firstItem="S2N-uA-CWa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="ihI-Gu-QFn"/>
                     <constraint firstItem="kiZ-P4-7Fc" firstAttribute="top" secondItem="S2N-uA-CWa" secondAttribute="top" id="wGt-Su-h5I"/>
                     <constraint firstItem="uhK-sn-GCu" firstAttribute="trailing" secondItem="S2N-uA-CWa" secondAttribute="trailing" id="zAw-c9-92g"/>
                 </constraints>
@@ -72,9 +84,15 @@
                 <outlet property="avatarBackView" destination="kiZ-P4-7Fc" id="w65-No-BNd"/>
                 <outlet property="avatarBottomBubbleBottomAllignCst" destination="6LI-sF-sJ8" id="5LE-od-7jJ"/>
                 <outlet property="avatarTopBubbleTopAllignCst" destination="wGt-Su-h5I" id="hFu-pL-7WD"/>
+                <outlet property="avatarViewWidthCst" destination="Ey1-7l-2eX" id="GkG-Fn-kcg"/>
                 <outlet property="bubbleView" destination="S2N-uA-CWa" id="H6e-ka-NaG"/>
                 <outlet property="bubbleViewFromMessageViewTrailingCst" destination="xad-5d-x4r" id="WhS-8U-05A"/>
+                <outlet property="bubbleViewTopCst" destination="ihI-Gu-QFn" id="BES-HU-F5i"/>
+                <outlet property="bubbleViewTrailingCst" destination="Wbo-Ta-mjb" id="o41-ra-y9J"/>
+                <outlet property="insideTimestampLabel" destination="a9X-wI-HlE" id="nMt-Vf-5u4"/>
+                <outlet property="insideTimestampLabelTrailingCst" destination="KIa-JA-nh8" id="rzm-Bh-0kH"/>
                 <outlet property="messageView" destination="TC4-Gg-zW9" id="mUN-9U-xKT"/>
+                <outlet property="messageViewBottomCst" destination="Mna-r8-dy4" id="m13-fu-kat"/>
                 <outlet property="timestampLabel" destination="uhK-sn-GCu" id="vOd-UX-DuX"/>
             </connections>
             <point key="canvasLocation" x="302.17391304347831" y="72.321428571428569"/>

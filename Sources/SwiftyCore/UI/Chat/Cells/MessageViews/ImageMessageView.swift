@@ -1,6 +1,6 @@
 //
 //  ImageMessageView.swift
-//  iVault
+//  SwiftyCore
 //
 //  Created by Borko Tomic on 18.12.20..
 //
@@ -22,7 +22,7 @@ class ImageMessageView: UIView {
     
     func set(image url: URL, tintColor: UIColor = .lightGray) {
         imageView.setRemoteImage(from: url.absoluteString, placeholderImage: Image.galleryPlaceholder.uiImage)
-        imageView.layer.cornerRadius = SwiftyCore.UI.Chat.cornerRadius
+        imageView.layer.cornerRadius = SwiftyCore.UI.Chat.bubbleCornerRadius
         imageView.tintColor = tintColor
         layoutIfNeeded()
     }

@@ -25,12 +25,13 @@ class AvatarViewInternal: UIView {
         return xibView
     }
     
-    func setTheme(backColor: UIColor, circleWidth: Int, placeholderImage: UIImage?) {
+    func setTheme(backColor: UIColor, cornerRadius: CGFloat? = nil,  circleWidth: Int, placeholderImage: UIImage?) {
+        let corner = cornerRadius ?? imageBackView.bounds.height/2
         imageBackView.layer.cornerRadius = imageBackView.bounds.height/2
         imageBackView.backgroundColor = backColor
         avatarImageTopCst.constant = CGFloat(circleWidth)
         avatarImageLeadingCst.constant = CGFloat(circleWidth)
-        avatarImageView.layer.cornerRadius = (imageBackView.bounds.height - 2*CGFloat(circleWidth))/2
+        avatarImageView.layer.cornerRadius = corner - CGFloat(circleWidth)
         self.placeholderImage = placeholderImage
     }
     

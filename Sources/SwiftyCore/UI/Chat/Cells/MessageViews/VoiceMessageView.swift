@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  VoiceMessageView.swift
+//  SwiftyCore
 //
 //  Created by Borko Tomic on 25.12.20..
 //

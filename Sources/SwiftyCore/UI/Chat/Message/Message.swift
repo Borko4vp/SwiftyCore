@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Message.swift
 //  
 //
 //  Created by Borko Tomic on 17.12.20..
@@ -17,13 +17,13 @@ extension SwiftyCore.UI.Chat {
         let assetUrl: URL?
         let user: MessageUser?
         
-        public init(type: SwiftyCore.UI.Chat.MessageType, message: String? = nil, asset: URL? = nil) {
+        public init(type: SwiftyCore.UI.Chat.MessageType, timestamp: Date? = nil, timestampString: String? = nil, message: String? = nil, asset: URL? = nil, userName: String, avatarUrl: String? = nil) {
             self.type = type
             self.message = message
-            timestampString = nil
-            timestamp = nil
+            self.timestamp = timestamp
+            self.timestampString = timestampString
             assetUrl = asset
-            user = nil
+            user = MessageUser(name: userName, avatar: URL(string: avatarUrl ?? ""))
         }
     }
 }

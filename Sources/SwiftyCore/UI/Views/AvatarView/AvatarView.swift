@@ -12,9 +12,9 @@ extension SwiftyCore.UI {
     public class AvatarView {
         private var avatar: AvatarViewInternal
         
-        public init(rect: CGRect, backColor: UIColor, circleWidth: Int = 0, placeholderImage: UIImage? = nil) {
+        public init(rect: CGRect, backColor: UIColor, cornerRadius: CGFloat? = nil, circleWidth: Int = 0, placeholderImage: UIImage? = nil) {
             avatar = AvatarViewInternal.instanceFromNib(with: rect)
-            avatar.setTheme(backColor: backColor, circleWidth: circleWidth, placeholderImage: placeholderImage)
+            avatar.setTheme(backColor: backColor, cornerRadius: cornerRadius, circleWidth: circleWidth, placeholderImage: placeholderImage)
         }
         
         public func set(image: String) {

@@ -1,16 +1,18 @@
 //
 //  OutgoingMessageCell.swift
-//  iVault
+//  SwiftyCore
 //
 //  Created by Borko Tomic on 17.12.20..
 //
 
 import UIKit
 
-class OutgoingMessageCell: UITableViewCell {
+class OutgoingMessageCell: BaseMessageCell {
 
     @IBOutlet private weak var timestampLabel: UILabel!
+    @IBOutlet private weak var insideTimestampLabel: UILabel!
     @IBOutlet private weak var avatarBackView: UIView!
+    @IBOutlet private weak var avatarViewWidthCst: NSLayoutConstraint!
     @IBOutlet private weak var bubbleView: UIView!
     @IBOutlet private weak var bubbleViewFromMessageViewTrailingCst: NSLayoutConstraint!
     @IBOutlet private weak var avatarTopBubbleTopAllignCst: NSLayoutConstraint!
@@ -18,19 +20,38 @@ class OutgoingMessageCell: UITableViewCell {
     
     @IBOutlet private weak var messageView: UIView!
     
+    @IBOutlet private weak var bubbleViewTopCst: NSLayoutConstraint!
+    @IBOutlet private weak var messageViewBottomCst: NSLayoutConstraint!
+    @IBOutlet private weak var bubbleViewTrailingCst: NSLayoutConstraint!
+    @IBOutlet private weak var insideTimestampLabelTrailingCst: NSLayoutConstraint!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
         timestampLabel.textColor = SwiftyCore.UI.Chat.timestampTextColor
+        insideTimestampLabel.textColor = SwiftyCore.UI.Chat.timestampTextColor
+        timestampLabel.font = SwiftyCore.UI.Chat.timestampFont.withSize(10)
+        insideTimestampLabel.font = SwiftyCore.UI.Chat.timestampFont.withSize(10)
         bubbleViewFromMessageViewTrailingCst.constant = bubbleStyle == .iMessage ? 12 : 8
-        avatarTopBubbleTopAllignCst.isActive = bubbleStyle == .normal
-        avatarBottomBubbleBottomAllignCst.isActive = bubbleStyle == .iMessage
+        avatarTopBubbleTopAllignCst.isActive = SwiftyCore.UI.Chat.avatarAllignTopBubble
+        avatarBottomBubbleBottomAllignCst.isActive = !SwiftyCore.UI.Chat.avatarAllignTopBubble
+        bubbleViewTopCst.constant = SwiftyCore.UI.Chat.timestampInsideBubble ? 8 : 22
+        messageViewBottomCst.constant = SwiftyCore.UI.Chat.timestampInsideBubble ? 18 : 4
+        timestampLabel.isHidden = SwiftyCore.UI.Chat.timestampInsideBubble
+        insideTimestampLabel.isHidden = !SwiftyCore.UI.Chat.timestampInsideBubble
+        avatarViewWidthCst.constant = SwiftyCore.UI.Chat.avatarWidth
+        insideTimestampLabelTrailingCst.constant = bubbleStyle == .iMessage ? 12 : 4
+        avatarBackView.isHidden = !SwiftyCore.UI.Chat.outgoingAvatarShown
+        bubbleViewTrailingCst.constant = SwiftyCore.UI.Chat.outgoingAvatarShown ? (SwiftyCore.UI.Chat.avatarWidth + 16) : 8
+        avatarBackView.layer.cornerRadius = SwiftyCore.UI.Chat.avatarCornerRadius
+        avatarBackView.clipsToBounds = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         
         messagePrepareForReuse()
+        baseMessageCellPrepareForReuse()
     }
     
     public override func draw(_ rect: CGRect) {
@@ -39,37 +60,34 @@ class OutgoingMessageCell: UITableViewCell {
         // invoke draw from MessageCell protocol
         messageDraw(on: rect)
     }
+    
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        guard let avatarBackView = avatarBackView else { return }
+        setAvatar(in: avatarBackView, isIncoming: false)
+    }
 }
 
 extension OutgoingMessageCell: MessageCell {
     var messagePlaceholderView: UIView { return messageView }
-    var cornerRadius: CGFloat { SwiftyCore.UI.Chat.cornerRadius }
+    var cornerRadius: CGFloat { SwiftyCore.UI.Chat.bubbleCornerRadius }
     var borderColor: UIColor { SwiftyCore.UI.Chat.outgoingBubbleBorderColor }
     var bubbleColor: UIColor { SwiftyCore.UI.Chat.outgoingBubbleColor }
     var bubbleStyle: BubbleStyle { return SwiftyCore.UI.Chat.bubbleStyle }
     
     func set(with message: SwiftyCore.UI.Chat.Message) {
-        if message.type == .text {
-            let textMessageView = TextMessageView.instanceFromNib(with: messagePlaceholderView.bounds)
-            messagePlaceholderView.addSubview(textMessageView)
-            textMessageView.set(with: message.message ?? "", color: SwiftyCore.UI.Chat.outgoingTextColor)
-        } else if message.type == .image {
-            let imageMessageView = ImageMessageView.instanceFromNib(with: messagePlaceholderView.bounds)
-            messagePlaceholderView.addSubview(imageMessageView)
-            guard let url = message.assetUrl else { return }
-            imageMessageView.set(image: url)
-        } else if message.type == .voice {
-            let voiceMessageView = VoiceMessageView.instanceFromNib(with: messagePlaceholderView.bounds)
-            messagePlaceholderView.addSubview(voiceMessageView)
-            guard let url = message.assetUrl else { return }
-            voiceMessageView.set(with: url, and: message.id, type: .waveform)
-        }
+        self.message = message
+        
+        setMessageView(for: message, isIncoming: false, in: messagePlaceholderView)
+        timestampLabel.text = getTimestampString(from: message)
+        insideTimestampLabel.text = getTimestampString(from: message)
         setNeedsLayout()
     }
     
     func getBubblePath() -> UIBezierPath {
         switch bubbleStyle {
-        case .normal: return getNormalBubble()
+        case .normal: return getNormalBubble(avatarTop: SwiftyCore.UI.Chat.avatarAllignTopBubble)
         case .iMessage: return getiMessageBubble()
         }
     }
@@ -77,18 +95,24 @@ extension OutgoingMessageCell: MessageCell {
 
 // Bubble paths
 extension OutgoingMessageCell {
-    private func getNormalBubble() -> UIBezierPath {
+    private func getNormalBubble(avatarTop: Bool) -> UIBezierPath {
         let bubbleViewRect = bubbleView.frame
         let bezierPath = UIBezierPath()
-        bezierPath.move(to: CGPoint(x: bubbleViewRect.maxX, y: bubbleViewRect.minY))
+        bezierPath.move(to: CGPoint(x: bubbleViewRect.maxX, y: bubbleViewRect.minY + (avatarTop ? 0 : cornerRadius)))
         bezierPath.addLine(to: CGPoint(x: bubbleViewRect.maxX, y: bubbleViewRect.maxY - cornerRadius))
         
-        bezierPath.addArc(withCenter: CGPoint(x: bubbleViewRect.maxX - cornerRadius,
-                                              y: bubbleViewRect.maxY - cornerRadius),
-                          radius: cornerRadius,
-                          startAngle: CGFloat(),
-                          endAngle: CGFloat(Double.pi/2),
-                          clockwise: true)
+        if avatarTop {
+            bezierPath.addArc(withCenter: CGPoint(x: bubbleViewRect.maxX - cornerRadius,
+                                                  y: bubbleViewRect.maxY - cornerRadius),
+                              radius: cornerRadius,
+                              startAngle: CGFloat(),
+                              endAngle: CGFloat(Double.pi/2),
+                              clockwise: true)
+        } else {
+            bezierPath.addLine(to: CGPoint(x: bubbleViewRect.maxX, y: bubbleViewRect.maxY))
+            bezierPath.addLine(to: CGPoint(x: bubbleViewRect.minX + cornerRadius, y: bubbleViewRect.maxY))
+        }
+
         
         bezierPath.addArc(withCenter: CGPoint(x: bubbleViewRect.minX + cornerRadius,
                                               y: bubbleViewRect.maxY - cornerRadius),
@@ -103,9 +127,15 @@ extension OutgoingMessageCell {
                           startAngle: CGFloat(Double.pi),
                           endAngle: CGFloat(3*Double.pi/2),
                           clockwise: true)
-        
-
-        
+        if !avatarTop {
+            bezierPath.addLine(to: CGPoint(x: bubbleViewRect.maxX - cornerRadius, y: bubbleViewRect.minY))
+            bezierPath.addArc(withCenter: CGPoint(x: bubbleViewRect.maxX - cornerRadius,
+                                                  y: bubbleViewRect.minY + cornerRadius),
+                              radius: cornerRadius,
+                              startAngle: CGFloat(3*Double.pi/2),
+                              endAngle: CGFloat(2*Double.pi),
+                              clockwise: true)
+        }
         bezierPath.close()
         return bezierPath
     }
