@@ -36,15 +36,17 @@ extension SwiftyCore.UI {
         public static var avatarPlaceholderFont: UIFont?
         public static var incomingAvatarPlaceholderBackColors: [UIColor] = [.lightGray]
         public static var outgoingAvatarPlaceholderBackColors: [UIColor] = [.lightGray]
+        public static var avatarPlaceholderImage: UIImage = Image.avatarPlaceholder.uiImage
         
         public static var voiceMessagesSupported: Bool = true
         public static var imageMessagesSupported: Bool = true
         
-        public static var voiceButtonIcon: UIImage = (UIImage(named: "voice")?.withRenderingMode(.alwaysOriginal))!
-        public static var sendActiveIcon: UIImage = (UIImage(named: "chatSend")?.withRenderingMode(.alwaysOriginal))!
-        public static var sendInactiveIcon: UIImage = (UIImage(named: "chatSend")?.withRenderingMode(.alwaysOriginal))!
-        public static var addImageIcon: UIImage = (UIImage(named: "photo")?.withRenderingMode(.alwaysOriginal))!
+        public static var voiceButtonIcon: UIImage = Image.voice.uiImage.withRenderingMode(.alwaysOriginal)
+        public static var sendActiveIcon: UIImage = Image.chatSend.uiImage.withRenderingMode(.alwaysOriginal)
+        public static var sendInactiveIcon: UIImage = Image.chatSend.uiImage.withRenderingMode(.alwaysOriginal)
+        public static var addImageIcon: UIImage = Image.photo.uiImage.withRenderingMode(.alwaysOriginal)
         
+        public static var inputMessageFont: UIFont = UIFont.systemFont(ofSize: 16)
         public static var inputMessagePlaceholder: String = "Type a message..."
         public static var inputMessagePlaceholderColor: UIColor = .lightGray
         public static var inputMessageTextColor: UIColor = .black

@@ -24,11 +24,42 @@ public extension Encodable {
 }
 
 extension Decodable {
-  public init?(with dictionary: Any?) {
-    guard let dictionary = dictionary else { return nil }
-    guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted) else { return nil }
-    let decoder = JSONDecoder()
-    guard let initialized = try? decoder.decode(Self.self, from: data) else { return nil }
-    self = initialized
-  }
+    public init?(with dictionary: Any?) {
+        guard let dictionary = dictionary else { return nil }
+        guard let data = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted) else { return nil }
+        do {
+            let initialized = try JSONDecoder().decode(Self.self, from: data)
+            self = initialized
+        } catch {
+            print("JSON serialization failed: ", error)
+            return nil
+        }
+    }
+    
+    public init?(with data: Data?) {
+        guard let data = data else { return nil }
+        do {
+            let initialized = try JSONDecoder().decode(Self.self, from: data)
+            self = initialized
+        } catch {
+            print("JSON serialization failed: ", error)
+            return nil
+        }
+        
+    }
+}
+
+// Helper
+class DictionaryDecoder {
+    /// Decodes given Decodable type from given array or dictionary
+    func decode<T>(_ type: T.Type, from json: Any) throws -> T? where T: Decodable {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: json, options: [])
+            let result = try JSONDecoder().decode(type, from: jsonData)
+            return result
+        } catch {
+            print("JSON serialization failed: ", error)
+            return nil
+        }
+    }
 }

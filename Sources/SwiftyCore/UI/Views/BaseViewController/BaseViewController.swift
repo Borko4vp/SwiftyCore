@@ -70,12 +70,21 @@ extension SwiftyCore.UI {
             }
         }
         
-        open func keyboardAboutToShow(keyboardSize: CGRect) {
+        open func keyboardAboutToShow(keyboardSize: CGRect, duration: CGFloat?, curve: UIView.AnimationCurve?) {
             // override in each view controller
         }
         
-        open func keyboardAboutToHide(keyboardSize: CGRect) {
+        open func keyboardAboutToHide(keyboardSize: CGRect, duration: CGFloat?, curve: UIView.AnimationCurve?) {
             // override in each view controller
+        }
+        
+        // This should be used inside keyboard events related methods for animation with keyboard
+        // USE INSIDE: keyboardAboutToShow, keyboardAboutToHide
+        open func animateWithKeyboard(duration: CGFloat?, curve: UIView.AnimationCurve?, block: @escaping () -> Void) {
+            if let curve = curve, let duration = duration, duration > 0 {
+                let animator = UIViewPropertyAnimator(duration: TimeInterval(duration), curve: curve, animations: block)
+                animator.startAnimation()
+            }
         }
     }
 }

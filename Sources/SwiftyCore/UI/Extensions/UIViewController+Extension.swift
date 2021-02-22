@@ -9,9 +9,7 @@ import Foundation
 import UIKit
 
 extension UIViewController: Animatable {
-    public var animationDuration: Double {
-        return 0.5
-    }
+    public var animationDuration: Double { return 0.5 }
     
     public func animate(duration: Double? = nil, block: @escaping () -> Void, completion: (() -> Void)? = nil) {
         let duration = duration ?? animationDuration

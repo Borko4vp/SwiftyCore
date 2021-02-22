@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 
 public extension UIImageView {
-    func setRemoteImage(from url: String, placeholderImage: UIImage? = nil) {
+    func setRemoteImage(from url: String?, placeholderImage: UIImage? = nil) {
         DispatchQueue.main.async() {[weak self] in
             self?.image = placeholderImage
         }
-        guard let imageUrl = URL(string: url) else { return }
+        guard let urlString = url, let imageUrl = URL(string: urlString) else { return }
         getImage(from: imageUrl) { remoteImage in
             guard let remoteImage = remoteImage else { return }
             DispatchQueue.main.async() { [weak self] in

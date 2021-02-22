@@ -23,5 +23,13 @@ extension SwiftyCore.UI.Chat {
         }
         
         public var view: UIView { return chatInternalView }
+        
+        public func set(keyboardOpen: Bool) {
+            chatInternalView.set(keyboardOpen: keyboardOpen)
+        }
+        
+        public func resign() {
+            chatInternalView.resign()
+        }
     }
 }

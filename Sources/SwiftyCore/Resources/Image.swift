@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Image.swift
 //  
 //
 //  Created by Borko Tomic on 25.12.20..
@@ -13,8 +13,11 @@ enum Image: String {
     case avatarPlaceholder
     case circlePlay
     case circleStop
+    case voice
+    case chatSend
+    case photo
     
     var uiImage: UIImage {
-        return UIImage(named: rawValue, in: Bundle.module, compatibleWith: nil)?.withRenderingMode(.alwaysTemplate) ?? UIImage()
+        return UIImage(named: rawValue, in: Bundle.module, compatibleWith: nil)?.withRenderingMode(.alwaysOriginal) ?? UIImage()
     }
 }

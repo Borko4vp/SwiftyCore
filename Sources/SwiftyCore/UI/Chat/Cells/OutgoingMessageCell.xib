@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,9 +17,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="183" height="94"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LHT-Ql-CIV">
+                        <rect key="frame" x="0.0" y="0.0" width="183" height="94"/>
+                        <connections>
+                            <action selector="backButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GB0-pf-Fgj"/>
+                        </connections>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kiZ-P4-7Fc">
                         <rect key="frame" x="145" y="22" width="30" height="30"/>
-                        <color key="backgroundColor" systemColor="linkColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="Ey1-7l-2eX"/>
                             <constraint firstAttribute="width" secondItem="kiZ-P4-7Fc" secondAttribute="height" multiplier="1:1" id="fZY-Jh-9T2"/>
@@ -67,6 +72,8 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="LHT-Ql-CIV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="1ar-DL-2w0"/>
+                    <constraint firstAttribute="trailing" secondItem="LHT-Ql-CIV" secondAttribute="trailing" id="1ow-k9-ccF"/>
                     <constraint firstItem="S2N-uA-CWa" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.65" id="4uW-t4-rQc"/>
                     <constraint firstItem="kiZ-P4-7Fc" firstAttribute="bottom" secondItem="S2N-uA-CWa" secondAttribute="bottom" priority="999" id="6LI-sF-sJ8"/>
                     <constraint firstAttribute="bottom" secondItem="S2N-uA-CWa" secondAttribute="bottom" constant="8" id="B2d-hh-S2p"/>
@@ -74,6 +81,8 @@
                     <constraint firstAttribute="trailing" secondItem="S2N-uA-CWa" secondAttribute="trailing" constant="66" id="Wbo-Ta-mjb"/>
                     <constraint firstItem="uhK-sn-GCu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="chv-KR-tju"/>
                     <constraint firstItem="S2N-uA-CWa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="ihI-Gu-QFn"/>
+                    <constraint firstItem="LHT-Ql-CIV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="lJb-Ju-G4v"/>
+                    <constraint firstAttribute="bottom" secondItem="LHT-Ql-CIV" secondAttribute="bottom" id="vpM-zG-XMt"/>
                     <constraint firstItem="kiZ-P4-7Fc" firstAttribute="top" secondItem="S2N-uA-CWa" secondAttribute="top" id="wGt-Su-h5I"/>
                     <constraint firstItem="uhK-sn-GCu" firstAttribute="trailing" secondItem="S2N-uA-CWa" secondAttribute="trailing" id="zAw-c9-92g"/>
                 </constraints>
@@ -98,9 +107,4 @@
             <point key="canvasLocation" x="302.17391304347831" y="72.321428571428569"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

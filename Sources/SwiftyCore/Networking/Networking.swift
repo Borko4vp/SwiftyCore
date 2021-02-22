@@ -44,6 +44,8 @@ extension SwiftyCore {
                     }
                 case .patch:
                     patch(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
+                case .put:
+                    put(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
                 }
             }
             
@@ -125,6 +127,25 @@ extension SwiftyCore.Networking.Manager {
         }
     }
     
+    /// Calls the live internet to send Data to specific localtion
+    /// - Warning: Make sure the url in question can accept PUT route
+    /// - Parameters:
+    ///   - url: the localtion you wish to send data to
+    ///   - body: the object you wish to send over the network
+    ///   - completion: completion to execute after API response is received
+    private func put<ResponseType: Codable>(to url: URL,
+                                              headers: [String: String],
+                                              with body: [String: Any]?,
+                                              completion: @escaping (NetworkResult<ResponseType>) -> Void) {
+        guard let dataParams = try? JSONSerialization.data(withJSONObject: body ?? [:]) else {
+            completion(.failure(.localError(.encodeDataFailed)))
+            return
+        }
+        session?.put(to: url, headers: headers, with: dataParams) { responseData, error in
+            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+        }
+    }
+    
     private func handle<ResponseType: Codable>(responseData: Data?,
                                                networkSeesionError: NetworkSessionError?,
                                                completion: @escaping (NetworkResult<ResponseType>) -> Void){
@@ -139,7 +160,7 @@ extension SwiftyCore.Networking.Manager {
                 let stringData = String(data: responseData, encoding: .utf8)
                 print(stringData ?? "")
             }
-            guard let responseJSON = try? JSONDecoder().decode(ResponseType.self, from: responseData) else {
+            guard let responseJSON = ResponseType(with: responseData) else {
                 completion(.failure(.localError(.decodeDataFailed)))
                 return
             }
@@ -149,7 +170,7 @@ extension SwiftyCore.Networking.Manager {
     
     private func handle(networkSessionError error: NetworkSessionError, with response: Data?) -> CoreNetworkingError<ServerErrorDTO> {
         guard let response = response else { return .apiError(ServerError(httpStatus: error.httpStatusCode, message: error.message, payload: nil)) }
-        if let decodedErrorResponse = try? JSONDecoder().decode(ServerErrorDTO.self, from: response) {
+        if let decodedErrorResponse = ServerErrorDTO(with: response) {
             return .apiError(ServerError(httpStatus: error.httpStatusCode, message: error.message, payload: decodedErrorResponse))
         } else {
             return .localError(.decodeErrorDataFailed)
@@ -188,6 +209,7 @@ extension SwiftyCore.Networking {
         case get = "GET"
         case post = "POST"
         case patch = "PATCH"
+        case put = "PUT"
     }
     
     public enum Encoding {

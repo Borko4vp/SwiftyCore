@@ -21,8 +21,9 @@ public protocol MessageCell where Self: UITableViewCell {
     var bubbleStyle: BubbleStyle { get }
     var messagePlaceholderView: UIView { get }
     
-    func set(with message: SwiftyCore.UI.Chat.Message)
+    func set(with message: SwiftyCore.UI.Chat.Message, delegate: MessageCellDelegate)
     func getBubblePath() -> UIBezierPath
+    func avatarTapped()
 }
 
 public extension MessageCell {
@@ -41,9 +42,10 @@ public extension MessageCell {
     }
     
     func messagePrepareForReuse() {
-        //messagePlaceholderView.frame = .zero
+        messagePlaceholderView.frame = .zero
         for subview in messagePlaceholderView.subviews {
             subview.removeFromSuperview()
         }
+        self.setNeedsDisplay()
     }
 }

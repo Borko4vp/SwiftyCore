@@ -18,7 +18,7 @@ class AvatarViewInternal: UIView {
     private var placeholderImage: UIImage?
     
     class func instanceFromNib(with frame: CGRect) -> AvatarViewInternal {
-        let xibView = SwiftyCore.UI.Views.Nibs.avatarViewInternal.instantiate(withOwner: self, options: nil)[0] as! AvatarViewInternal
+        let xibView = SwiftyCore.UI.InternalViews.Nibs.avatarViewInternal.instantiate(withOwner: self, options: nil)[0] as! AvatarViewInternal
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         xibView.frame = frame
         xibView.layoutIfNeeded()

@@ -33,8 +33,10 @@ class InputMessageView: UIView {
         return xibView
     }
     
-    override var intrinsicContentSize: CGSize {
-        let textHeight = messageField.bounds.height + 20
+    var keyboardOpen: Bool = false
+    
+    override public var intrinsicContentSize: CGSize {
+        let textHeight = messageField.bounds.height + (keyboardOpen ? 8 : (UIDevice.hasNotch ? 32 : 16)) + 12
         return CGSize(width: self.bounds.width, height: textHeight)
     }
     
@@ -47,6 +49,7 @@ class InputMessageView: UIView {
     @IBOutlet private weak var imageButton: UIButton!
     @IBOutlet private weak var sendButton: UIButton!
     @IBOutlet private weak var fieldBorderView: UIView!
+    @IBOutlet private weak var inutFieldBottomCst: NSLayoutConstraint!
     
     private var currentButtonState: SendButtonState = .sendActive {
         didSet {
@@ -83,7 +86,9 @@ class InputMessageView: UIView {
         messageField.placeholder = SwiftyCore.UI.Chat.inputMessagePlaceholder
         messageField.placeholderColor = SwiftyCore.UI.Chat.inputMessagePlaceholderColor
         messageField.textColor = SwiftyCore.UI.Chat.inputMessageTextColor
+        messageField.font = SwiftyCore.UI.Chat.inputMessageFont
         fieldBorderView.layer.borderColor = SwiftyCore.UI.Chat.inputFieldBorderColor.cgColor
+        inutFieldBottomCst.constant = keyboardOpen ? 8 : (UIDevice.hasNotch ? 32 : 16)
     }
     
     
@@ -100,12 +105,26 @@ class InputMessageView: UIView {
     @IBAction private func imageButtonAction(_ sender: UIButton) {
         inputMessageViewDelegate?.didPressImage()
     }
+    
+    func set(keyboardOpen: Bool) {
+        self.keyboardOpen = keyboardOpen
+        updateInputFieldBottomCst()
+    }
+    
+    private func updateInputFieldBottomCst() {
+        inutFieldBottomCst.constant = keyboardOpen ? 8 : (UIDevice.hasNotch ? 32 : 16)
+        layoutIfNeeded()
+        self.invalidateIntrinsicContentSize()
+    }
+    
+    func resign() {
+        messageField.resignFirstResponder()
+    }
 }
 
 extension InputMessageView: GrowingTextViewDelegate {
     public func textViewDidChangeHeight(_ textView: GrowingTextView, height: CGFloat) {
-        layoutIfNeeded()
-        self.invalidateIntrinsicContentSize()
+        // empty for now
     }
     
     public func textViewDidBeginEditing(_ textView: UITextView) {
@@ -114,6 +133,7 @@ extension InputMessageView: GrowingTextViewDelegate {
     
     public func textViewDidEndEditing(_ textView: UITextView) {
         updateButtonStatus()
+        
     }
     
     public func textViewDidChange(_ textView: UITextView) {

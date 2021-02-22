@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,6 +17,12 @@
                 <rect key="frame" x="0.0" y="0.0" width="167" height="102"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9W3-ML-fq5">
+                        <rect key="frame" x="0.0" y="0.0" width="167" height="102"/>
+                        <connections>
+                            <action selector="backgroundButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rzt-ky-e2R"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="18 Dec 2020 11:04" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vNj-jY-i2O">
                         <rect key="frame" x="46" y="8" width="90" height="10"/>
                         <constraints>
@@ -29,7 +34,7 @@
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F9T-Q1-hod">
                         <rect key="frame" x="8" y="22" width="30" height="30"/>
-                        <color key="backgroundColor" systemColor="linkColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="F9T-Q1-hod" secondAttribute="height" multiplier="1:1" id="a4q-hy-9J4"/>
                             <constraint firstAttribute="width" constant="30" id="f4W-SV-DUB"/>
@@ -71,8 +76,12 @@
                     <constraint firstItem="F9T-Q1-hod" firstAttribute="bottom" secondItem="UxS-kI-9Y4" secondAttribute="bottom" priority="999" id="6HV-kG-KER"/>
                     <constraint firstItem="UxS-kI-9Y4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="46" id="7JI-WP-Wah"/>
                     <constraint firstItem="UxS-kI-9Y4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="22" id="9Oa-zV-pqi"/>
+                    <constraint firstItem="9W3-ML-fq5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="9PJ-ak-e55"/>
+                    <constraint firstAttribute="trailing" secondItem="9W3-ML-fq5" secondAttribute="trailing" id="MUo-fv-jNt"/>
+                    <constraint firstAttribute="bottom" secondItem="9W3-ML-fq5" secondAttribute="bottom" id="MwG-n5-Kus"/>
                     <constraint firstAttribute="bottom" secondItem="UxS-kI-9Y4" secondAttribute="bottom" constant="8" id="UUO-pM-bLn"/>
                     <constraint firstItem="UxS-kI-9Y4" firstAttribute="width" relation="lessThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.65" id="bd8-P6-Nrz"/>
+                    <constraint firstItem="9W3-ML-fq5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="gJN-HM-JXy"/>
                     <constraint firstItem="vNj-jY-i2O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="icJ-pA-j45"/>
                     <constraint firstItem="UxS-kI-9Y4" firstAttribute="leading" secondItem="vNj-jY-i2O" secondAttribute="leading" id="lfK-zQ-stD"/>
                     <constraint firstItem="F9T-Q1-hod" firstAttribute="top" secondItem="UxS-kI-9Y4" secondAttribute="top" id="lqO-9F-0Pv"/>
@@ -99,9 +108,4 @@
             <point key="canvasLocation" x="-693.47826086956525" y="70.3125"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

@@ -10,7 +10,7 @@ import UIKit
 
 class ProgressViewInternal: UIView {
     class func instanceFromNib(with frame: CGRect) -> ProgressViewInternal {
-        let xibView = SwiftyCore.UI.Views.Nibs.progressViewInternal.instantiate(withOwner: self, options: nil)[0] as! ProgressViewInternal
+        let xibView = SwiftyCore.UI.InternalViews.Nibs.progressViewInternal.instantiate(withOwner: self, options: nil)[0] as! ProgressViewInternal
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         xibView.frame = frame
         xibView.layoutIfNeeded()

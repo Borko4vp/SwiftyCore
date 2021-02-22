@@ -8,17 +8,26 @@
 import Foundation
 import UIKit
 
+typealias Message = SwiftyCore.UI.Chat.Message
+
+public protocol MessageCellDelegate: class {
+    func didTapOnAvatar(with url: String?)
+    func didTapOnCellBackground(with message: SwiftyCore.UI.Chat.Message)
+    func didTapOnImageMessage(with url: String?)
+}
+
 class BaseMessageCell: UITableViewCell {
-    var message: SwiftyCore.UI.Chat.Message?
+    var currentAvatarSize: CGSize?
+    var message: Message?
     var avatar: SwiftyCore.UI.AvatarView?
-    
+    weak var messageCellDelegate: MessageCellDelegate?
     var dateFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = SwiftyCore.UI.Chat.timstampDateFormat
         return formatter
     }
     
-    func getTimestampString(from message: SwiftyCore.UI.Chat.Message) -> String {
+    func getTimestampString(from message: Message) -> String {
         if let dateString = message.timestampString {
             return dateString
         } else if let date = message.timestamp {
@@ -28,7 +37,12 @@ class BaseMessageCell: UITableViewCell {
         }
     }
     
-    func setMessageView(for message: SwiftyCore.UI.Chat.Message, isIncoming: Bool, in view: UIView) {
+    @objc
+    func avatarTapped() {
+        // Should be overritten in concrete message cell class
+    }
+    
+    func setMessageView(for message: Message, isIncoming: Bool, in view: UIView) {
         let textColor = isIncoming ? SwiftyCore.UI.Chat.incomingTextColor : SwiftyCore.UI.Chat.outgoingTextColor
         if message.type == .text {
             let textMessageView = TextMessageView.instanceFromNib(with: view.bounds)
@@ -47,17 +61,18 @@ class BaseMessageCell: UITableViewCell {
         }
     }
     
-    func createAvatar(for message: SwiftyCore.UI.Chat.Message, isIncoming: Bool, in rect: CGRect) -> SwiftyCore.UI.AvatarView {
+    func createAvatar(for message: Message, isIncoming: Bool, in rect: CGRect) -> SwiftyCore.UI.AvatarView {
         let placeholderBackColors = isIncoming ? SwiftyCore.UI.Chat.incomingAvatarPlaceholderBackColors : SwiftyCore.UI.Chat.outgoingAvatarPlaceholderBackColors
         let placeholderImage = SwiftyCore.UI.Chat.useInitialsForAvatarPlaceholder ?
             SwiftyCore.UI.Chat.createAvatarPlaceholder(in: rect, for: message.user?.name ?? "", backgroundColors: placeholderBackColors) :
-            UIImage(named: "avatarPlaceholder")!
+            SwiftyCore.UI.Chat.avatarPlaceholderImage
         return SwiftyCore.UI.AvatarView(rect: rect, backColor: SwiftyCore.UI.Chat.avatarBackColor, cornerRadius: SwiftyCore.UI.Chat.avatarCornerRadius, placeholderImage: placeholderImage)
     }
     
     func setAvatar(in view: UIView, isIncoming: Bool) {
         guard let message = message else { return }
         avatar = createAvatar(for: message, isIncoming: isIncoming, in: view.bounds)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(avatarTapped)))
         if let avatar = avatar {
             for subview in view.subviews {
                 subview.removeFromSuperview()
@@ -65,6 +80,17 @@ class BaseMessageCell: UITableViewCell {
             view.addSubview(avatar.view)
             avatar.set(image: message.user?.avatar?.absoluteString ?? "")
         }
+    }
+    
+    func resetAvatarIfDimensionChanged(view: UIView?, isIncoming: Bool) {
+        guard let avatarBackView = view else { return }
+        if let currentSize = currentAvatarSize {
+            guard currentSize != avatarBackView.bounds.size else { return }
+            setAvatar(in: avatarBackView, isIncoming: isIncoming)
+        } else {
+            setAvatar(in: avatarBackView, isIncoming: isIncoming)
+        }
+        currentAvatarSize = avatarBackView.bounds.size
     }
     
     func baseMessageCellPrepareForReuse() {

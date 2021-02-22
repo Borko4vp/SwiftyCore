@@ -64,8 +64,16 @@ class OutgoingMessageCell: BaseMessageCell {
     public override func layoutSubviews() {
         super.layoutSubviews()
         
-        guard let avatarBackView = avatarBackView else { return }
-        setAvatar(in: avatarBackView, isIncoming: false)
+        resetAvatarIfDimensionChanged(view: avatarBackView, isIncoming: false)
+    }
+    
+    override func avatarTapped() {
+        messageCellDelegate?.didTapOnAvatar(with: message?.user?.avatar?.absoluteString)
+    }
+    
+    @IBAction private func backButtonAction(_ sender: UIButton) {
+        guard let message = message else { return }
+        messageCellDelegate?.didTapOnCellBackground(with: message)
     }
 }
 
@@ -76,9 +84,9 @@ extension OutgoingMessageCell: MessageCell {
     var bubbleColor: UIColor { SwiftyCore.UI.Chat.outgoingBubbleColor }
     var bubbleStyle: BubbleStyle { return SwiftyCore.UI.Chat.bubbleStyle }
     
-    func set(with message: SwiftyCore.UI.Chat.Message) {
+    func set(with message: Message, delegate: MessageCellDelegate) {
         self.message = message
-        
+        self.messageCellDelegate = delegate
         setMessageView(for: message, isIncoming: false, in: messagePlaceholderView)
         timestampLabel.text = getTimestampString(from: message)
         insideTimestampLabel.text = getTimestampString(from: message)
