@@ -19,7 +19,6 @@ public extension Toastaable {
             self.view.addSubview(toastView)
             self.animate {
                 toastView.frame = self.getEndingFrame()
-            
             }
             guard durationInSeconds > 0 else { return }
             let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
@@ -34,22 +33,26 @@ public extension Toastaable {
     }
     
     private func getStartingFrame() -> CGRect {
-        let origin = CGPoint(x: offset, y: view.bounds.height)
-        let frame = CGRect(origin: origin, size: size)
-        return frame
+//        let origin = CGPoint(x: offset, y: view.bounds.height)
+//        return CGRect(origin: origin, size: size)
+        let origin = CGPoint(x: offset, y: -toastHeight)
+        return CGRect(origin: origin, size: size)
+        
     }
     
     private func getEndingFrame() -> CGRect {
-        let bottomOffset = UIDevice.hasNotch ? 3*offset : offset
-        let origin = CGPoint(x: offset, y: view.bounds.height-bottomOffset-toastHeight)
-        let frame = CGRect(origin: origin, size: size)
-        return frame
+        let bottomOffset = offset //+ (UIDevice.hasNotch ? 20 : 0)
+//        let origin = CGPoint(x: offset, y: view.bounds.height-bottomOffset-toastHeight)
+//        return CGRect(origin: origin, size: size)
+        
+        let origin = CGPoint(x: offset, y: bottomOffset)
+        return CGRect(origin: origin, size: size)
     }
     
     private func createToastView(image: UIImage, backgroundColor: UIColor, text: String, textColor: UIColor) -> UIView {
         // adding image view
         let returnView = UIView(frame: getStartingFrame())
-        returnView.layer.cornerRadius = 8.0
+        returnView.layer.cornerRadius = cornerRadius
         returnView.backgroundColor = backgroundColor
         
         let theImageView = UIImageView()
@@ -78,10 +81,13 @@ public extension Toastaable {
         theLabel.topAnchor.constraint(equalTo: returnView.topAnchor, constant: offset/2).isActive = true
         theLabel.bottomAnchor.constraint(equalTo: returnView.bottomAnchor, constant: -offset/2).isActive = true
         
+        //let cst = returnView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        
         return returnView
     }
     
     private var size: CGSize { return CGSize(width: view.bounds.width - 2*offset, height: toastHeight) }
-    private var offset: CGFloat { return 8.0 }
-    private var toastHeight: CGFloat { return 50 }
+    private var offset: CGFloat { return 0.0 }
+    private var toastHeight: CGFloat { return 80 }
+    private var cornerRadius: CGFloat { return 0.0 }
 }
