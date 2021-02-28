@@ -11,6 +11,7 @@ import UIKit
 extension SwiftyCore.UI {
     open class BaseViewController: UIViewController, LoadingController, KeyboardPresentable, BaseController, Toastaable {
         
+        
         open var interactivePopGestureRecognizerEnabled: Bool {
             return true
         }

@@ -8,86 +8,122 @@
 import Foundation
 import UIKit
 
+public enum ToastPosition {
+    case up
+    case down
+}
+
+extension SwiftyCore.UI {
+    public struct Toast {
+        public static var position: ToastPosition = .up
+        public static var height: CGFloat = 120
+        public static var imageHeight: CGFloat = 30
+        public static var animationDuration: CGFloat = 0.5
+        public static var toastDuration: CGFloat = 4
+        public static var offset: CGFloat = 0
+        public static var cornerRadius: CGFloat = 0
+        public static var alpha: CGFloat = 1
+        public static var color: UIColor = .black
+        public static var textColor: UIColor = .white
+        public static var font: UIFont = UIFont.systemFont(ofSize: 16)
+        public static var fontSize: CGFloat = 16
+    }
+}
+
 public protocol Toastaable where Self: UIViewController {
-    func showToast(text: String, image: UIImage, durationInSeconds: Int, color: UIColor)
+    func showToast(text: String, image: UIImage?, durationInSeconds: Int, color: UIColor, textColor: UIColor)
 }
 
 public extension Toastaable {
-    func showToast(text: String, image: UIImage, durationInSeconds: Int = 4, color: UIColor = UIColor.black.withAlphaComponent(0.75)) {
+    func showToast(text: String, image: UIImage?, durationInSeconds: Int = 4, color: UIColor = SwiftyCore.UI.Toast.color, textColor: UIColor = SwiftyCore.UI.Toast.textColor) {
         DispatchQueue.main.async {
-            let toastView = self.createToastView(image: image, backgroundColor: color, text: text, textColor: .white)
+            let toastView = self.createToastView(image: image, backgroundColor: color.withAlphaComponent(SwiftyCore.UI.Toast.alpha), text: text, textColor: textColor)
             self.view.addSubview(toastView)
-            self.animate {
+            UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveLinear) {
                 toastView.frame = self.getEndingFrame()
             }
             guard durationInSeconds > 0 else { return }
             let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
-                self.animate(block: {
+                UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveLinear, animations: {
                     toastView.frame = self.getStartingFrame()
-                }) {
+                }) { completed in
                     toastView.removeFromSuperview()
                 }
             }
         }
-
     }
     
     private func getStartingFrame() -> CGRect {
-//        let origin = CGPoint(x: offset, y: view.bounds.height)
-//        return CGRect(origin: origin, size: size)
-        let origin = CGPoint(x: offset, y: -toastHeight)
+        let originY = position == .down ? view.bounds.height : -toastHeight
+        let origin = CGPoint(x: offset, y: originY)
         return CGRect(origin: origin, size: size)
-        
     }
     
     private func getEndingFrame() -> CGRect {
-        let bottomOffset = offset //+ (UIDevice.hasNotch ? 20 : 0)
-//        let origin = CGPoint(x: offset, y: view.bounds.height-bottomOffset-toastHeight)
-//        return CGRect(origin: origin, size: size)
-        
-        let origin = CGPoint(x: offset, y: bottomOffset)
+        let safeAreaInset = position == .up ? UIDevice.safeAreaInsets.top : UIDevice.safeAreaInsets.bottom
+        let totalOffset = offset  +  (offset == 0 ? 0 : safeAreaInset)
+        let originY = position == .down ? view.bounds.height-totalOffset-toastHeight : totalOffset
+        let origin = CGPoint(x: offset, y: originY)
         return CGRect(origin: origin, size: size)
     }
     
-    private func createToastView(image: UIImage, backgroundColor: UIColor, text: String, textColor: UIColor) -> UIView {
+    private func createToastView(image: UIImage?, backgroundColor: UIColor, text: String, textColor: UIColor) -> UIView {
         // adding image view
         let returnView = UIView(frame: getStartingFrame())
         returnView.layer.cornerRadius = cornerRadius
         returnView.backgroundColor = backgroundColor
-        
+        let hasImage = image != nil
+        let hasOffset = offset > 0
         let theImageView = UIImageView()
-        theImageView.image = image.withRenderingMode(.alwaysTemplate)
+        theImageView.image = image?.withRenderingMode(.alwaysTemplate)
         theImageView.tintColor = textColor
         theImageView.translatesAutoresizingMaskIntoConstraints = false
         theImageView.clipsToBounds = true
         theImageView.contentMode = .scaleAspectFit
         returnView.addSubview(theImageView)
-        theImageView.widthAnchor.constraint(equalToConstant: toastHeight-2*offset).isActive = true
-        theImageView.heightAnchor.constraint(equalToConstant: toastHeight-2*offset).isActive = true
-        theImageView.leadingAnchor.constraint(equalTo: returnView.leadingAnchor, constant: offset).isActive = true
-        theImageView.topAnchor.constraint(equalTo: returnView.topAnchor, constant: offset).isActive = true
         
+        let safeAreaInset = position == .up ? UIDevice.safeAreaInsets.top : UIDevice.safeAreaInsets.bottom
+        let labelOriginX = (hasImage ? imageHeight+16+8 : 8)
+        let labelOriginY = position == .up ? (hasOffset ? 16 : safeAreaInset+8) : 8
+        let labelOriginYBottom = position == .up ? 8 : (hasOffset ? 16 : safeAreaInset+8)
+        let theLabelView = UIView(frame: CGRect(x: labelOriginX, y: labelOriginY, width: size.width - labelOriginX - 8, height: size.height - labelOriginY - labelOriginYBottom))
+        returnView.addSubview(theLabelView)
         let theLabel = UILabel()
         theLabel.textColor = textColor
+        theLabel.textAlignment = .center
         theLabel.text = text
-        theLabel.font = UIFont.systemFont(ofSize: 12)
+        theLabel.font = SwiftyCore.UI.Toast.font.withSize(SwiftyCore.UI.Toast.fontSize)
         theLabel.numberOfLines = 0
         theLabel.sizeToFit()
         theLabel.translatesAutoresizingMaskIntoConstraints = false
-        returnView.addSubview(theLabel)
+        theLabelView.addSubview(theLabel)
         
-        theLabel.leadingAnchor.constraint(equalTo: theImageView.trailingAnchor, constant: offset).isActive = true
-        theLabel.trailingAnchor.constraint(equalTo: returnView.trailingAnchor, constant: -offset).isActive = true
-        theLabel.topAnchor.constraint(equalTo: returnView.topAnchor, constant: offset/2).isActive = true
-        theLabel.bottomAnchor.constraint(equalTo: returnView.bottomAnchor, constant: -offset/2).isActive = true
+        if hasImage {
+            theImageView.widthAnchor.constraint(equalToConstant: imageHeight).isActive = true
+            theImageView.heightAnchor.constraint(equalToConstant: imageHeight).isActive = true
+            theImageView.leadingAnchor.constraint(equalTo: returnView.leadingAnchor, constant: 16).isActive = true
+            //theImageView.bottomAnchor.constraint(equalTo: returnView.bottomAnchor, constant: -16).isActive = true
+            theLabelView.leadingAnchor.constraint(equalTo: theImageView.trailingAnchor, constant: 8).isActive = true
+        } else {
+            theLabelView.leadingAnchor.constraint(equalTo: returnView.leadingAnchor, constant: 8).isActive = true
+        }
+        theImageView.centerYAnchor.constraint(equalTo: theLabelView.centerYAnchor, constant: 0).isActive = true
+        theLabelView.trailingAnchor.constraint(equalTo: returnView.trailingAnchor, constant: -8).isActive = true
+        theLabelView.topAnchor.constraint(equalTo: returnView.topAnchor, constant: labelOriginY).isActive = true
+        theLabelView.bottomAnchor.constraint(equalTo: returnView.bottomAnchor, constant: -labelOriginYBottom).isActive = true
         
-        //let cst = returnView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
-        
+        theLabel.leadingAnchor.constraint(equalTo: theLabelView.leadingAnchor, constant: 0).isActive = true
+        theLabel.trailingAnchor.constraint(equalTo: theLabelView.trailingAnchor, constant: 0).isActive = true
+        theLabel.centerYAnchor.constraint(equalTo: theLabelView.centerYAnchor).isActive = true
         return returnView
     }
     
-    private var size: CGSize { return CGSize(width: view.bounds.width - 2*offset, height: toastHeight) }
-    private var offset: CGFloat { return 0.0 }
-    private var toastHeight: CGFloat { return 80 }
-    private var cornerRadius: CGFloat { return 0.0 }
+    private var size: CGSize { CGSize(width: view.bounds.width - 2*offset, height: toastHeight) }
+    private var offset: CGFloat { SwiftyCore.UI.Toast.offset }
+    private var toastHeight: CGFloat { SwiftyCore.UI.Toast.height }
+    private var cornerRadius: CGFloat { SwiftyCore.UI.Toast.cornerRadius }
+    private var animationDuration: CGFloat { SwiftyCore.UI.Toast.animationDuration }
+    private var position: ToastPosition { SwiftyCore.UI.Toast.position }
+    private var alpha: CGFloat { SwiftyCore.UI.Toast.alpha }
+    private var imageHeight: CGFloat { SwiftyCore.UI.Toast.imageHeight }
 }

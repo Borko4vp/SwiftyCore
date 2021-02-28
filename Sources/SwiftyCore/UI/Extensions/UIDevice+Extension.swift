@@ -25,6 +25,10 @@ public extension UIDevice {
     static var is5sSize: Bool {
         return UIScreen.main.bounds.size.height == 568
     }
+    
+    static var safeAreaInsets: UIEdgeInsets {
+        UIApplication.shared.windows[0].safeAreaInsets
+    }
 }
 /*       SIZES :
  
