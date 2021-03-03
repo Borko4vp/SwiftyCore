@@ -18,7 +18,7 @@ extension SwiftyCore.UI {
         public static var position: ToastPosition = .up
         public static var height: CGFloat = 120
         public static var imageHeight: CGFloat = 30
-        public static var animationDuration: CGFloat = 0.5
+        public static var animationDuration: Double = 0.25
         public static var toastDuration: CGFloat = 4
         public static var offset: CGFloat = 0
         public static var cornerRadius: CGFloat = 0
@@ -39,12 +39,12 @@ public extension Toastaable {
         DispatchQueue.main.async {
             let toastView = self.createToastView(image: image, backgroundColor: color.withAlphaComponent(SwiftyCore.UI.Toast.alpha), text: text, textColor: textColor)
             self.view.addSubview(toastView)
-            UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveLinear) {
+            UIView.animate(withDuration: self.toastAnimationDuration, delay: 0.0, options: .curveLinear) {
                 toastView.frame = self.getEndingFrame()
             }
             guard durationInSeconds > 0 else { return }
             let _ = Timer.scheduledTimer(withTimeInterval: TimeInterval(durationInSeconds), repeats: false) { _ in
-                UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveLinear, animations: {
+                UIView.animate(withDuration: self.toastAnimationDuration, delay: 0.0, options: .curveLinear, animations: {
                     toastView.frame = self.getStartingFrame()
                 }) { completed in
                     toastView.removeFromSuperview()
@@ -83,10 +83,10 @@ public extension Toastaable {
         returnView.addSubview(theImageView)
         
         let safeAreaInset = position == .up ? UIDevice.safeAreaInsets.top : UIDevice.safeAreaInsets.bottom
-        let labelOriginX = (hasImage ? imageHeight+16+8 : 8)
+        let labelOriginX = (hasImage ? imageHeight+16+8 : 16)
         let labelOriginY = position == .up ? (hasOffset ? 16 : safeAreaInset+8) : 8
         let labelOriginYBottom = position == .up ? 8 : (hasOffset ? 16 : safeAreaInset+8)
-        let theLabelView = UIView(frame: CGRect(x: labelOriginX, y: labelOriginY, width: size.width - labelOriginX - 8, height: size.height - labelOriginY - labelOriginYBottom))
+        let theLabelView = UIView(frame: CGRect(x: labelOriginX, y: labelOriginY, width: size.width - labelOriginX - 16, height: size.height - labelOriginY - labelOriginYBottom))
         returnView.addSubview(theLabelView)
         let theLabel = UILabel()
         theLabel.textColor = textColor
@@ -105,10 +105,10 @@ public extension Toastaable {
             //theImageView.bottomAnchor.constraint(equalTo: returnView.bottomAnchor, constant: -16).isActive = true
             theLabelView.leadingAnchor.constraint(equalTo: theImageView.trailingAnchor, constant: 8).isActive = true
         } else {
-            theLabelView.leadingAnchor.constraint(equalTo: returnView.leadingAnchor, constant: 8).isActive = true
+            theLabelView.leadingAnchor.constraint(equalTo: returnView.leadingAnchor, constant: 16).isActive = true
         }
         theImageView.centerYAnchor.constraint(equalTo: theLabelView.centerYAnchor, constant: 0).isActive = true
-        theLabelView.trailingAnchor.constraint(equalTo: returnView.trailingAnchor, constant: -8).isActive = true
+        theLabelView.trailingAnchor.constraint(equalTo: returnView.trailingAnchor, constant: -16).isActive = true
         theLabelView.topAnchor.constraint(equalTo: returnView.topAnchor, constant: labelOriginY).isActive = true
         theLabelView.bottomAnchor.constraint(equalTo: returnView.bottomAnchor, constant: -labelOriginYBottom).isActive = true
         
@@ -122,7 +122,7 @@ public extension Toastaable {
     private var offset: CGFloat { SwiftyCore.UI.Toast.offset }
     private var toastHeight: CGFloat { SwiftyCore.UI.Toast.height }
     private var cornerRadius: CGFloat { SwiftyCore.UI.Toast.cornerRadius }
-    private var animationDuration: CGFloat { SwiftyCore.UI.Toast.animationDuration }
+    private var toastAnimationDuration: Double { SwiftyCore.UI.Toast.animationDuration }
     private var position: ToastPosition { SwiftyCore.UI.Toast.position }
     private var alpha: CGFloat { SwiftyCore.UI.Toast.alpha }
     private var imageHeight: CGFloat { SwiftyCore.UI.Toast.imageHeight }

@@ -84,11 +84,12 @@ extension SwiftyCore.Networking.Manager {
             completion(.failure(.localError(.encodeDataFailed)))
             return
         }
+//        let stringData = String(data: data, encoding: .utf8)
+//        print(stringData ?? "")
         session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
             self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
         }
     }
-    
     /// Calls the live internet to send Data to specific localtion
     /// - Warning: Make sure the url in question can accept POST route
     /// - Parameters:

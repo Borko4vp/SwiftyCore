@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 extension SwiftyCore.UI {
+    
+    public static func removeImageFromCache(with url: String) {
+        ImageCache.shared.remove(url: url)
+    }
+    
     private struct CacheReadyImage {
         let timestamp: Date
         let url: String
