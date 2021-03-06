@@ -8,8 +8,8 @@ import Foundation
 import UIKit
 
 public protocol KeyboardPresentable: class {
-    func keyboardAboutToShow(keyboardSize: CGRect, duration: CGFloat?, curve: UIView.AnimationCurve?)
-    func keyboardAboutToHide(keyboardSize: CGRect, duration: CGFloat?, curve: UIView.AnimationCurve?)
+    func keyboardAboutToShow(keyboardSize: CGRect, duration: CGFloat, curve: UIView.AnimationCurve?)
+    func keyboardAboutToHide(keyboardSize: CGRect, duration: CGFloat, curve: UIView.AnimationCurve?)
 }
 
 public class KeyboardPresenter {
@@ -47,7 +47,7 @@ public class KeyboardPresenter {
 
     @objc
     private func keyboardWillShow(notification: NSNotification) {
-        let duration = notification.userInfo?[durationKey] as? CGFloat
+        let duration = notification.userInfo?[durationKey] as? CGFloat ?? 0.0
         let curveValue = notification.userInfo?[curveKey] as? Int
         let curve = curveValue != nil ? UIView.AnimationCurve(rawValue: curveValue!) : nil
         if let keyboardSize = (notification.userInfo?[frameKey] as? NSValue)?.cgRectValue {
@@ -59,7 +59,7 @@ public class KeyboardPresenter {
 
     @objc
     private func keyboardWillHide(notification: NSNotification) {
-        let duration = notification.userInfo?[durationKey] as? CGFloat
+        let duration = notification.userInfo?[durationKey] as? CGFloat ?? 0.0
         let curveValue = notification.userInfo?[curveKey] as? Int
         let curve = curveValue != nil ? UIView.AnimationCurve(rawValue: curveValue!) : nil
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {

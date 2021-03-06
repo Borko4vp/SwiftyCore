@@ -69,7 +69,7 @@ extension SwiftyCore.UI.Chat {
             guard let first = string.first else { return nil }
             return String(first)
         })
-        nameLabel.text = String(initialsArray.joined().prefix(2))
+        nameLabel.text = String(initialsArray.joined().prefix(2).uppercased())
         UIGraphicsBeginImageContext(frame.size)
         if let currentContext = UIGraphicsGetCurrentContext() {
             nameLabel.layer.render(in: currentContext)

@@ -16,9 +16,7 @@ public extension Encodable {
     }
     
     var jsonString: String? {
-        guard let jsonData = try? JSONEncoder().encode(self), let string = String(data: jsonData, encoding: .utf8) else {
-            return nil
-        }
+        guard let jsonData = try? JSONEncoder().encode(self), let string = String(data: jsonData, encoding: .utf8) else { return nil }
         return string
     }
 }
@@ -31,6 +29,8 @@ extension Decodable {
             let initialized = try JSONDecoder().decode(Self.self, from: data)
             self = initialized
         } catch {
+            let stringData = String(data: data, encoding: .utf8)
+            print(stringData ?? "")
             print("JSON serialization failed: ", error)
             return nil
         }

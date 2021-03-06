@@ -46,6 +46,9 @@ extension SwiftyCore {
                     patch(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
                 case .put:
                     put(to: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
+                case .delete:
+                    delete(from: urlPath, headers: request.headers ?? [:], with: request.parameters, completion: completion)
+                    
                 }
             }
             
@@ -147,10 +150,31 @@ extension SwiftyCore.Networking.Manager {
         }
     }
     
+    /// Calls the live internet to send Data to specific localtion
+    /// - Warning: Make sure the url in question can accept PUT route
+    /// - Parameters:
+    ///   - url: the localtion you wish to send data to
+    ///   - body: the object you wish to send over the network
+    ///   - completion: completion to execute after API response is received
+    private func delete<ResponseType: Codable>(from url: URL,
+                                               headers: [String: String],
+                                               with body: [String: Any]?,
+                                               completion: @escaping (NetworkResult<ResponseType>) -> Void) {
+        guard let dataParams = try? JSONSerialization.data(withJSONObject: body ?? [:]) else {
+            completion(.failure(.localError(.encodeDataFailed)))
+            return
+        }
+        session?.delete(from: url, headers: headers, with: dataParams) { responseData, error in
+            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+        }
+    }
+    
     private func handle<ResponseType: Codable>(responseData: Data?,
                                                networkSeesionError: NetworkSessionError?,
                                                completion: @escaping (NetworkResult<ResponseType>) -> Void){
         if let networkSeesionError = networkSeesionError {
+//            let stringData = String(data: responseData!, encoding: .utf8)
+//            print(stringData ?? "")
             completion(.failure(handle(networkSessionError: networkSeesionError, with: responseData)))
         } else {
             guard let responseData = responseData else {
@@ -211,6 +235,7 @@ extension SwiftyCore.Networking {
         case post = "POST"
         case patch = "PATCH"
         case put = "PUT"
+        case delete = "DELETE"
     }
     
     public enum Encoding {

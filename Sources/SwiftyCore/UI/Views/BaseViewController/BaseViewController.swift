@@ -71,11 +71,11 @@ extension SwiftyCore.UI {
             }
         }
         
-        open func keyboardAboutToShow(keyboardSize: CGRect, duration: CGFloat?, curve: UIView.AnimationCurve?) {
+        open func keyboardAboutToShow(keyboardSize: CGRect, duration: CGFloat, curve: UIView.AnimationCurve?) {
             // override in each view controller
         }
         
-        open func keyboardAboutToHide(keyboardSize: CGRect, duration: CGFloat?, curve: UIView.AnimationCurve?) {
+        open func keyboardAboutToHide(keyboardSize: CGRect, duration: CGFloat, curve: UIView.AnimationCurve?) {
             // override in each view controller
         }
         

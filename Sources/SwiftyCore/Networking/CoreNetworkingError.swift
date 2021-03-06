@@ -86,7 +86,7 @@ public struct ServerError<ServerErrroDTO: ServerErrorMessageable>: Error {
 
     init(httpStatus: Int?, message: String?, payload: ServerErrroDTO?) {
         self.httpStatus = httpStatus
-        errorMessage = message
+        self.errorMessage = message
         self.payload = payload
     }
     
