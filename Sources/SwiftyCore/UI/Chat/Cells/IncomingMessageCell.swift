@@ -88,8 +88,8 @@ extension IncomingMessageCell: MessageCell {
         setMessageView(for: message, isIncoming: true, in: messagePlaceholderView)
         timestampLabel.text = getTimestampString(from: message)
         insideTimestampLabel.text = getTimestampString(from: message)
-        guard let avatarBackView = avatarBackView else { return }
-        setAvatar(in: avatarBackView, isIncoming: true)
+//        guard let avatarBackView = avatarBackView else { return }
+//        setAvatar(in: avatarBackView, isIncoming: true)
         setNeedsLayout()
     }
     

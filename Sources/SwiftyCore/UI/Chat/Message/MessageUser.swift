@@ -9,6 +9,7 @@ import Foundation
 
 extension SwiftyCore.UI.Chat {
     public struct MessageUser {
+        public let id: String
         public let name: String
         let avatar: URL?
     }

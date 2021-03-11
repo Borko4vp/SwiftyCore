@@ -90,6 +90,8 @@ extension OutgoingMessageCell: MessageCell {
         setMessageView(for: message, isIncoming: false, in: messagePlaceholderView)
         timestampLabel.text = getTimestampString(from: message)
         insideTimestampLabel.text = getTimestampString(from: message)
+//        guard let avatarBackView = avatarBackView else { return }
+//        setAvatar(in: avatarBackView, isIncoming: true)
         setNeedsLayout()
     }
     
