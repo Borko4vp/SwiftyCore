@@ -8,7 +8,8 @@
 import UIKit
 
 class InputMessageView: UIView {
-        
+    
+    static var initialSize: CGFloat = 38 + (UIDevice.hasNotch ? 32 : 16) + 12
     enum SendButtonState: String {
         case voice
         case sendActive
@@ -119,6 +120,10 @@ class InputMessageView: UIView {
     
     func resign() {
         messageField.resignFirstResponder()
+    }
+    
+    func clearInputField() {
+        messageField.text = nil
     }
 }
 

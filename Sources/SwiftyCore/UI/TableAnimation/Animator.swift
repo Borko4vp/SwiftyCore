@@ -10,7 +10,7 @@ import UIKit
 
 public class Animator: NSObject {
     public typealias Animation = (UITableViewCell, IndexPath, UITableView) -> Void
-//    private var hasAnimatedAllCells = false
+    private var hasAnimatedAllCells = false
     private let animation: Animation
     
     init(animation: @escaping Animation) {
@@ -18,13 +18,13 @@ public class Animator: NSObject {
     }
     
     func animate(cell: UITableViewCell, at indexPath: IndexPath, in tableView: UITableView) {
-//        guard !hasAnimatedAllCells else {
-//            return
-//        }
+        guard !hasAnimatedAllCells else {
+            return
+        }
         
         animation(cell, indexPath, tableView)
-//        if let _ = tableView.visibleCells.last {
-//            self.hasAnimatedAllCells = true
-//        }
+        if let _ = tableView.visibleCells.last {
+            self.hasAnimatedAllCells = true
+        }
     }
 }

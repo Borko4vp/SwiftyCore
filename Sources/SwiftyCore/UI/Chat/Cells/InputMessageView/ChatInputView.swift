@@ -17,6 +17,7 @@ public protocol InputMessageViewDelegate: class {
 extension SwiftyCore.UI.Chat {
     public class ChatInputView {
         private var chatInternalView: InputMessageView
+        public static var initialHeight: CGFloat = InputMessageView.initialSize
         
         public init(rect: CGRect, delegate: InputMessageViewDelegate) {
             chatInternalView = InputMessageView.instanceFromNib(with: rect, delegate: delegate)
@@ -30,6 +31,10 @@ extension SwiftyCore.UI.Chat {
         
         public func resign() {
             chatInternalView.resign()
+        }
+        
+        public func clearInputField() {
+            chatInternalView.clearInputField()
         }
     }
 }

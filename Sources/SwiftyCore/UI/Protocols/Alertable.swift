@@ -67,14 +67,14 @@ extension Confirmable {
     func didCancel(on tag: Int) {}
 }
 
-protocol ReasonConfirmable where Self: UIViewController {
-    func showConfirmWithInput(title: String, text: String, confirmButtonText: String, isNumbersInput: Bool, inputPlaceholder: String?, isDelete: Bool, tag: Int)
+public protocol ReasonConfirmable where Self: UIViewController {
+    func showConfirmWithInput(title: String, text: String, confirmButtonText: String, cancelButtonText: String, isNumbersInput: Bool, inputPlaceholder: String?, isDelete: Bool, tag: Int)
     func didConfirm(on tag: Int, with reason: String)
     func didCancel(on tag: Int)
 }
 
-extension ReasonConfirmable {
-    func showConfirmWithInput(title: String, text: String, confirmButtonText: String, cancelButtonText: String? = "Cancel", isNumbersInput: Bool = false, inputPlaceholder: String? = nil, isDelete: Bool = true, tag: Int) {
+public extension ReasonConfirmable {
+    func showConfirmWithInput(title: String, text: String, confirmButtonText: String, cancelButtonText: String = "Cancel", isNumbersInput: Bool = false, inputPlaceholder: String? = nil, isDelete: Bool = true, tag: Int) {
         let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
         alert.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = inputPlaceholder
