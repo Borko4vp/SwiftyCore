@@ -53,7 +53,9 @@ public class ImagePicker: NSObject {
     
     private func showImageSourcePicker(strings: ImagePickerStrings, types: [ImagePickingType], sources: [UIImagePickerController.SourceType], editing: Bool) {
         if sources.count == 1 {
-            showImagePicker(with: sources[0], and: types, editing: editing)
+            // This is to address ios bug with editing camera captured images
+            let editingFinal = sources[0] == .camera ? false : editing
+            showImagePicker(with: sources[0], and: types, editing: editingFinal)
         } else if sources.count > 1 {
             let title = strings.title
             let message = strings.message
