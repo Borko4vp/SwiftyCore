@@ -60,8 +60,10 @@ public class ImagePicker: NSObject {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
             
             for source in sources {
+                // This is to address ios bug with editing camera captured images
+                let editingFinal = source == .camera ? false : editing
                 let title = source == .camera ? strings.cameraButtonTitle : strings.photoLibraryTitle
-                let handler = { (action: UIAlertAction) in self.showImagePicker(with: source, and: types, editing: editing) }
+                let handler = { (action: UIAlertAction) in self.showImagePicker(with: source, and: types, editing: editingFinal) }
                 alert.addAction(UIAlertAction(title: title, style: .default, handler: handler))
             }
             alert.addAction(UIAlertAction(title: strings.cancelTitle, style: .cancel, handler: nil))
