@@ -42,8 +42,10 @@ extension URLSession: NetworkSession {
     
     
     
-    func download(from remoteUrl: URL, to localUrl: URL, completion: @escaping (Bool) -> Void) {
-        let task = URLSession.shared.downloadTask(with: remoteUrl) { tmpURL, urlResponse, error in
+    func download(from remoteUrl: URL, urlRequestHeaders: [String: String]? = nil,  to localUrl: URL, completion: @escaping (Bool) -> Void) {
+        var urlRequest = URLRequest(url: remoteUrl)
+        urlRequest.allHTTPHeaderFields = urlRequestHeaders
+        let task = URLSession.shared.downloadTask(with: urlRequest) { tmpURL, urlResponse, error in
             if let tmpURL = tmpURL, FileHelper.move(from: tmpURL, to: localUrl) {
                 completion(true)
             } else {

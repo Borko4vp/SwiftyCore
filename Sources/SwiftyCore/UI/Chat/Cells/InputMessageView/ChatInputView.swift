@@ -10,7 +10,7 @@ import UIKit
 
 public protocol InputMessageViewDelegate: class {
     func didSend(with text: String)
-    func didToggleRecording(active: Bool)
+    func didToggleRecording(active: Bool, recordingURL: URL?)
     func didPressImage()
 }
 

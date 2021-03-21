@@ -6,18 +6,21 @@
 //
 
 import UIKit
+import AVFoundation
 
 class InputMessageView: UIView {
     
     static var initialSize: CGFloat = 38 + (UIDevice.hasNotch ? 32 : 16) + 12
     enum SendButtonState: String {
         case voice
+        case voiceActive
         case sendActive
         case sendInactive
         
         var image: UIImage {
             switch self {
             case .voice: return SwiftyCore.UI.Chat.voiceButtonIcon
+            case .voiceActive: return SwiftyCore.UI.Chat.activeVoiceButtonIcon
             case .sendActive: return SwiftyCore.UI.Chat.sendActiveIcon
             case .sendInactive: return SwiftyCore.UI.Chat.sendInactiveIcon
             }
@@ -44,6 +47,10 @@ class InputMessageView: UIView {
     private weak var inputMessageViewDelegate: InputMessageViewDelegate?
     private var voiceSupported: Bool = SwiftyCore.UI.Chat.voiceMessagesSupported
     private var imageSupported: Bool = SwiftyCore.UI.Chat.imageMessagesSupported
+    
+    private var isRecordingActive: Bool = false
+    private var currentRecordingFile: URL?
+    private var audioRecorder: AVAudioRecorder?
     
     @IBOutlet private weak var addCommentBackView: UIView!
     @IBOutlet private weak var messageField: GrowingTextView!
@@ -90,6 +97,10 @@ class InputMessageView: UIView {
         messageField.font = SwiftyCore.UI.Chat.inputMessageFont
         fieldBorderView.layer.borderColor = SwiftyCore.UI.Chat.inputFieldBorderColor.cgColor
         inutFieldBottomCst.constant = keyboardOpen ? 8 : (UIDevice.hasNotch ? 32 : 16)
+        
+        if voiceSupported {
+            requestRecordingPermissions()
+        }
     }
     
     
@@ -98,8 +109,11 @@ class InputMessageView: UIView {
             inputMessageViewDelegate?.didSend(with: messageField.text)
             messageField.text = ""
             updateButtonStatus()
-        } else if currentButtonState == .voice {
-            inputMessageViewDelegate?.didToggleRecording(active: true)
+        } else if [.voice, .voiceActive].contains(currentButtonState) {
+            isRecordingActive.toggle()
+            inputMessageViewDelegate?.didToggleRecording(active: isRecordingActive, recordingURL: nil)
+            updateRecordingUi()
+            isRecordingActive ? startRecording() : finishRecording(success: true)
         }
     }
     
@@ -125,6 +139,15 @@ class InputMessageView: UIView {
     func clearInputField() {
         messageField.text = nil
     }
+    
+    private func updateRecordingUi() {
+        //AudioServicesPlaySystemSound(1016)
+        
+        currentButtonState = isRecordingActive ? .voiceActive : .voice
+        messageField.text = isRecordingActive ? SwiftyCore.UI.Chat.recordingVoiceText : ""
+        messageField.isUserInteractionEnabled = !isRecordingActive
+        sendButton.tintColor = isRecordingActive ? .systemRed : .lightGray
+    }
 }
 
 extension InputMessageView: GrowingTextViewDelegate {
@@ -146,3 +169,66 @@ extension InputMessageView: GrowingTextViewDelegate {
     }
 }
 
+// MARK: - Recording
+extension InputMessageView {
+    private var recordingSession: AVAudioSession { return AVAudioSession.sharedInstance() }
+    private var recordingFile: URL { return FileHelper.newMessageUrl }
+    private var recordingSettings: [String: Any] {
+        return [AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+                AVSampleRateKey: 12000,
+                AVNumberOfChannelsKey: 1,
+                AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue]
+    }
+    
+    private func requestRecordingPermissions() {
+        do {
+            try recordingSession.setActive(true)
+            recordingSession.requestRecordPermission() { allowed in
+                print("allowed\(allowed)")
+                DispatchQueue.main.async {
+                    if allowed {
+                        //self.loadRecordingUI()
+                        
+                    } else {
+                        // failed to record!
+                    }
+                }
+            }
+        } catch {
+            // failed to record!
+        }
+    }
+    
+    func startRecording() {
+        currentRecordingFile = recordingFile
+        try? recordingSession.setCategory(.playAndRecord, mode: .default)
+        guard let recorder = try? AVAudioRecorder(url: currentRecordingFile!, settings: recordingSettings) else {
+            print("recording failed")
+            return
+        }
+        audioRecorder = recorder
+        audioRecorder?.delegate = self
+        audioRecorder?.record()
+    }
+    
+    func finishRecording(success: Bool) {
+        audioRecorder?.stop()
+        audioRecorder = nil
+
+        guard success else {
+            //canceled
+            inputMessageViewDelegate?.didToggleRecording(active: false, recordingURL: nil)
+            print("recording failed :(")
+            return
+        }
+        guard let current = currentRecordingFile else { return }
+        inputMessageViewDelegate?.didToggleRecording(active: false, recordingURL: current)
+    }
+}
+
+extension InputMessageView: AVAudioRecorderDelegate {
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        guard !flag else { return }
+        finishRecording(success: false)
+    }
+}

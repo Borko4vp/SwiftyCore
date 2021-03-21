@@ -48,11 +48,14 @@ class VoiceMessageView: UIView {
     private var progressView: SwiftyCore.UI.ProgressView?
     private var waveform: WaveformView?
     private var recording: URL?
+    private var recoringUrlRequestHeaders: [String: String]?
     private var localRecording: URL? {
-//        guard let id = id else { return nil }
-//        return FileHelper.getLocalUrl(for: id)
-        return Bundle.main.url(forResource: "Intro", withExtension: "mp4")
+        guard let id = id else { return nil }
+        return FileHelper.getLocalUrl(for: id)
+        //return Bundle.main.url(forResource: "Intro", withExtension: "mp4")
     }
+    
+    var isIncoming: Bool = false
     private var id: String?
     private var audioPlayer: AVAudioPlayer?
     private var playbackTimer: Timer?
@@ -63,49 +66,63 @@ class VoiceMessageView: UIView {
     }
     
     
-    public func set(with url: URL, and id: String, type: VoiceMessageProgressType) {
+    private var progressColor: UIColor {
+        isIncoming ? SwiftyCore.UI.Chat.incomingVoiceMessageProgressColor : SwiftyCore.UI.Chat.outgoingVoiceMessageProgressColor
+    }
+    
+    private var progressBackColor: UIColor {
+        isIncoming ? SwiftyCore.UI.Chat.incomingVoiceMessageProgressBackColor : SwiftyCore.UI.Chat.outgoingVoiceMessageProgressBackColor
+    }
+    
+    public func set(with url: URL, assetUrlRequestHeaders: [String: String]?, and id: String, type: VoiceMessageProgressType, isIncoming: Bool) {
         self.style = type
-        progressViewPlaceholder.isHidden = type != .bar
-        waveformViewPlaceholder.isHidden = type == .bar
         recording = url
+        recoringUrlRequestHeaders = assetUrlRequestHeaders
+        self.isIncoming = isIncoming
         self.id = id
         isPlaying = false
-        progressView = SwiftyCore.UI.ProgressView(rect: progressBarViewPlaceholder.bounds, color:  .darkGray, backColor: .lightGray)
+        setUi()
+        progressView = SwiftyCore.UI.ProgressView(rect: progressBarViewPlaceholder.bounds, color:  progressColor, backColor: progressBackColor)
         if let view = progressView?.view, progressBarViewPlaceholder.subviews.isEmpty {
             progressBarViewPlaceholder.addSubview(view)
         }
-        //download {
-        guard let local = localRecording else { fatalError() }
-        if let style = style, style != .bar, let waveStyle = style.waveformStyle {
-            DispatchQueue.main.async {
-                for subview in self.waveformViewPlaceholder.subviews {
-                    subview.removeFromSuperview()
-                }
-                let view = WaveformView(style: waveStyle, baseColor: .blue, pastColor: .green)
-                view.frame = self.waveformViewPlaceholder.bounds
-                view.backgroundColor = .white
-                self.waveformViewPlaceholder.addSubview(view)
-                self.waveform = view
-                self.waveform?.openFile(local)
-                DispatchQueue.global(qos: .background).async {
-                    self.waveform?.makePoints() {
-                        self.preparePlayer()
+        download {
+            guard let local = self.localRecording else { fatalError() }
+            if let style = self.style, style != .bar, let waveStyle = style.waveformStyle {
+                DispatchQueue.main.async {
+                    for subview in self.waveformViewPlaceholder.subviews {
+                        subview.removeFromSuperview()
+                    }
+                    let view = WaveformView(style: waveStyle, baseColor: self.progressBackColor, pastColor: self.progressColor)
+                    view.frame = self.waveformViewPlaceholder.bounds
+                    view.backgroundColor = .white
+                    self.waveformViewPlaceholder.addSubview(view)
+                    self.waveform = view
+                    self.waveform?.openFile(local)
+                    DispatchQueue.global(qos: .background).async {
+                        self.waveform?.makePoints() {
+                            self.preparePlayer()
+                        }
                     }
                 }
+            } else {
+                self.preparePlayer()
             }
-        } else {
-            self.preparePlayer()
         }
-
-            
-        //}
         setNeedsLayout()
     }
     
+    private func setUi() {
+        progressViewPlaceholder.isHidden = style != .bar
+        waveformViewPlaceholder.isHidden = style == .bar
+        startTimeLabel.textColor = .white
+        endTimeLabel.textColor = .white
+    }
+    
     private func setButtonUi() {
-        let image = isPlaying ? Image.circleStop.uiImage : Image.circlePlay.uiImage
+        let image = isPlaying ? SwiftyCore.UI.Chat.voiceMessageStopButtonImage : SwiftyCore.UI.Chat.voiceMessagePlayButtonImage
         playButton.setImage(image, for: .normal)
-        playButton.tintColor = .lightGray
+        playButton.tintColor = progressColor
     }
     
     @IBAction private func playButtonAction(_ sender: UIButton) {
@@ -127,7 +144,7 @@ class VoiceMessageView: UIView {
         }
         if !FileHelper.recordingExists(for: id) {
             activityIndicator.startAnimating()
-            URLSession.shared.download(from: recoringUrl, to: local) { success in
+            URLSession.shared.download(from: recoringUrl, urlRequestHeaders: recoringUrlRequestHeaders, to: local) { success in
                 DispatchQueue.main.async {
                     self.activityIndicator.stopAnimating()
                 }

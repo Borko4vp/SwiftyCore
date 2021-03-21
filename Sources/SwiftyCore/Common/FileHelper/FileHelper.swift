@@ -30,4 +30,6 @@ struct FileHelper {
         dateFormatter.dateFormat = "HH-mm-ss-MM-dd-yyyy"
         return dateFormatter
     }
+    
+    static var newMessageUrl: URL { return getDocumentsDirectory().appendingPathComponent("voiceMessage_\(FileHelper.dateformatter.string(from: Date())).m4a") }
 }

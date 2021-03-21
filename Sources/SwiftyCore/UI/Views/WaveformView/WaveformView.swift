@@ -200,7 +200,7 @@ class WaveformView : UIView {
         }
         switch style {
         case .barsCentered, .wave:
-            return Float(viewHeight)/2*value
+            return Float(viewHeight)/1.5*value
         case .bars:
             return Float(viewHeight)*value
         }

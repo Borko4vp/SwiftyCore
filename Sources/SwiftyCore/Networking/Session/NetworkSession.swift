@@ -19,5 +19,5 @@ protocol NetworkSession {
     func put(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
     func delete(from url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
     
-    func download(from remoteUrl: URL, to localUrl: URL, completion: @escaping (Bool) -> Void)
+    func download(from remoteUrl: URL, urlRequestHeaders: [String: String]?, to localUrl: URL, completion: @escaping (Bool) -> Void)
 }

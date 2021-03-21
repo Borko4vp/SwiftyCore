@@ -52,19 +52,20 @@ class BaseMessageCell: UITableViewCell {
             let imageMessageView = ImageMessageView.instanceFromNib(with: view.bounds)
             view.addSubview(imageMessageView)
             guard let url = message.assetUrl else { return }
-            imageMessageView.set(image: url)
+            imageMessageView.set(image: url, requestHeaders: message.assetUrlRequestHeaders)
         } else if message.type == .voice {
             let voiceMessageView = VoiceMessageView.instanceFromNib(with: view.bounds)
             view.addSubview(voiceMessageView)
             guard let url = message.assetUrl else { return }
-            voiceMessageView.set(with: url, and: message.id, type: .waveform)
+            voiceMessageView.set(with: url, assetUrlRequestHeaders: message.assetUrlRequestHeaders, and: message.id,
+                                 type: SwiftyCore.UI.Chat.voiceMessageProgressBarStyle, isIncoming: isIncoming)
         }
     }
     
     func createAvatar(for message: Message, isIncoming: Bool, in rect: CGRect) -> SwiftyCore.UI.AvatarView {
         let placeholderBackColors = isIncoming ? SwiftyCore.UI.Chat.incomingAvatarPlaceholderBackColors : SwiftyCore.UI.Chat.outgoingAvatarPlaceholderBackColors
         let placeholderImage = SwiftyCore.UI.Chat.useInitialsForAvatarPlaceholder ?
-            SwiftyCore.UI.Chat.createAvatarPlaceholder(in: rect, for: message.user?.name ?? "", backgroundColors: placeholderBackColors) :
+            SwiftyCore.UI.Chat.createAvatarPlaceholder(in: rect, for: message.user?.name ?? "", font: SwiftyCore.UI.Chat.avatarPlaceholderFont, backgroundColors: placeholderBackColors) :
             SwiftyCore.UI.Chat.avatarPlaceholderImage
         return SwiftyCore.UI.AvatarView(rect: rect, backColor: SwiftyCore.UI.Chat.avatarBackColor, cornerRadius: SwiftyCore.UI.Chat.avatarCornerRadius, placeholderImage: placeholderImage)
     }
@@ -95,5 +96,13 @@ class BaseMessageCell: UITableViewCell {
     
     func baseMessageCellPrepareForReuse() {
         avatar = nil
+    }
+    
+    func stopPlayingRecording(view: UIView) {
+        guard message?.type == .voice else { return }
+        for subview in view.subviews where subview is VoiceMessageView {
+            guard let voiceView = subview as? VoiceMessageView else { continue }
+            voiceView.stopPlayingRecording()
+        }
     }
 }

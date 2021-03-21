@@ -101,6 +101,11 @@ extension OutgoingMessageCell: MessageCell {
         case .iMessage: return getiMessageBubble()
         }
     }
+    
+    func didEndDisplaying() {
+        guard let messageView = messageView else { return }
+        stopPlayingRecording(view: messageView)
+    }
 }
 
 // Bubble paths

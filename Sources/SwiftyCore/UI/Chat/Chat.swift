@@ -41,7 +41,19 @@ extension SwiftyCore.UI {
         public static var voiceMessagesSupported: Bool = true
         public static var imageMessagesSupported: Bool = true
         
-        public static var voiceButtonIcon: UIImage = Image.voice.uiImage.withRenderingMode(.alwaysOriginal)
+        public static var voiceMessageProgressBarStyle: VoiceMessageProgressType = .waveformBarsCentered
+        public static var outgoingVoiceMessageProgressColor: UIColor = .blue
+        public static var outgoingVoiceMessageProgressBackColor: UIColor = .white
+        public static var incomingVoiceMessageProgressColor: UIColor = .blue
+        public static var incomingVoiceMessageProgressBackColor: UIColor = .white
+        
+        public static var voiceMessagePlayButtonImage: UIImage = Image.circlePlay.uiImage.withRenderingMode(.alwaysTemplate)
+        public static var voiceMessageStopButtonImage: UIImage = Image.circleStop.uiImage.withRenderingMode(.alwaysTemplate)
+        
+        public static var recordingVoiceText: String = "Recording voice message..."
+        
+        public static var voiceButtonIcon: UIImage = Image.voice.uiImage.withRenderingMode(.alwaysTemplate)
+        public static var activeVoiceButtonIcon: UIImage = Image.voice.uiImage.withRenderingMode(.alwaysTemplate)
         public static var sendActiveIcon: UIImage = Image.chatSend.uiImage.withRenderingMode(.alwaysOriginal)
         public static var sendInactiveIcon: UIImage = Image.chatSend.uiImage.withRenderingMode(.alwaysOriginal)
         public static var addImageIcon: UIImage = Image.photo.uiImage.withRenderingMode(.alwaysOriginal)
@@ -60,6 +72,7 @@ extension SwiftyCore.UI.Chat {
                                                textColor: UIColor = .white,
                                                font: UIFont? = nil,
                                                backgroundColors: [UIColor] = [.lightGray]) -> UIImage {
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 100)
         let nameLabel = UILabel(frame: frame)
         nameLabel.textAlignment = .center
         nameLabel.backgroundColor = backgroundColors.randomElement()
@@ -80,3 +93,20 @@ extension SwiftyCore.UI.Chat {
         }
     }
 }
+
+func imageWith(name: String?, color: UIColor? = nil) -> UIImage? {
+         let frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+         let nameLabel = UILabel(frame: frame)
+         nameLabel.textAlignment = .center
+         nameLabel.backgroundColor = .clear
+         nameLabel.textColor = color ?? .white
+         nameLabel.font = UIFont.boldSystemFont(ofSize: 35)
+         nameLabel.text = name
+         UIGraphicsBeginImageContext(frame.size)
+        if let currentContext = UIGraphicsGetCurrentContext() {
+           nameLabel.layer.render(in: currentContext)
+           let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+           return nameImage
+        }
+        return nil
+    }

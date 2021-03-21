@@ -24,6 +24,7 @@ public protocol MessageCell where Self: UITableViewCell {
     func set(with message: SwiftyCore.UI.Chat.Message, delegate: MessageCellDelegate)
     func getBubblePath() -> UIBezierPath
     func avatarTapped()
+    func didEndDisplaying()
 }
 
 public extension MessageCell {

@@ -53,7 +53,7 @@ extension SwiftyCore {
             }
             
             public func download(from remoteUrl: URL, to localUrl: URL, completion: @escaping (Bool) -> Void) {
-                session?.download(from: remoteUrl, to: localUrl, completion: completion)
+                session?.download(from: remoteUrl, urlRequestHeaders: nil, to: localUrl, completion: completion)
             }
         }
     }
@@ -207,6 +207,7 @@ extension SwiftyCore.Networking {
     
     public static var multipartDataKey = "multipartData"
     public static var multipartBoundary = UUID().uuidString
+    public static var multipartContentType = "multipart/form-data; boundary=\(SwiftyCore.Networking.multipartBoundary)"
     
     public static func addQuery(params: Codable, to route: String) -> String {
         guard let paramsDict = params.createDictionary(), !paramsDict.isEmpty else { return route }
@@ -242,13 +243,13 @@ extension SwiftyCore.Networking {
         case none
     }
     
-    public static func dataArrayToFormData(paramName: String, dataArray: [Data], filenames: [String], boundary: String = SwiftyCore.Networking.multipartBoundary) -> Data {
+    public static func dataArrayToFormData(paramName: String, mimeType: String = "image/jpg", dataArray: [Data], filenames: [String], boundary: String = SwiftyCore.Networking.multipartBoundary) -> Data {
         var fullData = Data()
         for (index, data) in dataArray.enumerated() {
             let currentFilename = filenames[index]
             fullData.append("--\(boundary)\r\n".data(using: .utf8)!)
-            fullData.append("Content-Disposition: form-data; name=\"\(paramName)\"; filename=\"\(currentFilename)\"\r\n".data(using: .utf8)!)
-            fullData.append("Content-Type: image/jpg\r\n\r\n".data(using: .utf8)!)
+            fullData.append("Content-Disposition: form-data; name=\"\(paramName)\";filename=\"\(currentFilename)\"\r\n".data(using: .utf8)!)
+            fullData.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
             fullData.append(data)
             fullData.append("\r\n".data(using: .utf8)!)
         }

@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 
 public extension UIImageView {
-    func setRemoteImage(from url: String?, placeholderImage: UIImage? = nil) {
-        DispatchQueue.main.async() {[weak self] in
+    func setRemoteImage(from url: String?, headers: [String: String]? = nil, placeholderImage: UIImage? = nil) {
+        DispatchQueue.main.async() { [weak self] in
             self?.image = placeholderImage
         }
         guard let urlString = url, let imageUrl = URL(string: urlString) else { return }
-        getImage(from: imageUrl) { remoteImage in
+        getImage(from: imageUrl, headers: headers) { remoteImage in
             guard let remoteImage = remoteImage else { return }
             DispatchQueue.main.async() { [weak self] in
                 self?.image = remoteImage
@@ -22,14 +22,16 @@ public extension UIImageView {
         }
     }
     
-    private func getImage(from url: URL, completion: @escaping (UIImage?) -> Void) {
+    private func getImage(from url: URL, headers: [String: String]? = nil, completion: @escaping (UIImage?) -> Void) {
         if let cachedImage = SwiftyCore.UI.ImageCache.shared.get(url: url.absoluteString) {
             DispatchQueue.main.async() {
                 completion(cachedImage)
             }
             return
         } else {
-            URLSession.shared.dataTask(with: url) { data, response, error in
+            var urlRequest = URLRequest(url: url)
+            urlRequest.allHTTPHeaderFields = headers
+            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 guard
                     let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
                     //let mimeType = response?.mimeType, mimeType.hasPrefix("image"),

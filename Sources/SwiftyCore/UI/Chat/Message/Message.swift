@@ -17,13 +17,17 @@ extension SwiftyCore.UI.Chat {
         let assetUrl: URL?
         public let user: MessageUser?
         
-        public init(type: SwiftyCore.UI.Chat.MessageType, messageId: String = "message_ID", timestamp: Date? = nil, timestampString: String? = nil, message: String? = nil, asset: URL? = nil, userName: String, avatarUrl: String? = nil, userId: String? = nil) {
+        let assetUrlRequestHeaders: [String: String]?
+        
+        
+        public init(type: SwiftyCore.UI.Chat.MessageType, messageId: String = "message_ID", timestamp: Date? = nil, timestampString: String? = nil, message: String? = nil, asset: URL? = nil, assetUrlRequestHeaders: [String: String]? = nil, userName: String, avatarUrl: String? = nil, userId: String? = nil) {
             self.id = messageId
             self.type = type
             self.message = message
             self.timestamp = timestamp
             self.timestampString = timestampString
             assetUrl = asset
+            self.assetUrlRequestHeaders = assetUrlRequestHeaders
             user = MessageUser(id: userId ?? "", name: userName, avatar: URL(string: avatarUrl ?? ""))
         }
     }
