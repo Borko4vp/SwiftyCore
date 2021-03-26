@@ -10,6 +10,14 @@ import UIKit
 
 extension SwiftyCore.UI {
     public struct Chat {
+        //
+        public static var messagesViewController: MessagesViewController {
+            return MessagesViewController(nibName: "MessagesViewController", bundle: Bundle.module)
+        }
+        
+        // settings
+        public static var chatBackgroundColor: UIColor = .systemBlue
+        public static var chatBackButtonImage: UIImage = Image.backArrow.uiImage
         public static var incomingBubbleColor: UIColor = .red
         public static var incomingBubbleBorderColor: UIColor = .red
         public static var outgoingBubbleColor: UIColor = .green
@@ -95,18 +103,18 @@ extension SwiftyCore.UI.Chat {
 }
 
 func imageWith(name: String?, color: UIColor? = nil) -> UIImage? {
-         let frame = CGRect(x: 0, y: 0, width: 200, height: 100)
-         let nameLabel = UILabel(frame: frame)
-         nameLabel.textAlignment = .center
-         nameLabel.backgroundColor = .clear
-         nameLabel.textColor = color ?? .white
-         nameLabel.font = UIFont.boldSystemFont(ofSize: 35)
-         nameLabel.text = name
-         UIGraphicsBeginImageContext(frame.size)
-        if let currentContext = UIGraphicsGetCurrentContext() {
-           nameLabel.layer.render(in: currentContext)
-           let nameImage = UIGraphicsGetImageFromCurrentImageContext()
-           return nameImage
-        }
-        return nil
+    let frame = CGRect(x: 0, y: 0, width: 200, height: 100)
+    let nameLabel = UILabel(frame: frame)
+    nameLabel.textAlignment = .center
+    nameLabel.backgroundColor = .clear
+    nameLabel.textColor = color ?? .white
+    nameLabel.font = UIFont.boldSystemFont(ofSize: 35)
+    nameLabel.text = name
+    UIGraphicsBeginImageContext(frame.size)
+    if let currentContext = UIGraphicsGetCurrentContext() {
+        nameLabel.layer.render(in: currentContext)
+        let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+        return nameImage
     }
+    return nil
+}
