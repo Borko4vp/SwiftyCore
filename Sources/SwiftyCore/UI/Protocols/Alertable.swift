@@ -44,13 +44,13 @@ extension MultiSelectionAlertable {
     }
 }
 
-protocol Confirmable where Self: UIViewController {
+public protocol Confirmable where Self: UIViewController {
     func showConfirmAlert(with title: String, and text: String, confirmButtonText: String, cancelButtonText: String, isDelete: Bool, tag: Int)
     func didConfirm(on tag: Int)
     func didCancel(on tag: Int)
 }
 
-extension Confirmable {
+public extension Confirmable {
     func showConfirmAlert(with title: String, and text: String, confirmButtonText: String, cancelButtonText: String = "Cancel", isDelete: Bool = false, tag: Int) {
         let alert = UIAlertController(title: title, message: text, preferredStyle: .alert)
         let confirmHandler = { (action: UIAlertAction) in self.didConfirm(on: tag) }

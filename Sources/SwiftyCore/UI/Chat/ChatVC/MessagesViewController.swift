@@ -178,7 +178,7 @@ extension MessagesViewController: UITableViewDelegate, UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let message = messagesDataSource[indexPath.row]
-        let isMine = false//(message.user?.name ?? "") == ApiHandler.loggedUser?.fullName
+        let isMine = indexPath.row%2 == 0//(message.user?.name ?? "") == ApiHandler.loggedUser?.fullName
         let ident = isMine ? SwiftyCore.UI.Cells.Idents.outgoingMessageCell : SwiftyCore.UI.Cells.Idents.incomingMessageCell
         let cell = tableView.dequeueReusableCell(withIdentifier: ident) as! MessageCell
         cell.set(with: message, delegate: self)

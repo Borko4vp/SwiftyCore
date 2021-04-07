@@ -52,7 +52,7 @@ class BaseMessageCell: UITableViewCell {
             let imageMessageView = ImageMessageView.instanceFromNib(with: view.bounds)
             view.addSubview(imageMessageView)
             guard let url = message.assetUrl else { return }
-            imageMessageView.set(image: url, requestHeaders: message.assetUrlRequestHeaders)
+            imageMessageView.set(image: url, requestHeaders: message.assetUrlRequestHeaders, delegate: self)
         } else if message.type == .voice {
             let voiceMessageView = VoiceMessageView.instanceFromNib(with: view.bounds)
             view.addSubview(voiceMessageView)
@@ -104,5 +104,11 @@ class BaseMessageCell: UITableViewCell {
             guard let voiceView = subview as? VoiceMessageView else { continue }
             voiceView.stopPlayingRecording()
         }
+    }
+}
+
+extension BaseMessageCell: ImageMessageViewDelegate {
+    func didTapImage(with url: String) {
+        messageCellDelegate?.didTapOnImageMessage(with: url)
     }
 }

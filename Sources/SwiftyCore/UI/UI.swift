@@ -11,5 +11,9 @@ extension SwiftyCore {
         static public var loadingAnimationFileName: String?
         static public var finishLoadingAnimationFileName: String?
         public static var imageCacheSize: Int = 100
+        
+        static public var galleryViewController: GalleryViewController {
+            GalleryViewController(nibName: "GalleryViewController", bundle: Bundle.module)
+        }
     }
 }

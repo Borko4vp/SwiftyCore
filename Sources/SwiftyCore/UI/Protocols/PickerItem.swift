@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PickerItem {
+public protocol PickerItem {
     var title: String { get }
 }
