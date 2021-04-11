@@ -49,19 +49,21 @@ public class GalleryViewController: UIViewController {
         carousel.showsHorizontalScrollIndicator = false
         carousel.contentInsetAdjustmentBehavior = .never
         carousel.isPagingEnabled = true
-        for i in 0..<images.count {
+        let imagesLocal = images.isEmpty ? [""] : images
+        for i in 0..<imagesLocal.count {
             let offset = i == 0 ? 0 : (CGFloat(i) * UIScreen.main.bounds.width)
             let imgView = UIImageView(frame: CGRect(x: offset, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-            imgView.setRemoteImage(from: images[i], placeholderImage: placeholderImage)
+            imgView.setRemoteImage(from: imagesLocal[i], placeholderImage: placeholderImage)
             imgView.clipsToBounds = true
             imgView.contentMode = .scaleAspectFit
+            imgView.tintColor = .white
             carousel.addSubview(imgView)
-            
+
             let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinchHandler(_:)))
             imgView.isUserInteractionEnabled = true
             imgView.addGestureRecognizer(pinch)
         }
-        carousel.contentSize = CGSize(width: CGFloat(images.count) * UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        carousel.contentSize = CGSize(width: CGFloat(imagesLocal.count) * UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         carousel.delegate = self
         self.view.insertSubview(carousel, at: 0)
     }
