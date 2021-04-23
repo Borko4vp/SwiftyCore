@@ -98,9 +98,9 @@ class InputMessageView: UIView {
         fieldBorderView.layer.borderColor = SwiftyCore.UI.Chat.inputFieldBorderColor.cgColor
         inutFieldBottomCst.constant = keyboardOpen ? 8 : (UIDevice.hasNotch ? 32 : 16)
         
-        if voiceSupported {
-            requestRecordingPermissions()
-        }
+//        if voiceSupported {
+//            requestRecordingPermissions()
+//        }
     }
     
     
@@ -109,7 +109,10 @@ class InputMessageView: UIView {
             inputMessageViewDelegate?.didSend(with: messageField.text)
             messageField.text = ""
             updateButtonStatus()
-        } else if [.voice, .voiceActive].contains(currentButtonState) {
+        } else if [.voice, .voiceActive].contains(currentButtonState) && voiceSupported {
+            if !isRecordingActive {
+                requestRecordingPermissions()
+            }
             isRecordingActive.toggle()
             inputMessageViewDelegate?.didToggleRecording(active: isRecordingActive, recordingURL: nil)
             updateRecordingUi()
