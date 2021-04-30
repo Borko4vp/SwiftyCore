@@ -7,7 +7,6 @@
 
 import Foundation
 import UIKit
-import SwiftyCore
 
 public class PickerView: NSObject {
     public var picker: UIPickerView?
