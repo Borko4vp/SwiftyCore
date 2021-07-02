@@ -12,6 +12,7 @@ public protocol InputMessageViewDelegate: class {
     func didSend(with text: String)
     func didToggleRecording(active: Bool, recordingURL: URL?)
     func didPressImage()
+    func showVoicePermissionError()
 }
 
 extension SwiftyCore.UI.Chat {

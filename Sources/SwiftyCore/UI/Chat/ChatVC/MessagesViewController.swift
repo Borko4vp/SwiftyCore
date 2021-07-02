@@ -107,6 +107,11 @@ public class MessagesViewController: SwiftyCore.UI.BaseViewController, ImagePick
 }
 
 extension MessagesViewController: InputMessageViewDelegate {
+    public func showVoicePermissionError() {
+        let alert = UIAlertController(title: "VoiceRecordingPermission".localized, message: "", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "OK".localized, style: .cancel, handler: nil))
+        present(alert, animated: true)
+    }
     
     public func didSend(with text: String) {
         print("send: \(text)")
@@ -168,6 +173,10 @@ extension MessagesViewController {
     
     public func imagePickerDidSelect(video url: URL?) {
         //
+    }
+    
+    public func showGalleryPermissionError() {
+        
     }
 }
 

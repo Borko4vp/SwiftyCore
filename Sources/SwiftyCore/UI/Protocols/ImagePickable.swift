@@ -7,10 +7,12 @@
 
 import Foundation
 import UIKit
+import PhotosUI
 
 public protocol ImagePickerDelegate where Self: UIViewController {
     func imagePickerDidSelect(image: UIImage?)
     func imagePickerDidSelect(video url: URL?)
+    func showGalleryPermissionError()
 }
 
 public enum ImagePickingType: String {
@@ -76,6 +78,16 @@ public class ImagePicker: NSObject {
     }
     
     private func showImagePicker(with source: UIImagePickerController.SourceType, and types: [ImagePickingType], editing: Bool) {
+        if source == .photoLibrary {
+            checkPermission {
+                self.presentPicker(source: source, and: types, editing: editing)
+            }
+        } else {
+            presentPicker(source: source, and: types, editing: editing)
+        }
+    }
+    
+    func presentPicker(source: UIImagePickerController.SourceType, and types: [ImagePickingType], editing: Bool) {
         var mediaTypes = [String]()
         for type in types {
             mediaTypes.append(type.rawValue)
@@ -86,6 +98,34 @@ public class ImagePicker: NSObject {
         pickerController.mediaTypes = mediaTypes
         pickerController.sourceType = source
         imagePickerDelegate?.present(pickerController, animated: true)
+    }
+    
+    func checkPermission(completion: @escaping () -> Void) {
+        
+        var photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        if #available(iOS 14, *) {
+            photoAuthorizationStatus =  PHPhotoLibrary.authorizationStatus(for: .readWrite)
+        }
+        switch photoAuthorizationStatus {
+        case .authorized:
+            completion()
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (newStatus) in
+                if newStatus ==  PHAuthorizationStatus.authorized {
+                    DispatchQueue.main.async {
+                        completion()
+                    }
+                }
+            })
+        case .limited:
+            if #available(iOS 14, *) {
+                //PHPhotoLibrary.shared().presentLimitedLibraryPicker(from: self)
+                completion()
+            }
+        default:
+            imagePickerDelegate?.showGalleryPermissionError()
+        }
     }
 }
 

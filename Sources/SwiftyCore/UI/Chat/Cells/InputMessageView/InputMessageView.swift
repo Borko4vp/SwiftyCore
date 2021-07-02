@@ -112,12 +112,17 @@ class InputMessageView: UIView {
         } else if [.voice, .voiceActive].contains(currentButtonState) && voiceSupported {
             if !isRecordingActive {
                 requestRecordingPermissions()
+            } else {
+                setRecordingStatus()
             }
-            isRecordingActive.toggle()
-            inputMessageViewDelegate?.didToggleRecording(active: isRecordingActive, recordingURL: nil)
-            updateRecordingUi()
-            isRecordingActive ? startRecording() : finishRecording(success: true)
         }
+    }
+    
+    func setRecordingStatus() {
+        isRecordingActive.toggle()
+        inputMessageViewDelegate?.didToggleRecording(active: isRecordingActive, recordingURL: nil)
+        updateRecordingUi()
+        isRecordingActive ? startRecording() : finishRecording(success: true)
     }
     
     @IBAction private func imageButtonAction(_ sender: UIButton) {
@@ -191,9 +196,10 @@ extension InputMessageView {
                 DispatchQueue.main.async {
                     if allowed {
                         //self.loadRecordingUI()
-                        
+                        self.setRecordingStatus()
                     } else {
                         // failed to record!
+                        self.inputMessageViewDelegate?.showVoicePermissionError()
                     }
                 }
             }
