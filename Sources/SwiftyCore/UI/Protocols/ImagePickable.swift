@@ -79,9 +79,9 @@ public class ImagePicker: NSObject {
     
     private func showImagePicker(with source: UIImagePickerController.SourceType, and types: [ImagePickingType], editing: Bool) {
         if source == .photoLibrary {
-            checkPermission {
+            //checkPermission {
                 self.presentPicker(source: source, and: types, editing: editing)
-            }
+            //}
         } else {
             presentPicker(source: source, and: types, editing: editing)
         }
