@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol InputMessageViewDelegate: class {
+public protocol InputMessageViewDelegate: AnyObject {
     func didSend(with text: String)
     func didToggleRecording(active: Bool, recordingURL: URL?)
     func didPressImage()

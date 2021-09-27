@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol ToolbarPresentable: class {
+public protocol ToolbarPresentable: AnyObject {
     func toolbar(with tag: Int) -> Toolbar?
     
     func donePressed(with tag: Int)

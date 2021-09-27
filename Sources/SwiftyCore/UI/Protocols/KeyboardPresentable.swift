@@ -7,7 +7,7 @@
 import Foundation
 import UIKit
 
-public protocol KeyboardPresentable: class {
+public protocol KeyboardPresentable: AnyObject {
     func keyboardAboutToShow(keyboardSize: CGRect, duration: CGFloat, curve: UIView.AnimationCurve?)
     func keyboardAboutToHide(keyboardSize: CGRect, duration: CGFloat, curve: UIView.AnimationCurve?)
 }

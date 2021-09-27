@@ -7,23 +7,23 @@
 
 import UIKit
 
-public class VCenteredButton: UIButton {
+open class VCenteredButton: UIButton {
     public var imageAboveTitle: Bool = true
     
-    var spacing: CGFloat { 8 }
-
+    open var spacing: CGFloat { 8 }
+    open var imageHeight: CGFloat { bounds.height/2 }
     
     var padding: CGFloat { 4 }
     
     public override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
-        let yOrigin = imageAboveTitle ? bounds.height/2 + 2*spacing : spacing
+        let yOrigin = imageAboveTitle ? imageHeight + 2*spacing : spacing
         return CGRect(x: spacing, y: yOrigin,
-                      width: contentRect.width - 2*spacing, height: bounds.height/2 - 3*spacing)
+                      width: contentRect.width - 2*spacing, height: bounds.height - imageHeight - 3*spacing)
     }
     
     public override func imageRect(forContentRect contentRect: CGRect) -> CGRect {
         let titleRect = self.titleRect(forContentRect: contentRect)
-        let imageHeight = bounds.height/2
+        let imageHeight = imageHeight
         let imageWidth = contentRect.width - 4*spacing
         let yOrigin = imageAboveTitle ? spacing : titleRect.height + 2*spacing
         return CGRect(x: contentRect.width/2.0 - imageWidth/2.0,
@@ -44,12 +44,12 @@ public class VCenteredButton: UIButton {
         return CGSize(width: size.width, height: image.size.height + labelHeight + 8)
     }
     
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         centerTitleLabel()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         centerTitleLabel()
     }

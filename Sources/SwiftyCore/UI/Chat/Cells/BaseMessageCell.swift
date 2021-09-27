@@ -10,7 +10,7 @@ import UIKit
 
 typealias Message = SwiftyCore.UI.Chat.Message
 
-public protocol MessageCellDelegate: class {
+public protocol MessageCellDelegate: AnyObject {
     func didTapOnAvatar(with url: String?)
     func didTapOnCellBackground(with message: SwiftyCore.UI.Chat.Message)
     func didTapOnImageMessage(with url: String?)

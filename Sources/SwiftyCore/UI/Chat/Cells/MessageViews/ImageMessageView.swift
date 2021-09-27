@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol ImageMessageViewDelegate: class {
+protocol ImageMessageViewDelegate: AnyObject {
     func didTapImage(with url: String)
 }
 
