@@ -173,8 +173,11 @@ extension SwiftyCore.Networking.Manager {
                                                networkSeesionError: NetworkSessionError?,
                                                completion: @escaping (NetworkResult<ResponseType>) -> Void){
         if let networkSeesionError = networkSeesionError {
-//            let stringData = String(data: responseData!, encoding: .utf8)
-//            print(stringData ?? "")
+            if loggingEnabled {
+                if let data = responseData, let stringData = String(data: data, encoding: .utf8) {
+                    print(stringData)
+                }
+            }
             completion(.failure(handle(networkSessionError: networkSeesionError, with: responseData)))
         } else {
             guard let responseData = responseData else {
