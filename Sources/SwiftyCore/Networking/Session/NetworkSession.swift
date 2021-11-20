@@ -12,12 +12,15 @@ protocol NetworkSessionError: Error {
     var message: String? { get }
 }
 
+typealias NetworkResponseHandler = (Data?, NetworkSessionError?) -> Void
+typealias HTTPHeaders = [String: String]
+
 protocol NetworkSession {
-    func get(from url: URL, headers: [String: String], completion: @escaping (Data?, NetworkSessionError?) -> Void)
-    func post(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
-    func patch(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
-    func put(to url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
-    func delete(from url: URL, headers: [String: String], with parameters: Data?, completion: @escaping (Data?, NetworkSessionError?) -> Void)
+    func get(from url: URL, headers: HTTPHeaders, completion: @escaping NetworkResponseHandler)
+    func post(to url: URL, headers: HTTPHeaders, with parameters: Data?, completion: @escaping NetworkResponseHandler)
+    func patch(to url: URL, headers: HTTPHeaders, with parameters: Data?, completion: @escaping NetworkResponseHandler)
+    func put(to url: URL, headers: HTTPHeaders, with parameters: Data?, completion: @escaping NetworkResponseHandler)
+    func delete(from url: URL, headers: HTTPHeaders, with parameters: Data?, completion: @escaping NetworkResponseHandler)
     
     func download(from remoteUrl: URL, urlRequestHeaders: [String: String]?, to localUrl: URL, completion: @escaping (Bool) -> Void)
 }

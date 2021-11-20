@@ -69,7 +69,7 @@ extension SwiftyCore.Networking.Manager {
                                         headers: [String: String],
                                         completion: @escaping (NetworkResult<Response>) -> Void) {
         session?.get(from: url, headers: headers) { (responseData, error) in
-            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+            self.handle(urlString: url.absoluteString, responseData: responseData, networkSeesionError: error, completion: completion)
         }
     }
     
@@ -90,7 +90,7 @@ extension SwiftyCore.Networking.Manager {
 //        let stringData = String(data: data, encoding: .utf8)
 //        print(stringData ?? "")
         session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
-            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+            self.handle(urlString: url.absoluteString, responseData: responseData, networkSeesionError: error, completion: completion)
         }
     }
     /// Calls the live internet to send Data to specific localtion
@@ -108,7 +108,7 @@ extension SwiftyCore.Networking.Manager {
             return
         }
         session?.post(to: url, headers: headers, with: dataParams) { responseData, error in
-            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+            self.handle(urlString: url.absoluteString, responseData: responseData, networkSeesionError: error, completion: completion)
         }
     }
     
@@ -127,7 +127,7 @@ extension SwiftyCore.Networking.Manager {
             return
         }
         session?.patch(to: url, headers: headers, with: dataParams) { responseData, error in
-            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+            self.handle(urlString: url.absoluteString, responseData: responseData, networkSeesionError: error, completion: completion)
         }
     }
     
@@ -146,7 +146,7 @@ extension SwiftyCore.Networking.Manager {
             return
         }
         session?.put(to: url, headers: headers, with: dataParams) { responseData, error in
-            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+            self.handle(urlString: url.absoluteString, responseData: responseData, networkSeesionError: error, completion: completion)
         }
     }
     
@@ -165,11 +165,12 @@ extension SwiftyCore.Networking.Manager {
             return
         }
         session?.delete(from: url, headers: headers, with: dataParams) { responseData, error in
-            self.handle(responseData: responseData, networkSeesionError: error, completion: completion)
+            self.handle(urlString: url.absoluteString, responseData: responseData, networkSeesionError: error, completion: completion)
         }
     }
     
-    private func handle<ResponseType: Codable>(responseData: Data?,
+    private func handle<ResponseType: Codable>(urlString: String,
+                                               responseData: Data?,
                                                networkSeesionError: NetworkSessionError?,
                                                completion: @escaping (NetworkResult<ResponseType>) -> Void){
         if let networkSeesionError = networkSeesionError {
@@ -186,7 +187,7 @@ extension SwiftyCore.Networking.Manager {
             }
             if loggingEnabled {
                 let stringData = String(data: responseData, encoding: .utf8)
-                print(stringData ?? "")
+                print("RESPONSE from: " + urlString + "\n" + (stringData ?? ""))
             }
             guard let responseJSON = ResponseType(with: responseData) else {
                 completion(.failure(.localError(.decodeDataFailed)))

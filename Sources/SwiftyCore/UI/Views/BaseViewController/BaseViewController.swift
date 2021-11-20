@@ -55,7 +55,7 @@ extension SwiftyCore.UI {
         public func showLoading() {
             loadingViewController = LoadingViewController()
             //loadingViewController.view.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            loadingViewController?.modalPresentationStyle = .overCurrentContext
+            loadingViewController?.modalPresentationStyle = .overFullScreen
             guard let loadingViewController = loadingViewController else { return }
             DispatchQueue.main.async {
                 self.present(loadingViewController, animated: false, completion: nil)
