@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension SwiftyCore.UI {
-    open class BaseViewController: UIViewController, LoadingController, KeyboardPresentable, BaseController, Toastaable {
+    open class BaseViewController: UIViewController, LoadingController, KeyboardPresentable, BaseController, Toastaable, Alertable {
         
         
         open var interactivePopGestureRecognizerEnabled: Bool {
@@ -87,11 +87,9 @@ extension SwiftyCore.UI {
                 animator.startAnimation()
             }
         }
-    }
-}
-
-extension SwiftyCore.UI.BaseViewController: Alertable {
-    open func didPressOk(on tag: String) {
-        // should be overriden
+        // Alertable
+        open func didPressOk(on tag: String) {
+            // override in each view controller using OK alerts
+        }
     }
 }

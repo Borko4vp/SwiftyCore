@@ -31,14 +31,18 @@ extension SwiftyCore.UI {
 }
 
 public protocol Toastaable where Self: UIViewController {
-    func showToast(text: String, image: UIImage?, durationInSeconds: Int, color: UIColor, textColor: UIColor)
+    func showToast(text: String, image: UIImage?, durationInSeconds: Int, color: UIColor, textColor: UIColor, completion: (() -> Void)?)
 }
 
 public extension Toastaable {
-    func showToast(text: String, image: UIImage?, durationInSeconds: Int = 4, color: UIColor = SwiftyCore.UI.Toast.color, textColor: UIColor = SwiftyCore.UI.Toast.textColor) {
+    func showToast(text: String, image: UIImage?, durationInSeconds: Int = 4, color: UIColor = SwiftyCore.UI.Toast.color, textColor: UIColor = SwiftyCore.UI.Toast.textColor, completion: (() -> Void)? = nil ) {
         DispatchQueue.main.async {
             let toastView = self.createToastView(image: image, backgroundColor: color.withAlphaComponent(SwiftyCore.UI.Toast.alpha), text: text, textColor: textColor)
-            self.view.addSubview(toastView)
+            if let view = self.navigationController?.view {
+                view.addSubview(toastView)
+            } else {
+                self.view.addSubview(toastView)
+            }
             UIView.animate(withDuration: self.toastAnimationDuration, delay: 0.0, options: .curveLinear) {
                 toastView.frame = self.getEndingFrame()
             }
@@ -48,6 +52,7 @@ public extension Toastaable {
                     toastView.frame = self.getStartingFrame()
                 }) { completed in
                     toastView.removeFromSuperview()
+                    completion?()
                 }
             }
         }
