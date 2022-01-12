@@ -8,7 +8,10 @@
 import UIKit
 
 public extension UIApplication {
-    static let softwareVersion: String = {
-        return "\(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "")\(Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "")"
-    }()
+    static var softwareVersion: String {
+        guard let infoDict = Bundle.main.infoDictionary,
+            let versionString = infoDict["CFBundleShortVersionString"] as? String,
+            let buildNumber = infoDict["CFBundleVersion"] as? String else { return "" }
+        return versionString + buildNumber
+    }
 }

@@ -9,6 +9,13 @@ import Foundation
 
 public extension String {
     
+    static func createTimeStringFromSeconds(_ seconds: Int) -> String {
+        [seconds/3600, (seconds%3600)/60, (seconds%3600)%60]
+            .map({ String(format: "%02d", $0) })
+            .joined(separator: ":")
+            .deletingPrefix("00:")
+    }
+    
     static func randomString(length: Int) -> String {
       let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
       return String((0..<length).map{ _ in letters.randomElement()! })
@@ -53,5 +60,10 @@ public extension String {
     
     func isNumeric() -> Bool {
         return CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: self))
+    }
+    
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
     }
 }

@@ -21,7 +21,6 @@ class ProgressViewInternal: UIView {
     @IBOutlet private weak var currentProgressView: UIView!
     @IBOutlet private weak var currentProgressViewWidthCst: NSLayoutConstraint!
     
-    
     private func setup() {
         totalProgressView.layer.cornerRadius = totalProgressView.bounds.height/2
         currentProgressView.layer.cornerRadius = currentProgressView.bounds.height/2

@@ -1,6 +1,6 @@
 //
-//  VPickerView.swift
-//  iVault
+//  PickerView.swift
+//  SwiftyCore
 //
 //  Created by Borko Tomic on 7.4.21..
 //

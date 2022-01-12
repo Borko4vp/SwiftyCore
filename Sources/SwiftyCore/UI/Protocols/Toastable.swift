@@ -91,7 +91,11 @@ public extension Toastaable {
         let labelOriginX = (hasImage ? imageHeight+16+8 : 16)
         let labelOriginY = position == .up ? (hasOffset ? 16 : safeAreaInset+8) : 8
         let labelOriginYBottom = position == .up ? 8 : (hasOffset ? 16 : safeAreaInset+8)
-        let theLabelView = UIView(frame: CGRect(x: labelOriginX, y: labelOriginY, width: size.width - labelOriginX - 16, height: size.height - labelOriginY - labelOriginYBottom))
+        let labelViewFrame = CGRect(x: labelOriginX,
+                                    y: labelOriginY,
+                                    width: size.width - labelOriginX - 16,
+                                    height: size.height - labelOriginY - labelOriginYBottom)
+        let theLabelView = UIView(frame: labelViewFrame)
         returnView.addSubview(theLabelView)
         let theLabel = UILabel()
         theLabel.textColor = textColor
